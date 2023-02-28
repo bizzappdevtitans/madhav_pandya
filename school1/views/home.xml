@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_home" model="ir.actions.act_window">
+        <field name="name">home</field>
+        <field name="res_model">home</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+    </record>
+
+
+
+    <record id="home_form_view" model="ir.ui.view">
+      <field name="name">home.form</field>
+      <field name="model">home</field>
+      <field name="arch" type="xml">
+         <form  edit="0" create="0">
+            <body>
+            <div class="div-1">
+                <img src="/school1/static/description/home3.jpg" style="height:45%;width:100%;" />
+                <h1> Welcome to BizzAppDev school </h1>
+                <div>
+
+               <img src="/school1/static/description/home.jpeg" style="height:45%;width:100%;" />
+               </div>
+
+                <div class="dark">
+                    <b><p><h5>
+                    Welcome to Bizzappdev School for Children
+BizzAppDev School is a co-educational English Medium School affiliated to CBSE Board and operates in two shifts. It is now also an IB World school offering the International Baccalaureate Career-related Programme (CP) at Grade 11 and 12.
+
+The goal of the school is to provide holistic education and circulate the best standards of learning among children, with excellence in academics and co-curricular activities. Focus is given to individual potential and each student is believed to be unique. The method of teaching is child-oriented and the learning atmosphere is warm and friendly. Inculcating values through various practices help to mould the children into responsible citizens of tomorrow. Udgam School believes in ‘no child left behind’ policy, hence each child is nurtured and guided in a way that he/ she blossoms into their true potential.</h5></p>
+</b>
+
+                    <img src="/school1/static/description/home1.jpg" style="height:45%;width:120%;" />
+
+                </div>
+                <div>
+                    <img src="/school1/static/description/home3.jpg" style="height:45%;width:100%;" />
+
+                </div>
+                <div>
+                    <h3> Why Us</h3>
+                </div>
+                <div>
+                    <img src="/school1/static/description/home4.jpg" style="height:45%;width:100%;" />
+                </div>
+            </div>
+            </body>
+            <footer>
+            </footer>
+         </form>
+      </field>
+   </record>
+
+
+
+
+   <record id="action_school_infrastructure" model="ir.actions.act_window">
+        <field name="name">school_infrastructure</field>
+        <field name="res_model">school_infrastructure</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+    </record>
+
+
+    <record id="school_infrastructure_form_view" model="ir.ui.view">
+      <field name="name">school_infrastructure.form</field>
+      <field name="model">school_infrastructure</field>
+      <field name="arch" type="xml">
+         <form  edit="0" create="0">
+            <body>
+            <div class="div-2">
+                <div class="div-3">
+                    <div class="div-4">
+                        <h1> Our School Infrastructure</h1>
+                        <img src="/school1/static/description/school21.png" style="height:70%;width:100%;" />
+                        <img src="/school1/static/description/school23.jpg" style="height:70%;width:100%;" />
+                        <img src="/school1/static/description/school33.jpg" style="height:70%;width:100%;" />
+                        <img src="/school1/static/description/school34.jpg" style="height:70%;width:100%;" />
+                        <img src="/school1/static/description/school_infrastructure.jpg" style="height:70%;width:100%;" />
+                    </div>
+                </div>
+
+
+            </div>
+        </body>
+    </form>
+</field>
+</record>
+
+
+</odoo>

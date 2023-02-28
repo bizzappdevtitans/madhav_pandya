@@ -1,0 +1,43 @@
+{
+    "name": "School",
+    "summary": "Manage students and teachers.",
+    "author": "Madhav Pandya",
+    "license": "AGPL-3",
+    "sequence": 1,
+    "website": "https://github.com/PacktPublishing" "/Odoo-15-Development-Essentials",
+    "version": "15.0.1.0.0",
+    "depends": [
+        "mail",
+        "sale",
+        "account",
+        "project",
+    ],
+    "data": [
+        "views/school_view.xml",
+        "security/ir.model.access.csv",
+        "views/student.xml",
+        "views/teacher.xml",
+        "views/student_appointment.xml",
+        "reports/student_report.xml",
+        "views/contact_us.xml",
+        "views/director.xml",
+        "views/results.xml",
+        "views/admission.xml",
+        "views/toppers.xml",
+        "views/alumni.xml",
+        "views/registration.xml",
+        "views/fees.xml",
+        "views/canteen.xml",
+        "views/home.xml",
+        "views/SaleOrder.xml",
+    ],
+    "assets": {
+        "web.assets_backend": [
+            "school1/scss/style.scss",
+        ]
+    },
+    "installable": True,
+    "application": True,
+    "auto_install": False,
+    "licence": "LGPL-3",
+}

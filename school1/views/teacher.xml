@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_teacher" model="ir.actions.act_window">
+        <field name="name">teacher</field>
+        <field name="res_model">teacher</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+
+
+<record id="student_list_view" model="ir.ui.view">
+      <field name="name">teacher.tree</field>
+      <field name="model">teacher</field>
+      <field name="arch" type="xml">
+         <tree>
+            <field name="name"/>
+            <field name="LastName"/>
+            <field name="ContactNo"/>
+            <field name="Address"/>
+            <!-- <field name="student_name1" /> -->
+            <field name="email"/>
+            <field name="subject"/>
+            <field name="image" widget="image" options="{'size': [100, 100]}" />
+            <field name="degree"/>
+
+         </tree>
+      </field>
+   </record>
+
+
+
+
+<record id="teacher_form_view" model="ir.ui.view">
+      <field name="name">teacher.form</field>
+      <field name="model">teacher</field>
+      <field name="arch" type="xml">
+         <form>
+
+            <sheet>
+                <div class="oe_button_box" name="button_box">
+                    <button name="action_open_appointments" type="object" class="oe_stat_button" icon="fa-calendar">
+                        <div class="o_stat_info">
+                            <field name="appointment_count"/>
+                            <span class= "o_stat_text">
+                               <b> Students</b>
+
+                            </span>
+                        </div>
+                    </button>
+
+
+                </div>
+
+               <widget name="web_ribbon" title="Teacher" bg_color="bg-danger"/>
+               <group>
+               <field name="name"/>
+               <field name="LastName"/>
+               <field name="ContactNo"/>
+               <field name="Address"/>
+               <field name="email"/>
+               <field name="image" class="oe_avatar" widget="image" />
+               <field name="subject"/>
+               <field name="degree"/>
+               <field name="namee_ids_t"/>
+
+               </group>
+               <notebook>
+                <page string="Apply for Leave">
+                    <field name="leave"/>
+                </page>
+                <page string="Reason for Leave">
+                    <field name="leave1"/>
+                </page>
+
+               </notebook>
+            </sheet>
+         </form>
+      </field>
+</record>
+
+
+<record id="teacher_kanban_view" model="ir.ui.view">
+            <field name="name">teacher.kanban</field>
+            <field name="model">teacher</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name"/>
+                    <field name="LastName"/>
+                    <field name="ContactNo"/>
+                    <field name="Address"/>
+                    <field name="image" widget="image"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+
+                                <div class="oe_kanban_details">
+                                    <ul>
+                                        <li>
+                                           Name: <field name="name"/>
+                                        </li>
+                                        <li>
+                                            Lastname:<field name="LastName"/>
+                                        </li>
+                                        <li>
+                                            Contact No:<field name="ContactNo"/>
+                                        </li>
+                                        <li>
+                                             Photo: <field name="image" widget="image"/>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+
+
+
+
+    <record id="action_faculties" model="ir.actions.act_window">
+        <field name="name">faculties</field>
+        <field name="res_model">faculties</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+    </record>
+
+
+
+    <record id="faculties_form_view" model="ir.ui.view">
+      <field name="name">faculties.form</field>
+      <field name="model">faculties</field>
+      <field name="arch" type="xml">
+         <form  edit="0" create="0">
+            <h1> Our Faculties</h1>
+
+                <body>
+                    <div class="dark">
+
+                        <h5 style='bold' color='bg-danger'>Name:Madhav Pandya</h5><n/>
+                        <h5 style="bold">Subject:  Maths, Science</h5>
+                        <h5 style="bold">Director</h5>
+
+                        <img src="/school1/static/description/mad.jpg" style="height:300px;width:400px;"/>
+
+
+                    </div>
+                    <div class="dark">
+
+                        <h5 style='bold' color='bg-danger'>Name:Katrina Mam</h5><n/>
+                        <h5 style="bold">Subject: English</h5>
+
+                        <img src="/school1/static/description/teacher.jpg " style="height:300px;width:400px;" />
+
+
+                    </div>
+
+                    <div class="dark">
+
+                        <h5 style='bold' color='bg-danger'>Name:Ananya Mam</h5><n/>
+                        <h5 style="bold">Subject: Social Science</h5>
+
+                        <img src="/school1/static/description/ananya1.jpg " style="height:300px;width:400px;" />
+
+
+                    </div>
+
+                    <div class="dark">
+
+                        <h5 style='bold' color='bg-danger'>Name:Janki Mam</h5><n/>
+                        <h5 style="bold">Subject: Gujarati</h5>
+
+                        <img src="/school1/static/description/janki.jpg " style="height:300px;width:400px;" />
+
+
+                    </div>
+
+
+
+                </body>
+
+
+        </form>
+    </field>
+</record>
+
+
+
+
+
+
+
+</odoo>
