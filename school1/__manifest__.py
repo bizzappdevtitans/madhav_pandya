@@ -11,6 +11,7 @@
         "sale",
         "account",
         "project",
+        "sale_project",
     ],
     "data": [
         "views/school_view.xml",

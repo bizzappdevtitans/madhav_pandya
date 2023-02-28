@@ -13,3 +13,6 @@ from . import fees
 from . import canteen
 from . import home
 from . import SaleOrder
+from . import SaleOrderLine
+from . import StockMove
+
