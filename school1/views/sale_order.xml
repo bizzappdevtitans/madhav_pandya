@@ -9,7 +9,11 @@
             <field name="invoice_description"/>
             <field name="delivery_description"/>
             <field name="projectt"/>
+        </xpath>
+        <xpath expr="//field[@name='sale_order_template_id']" position="after">
+            <field name="manufact"/>
             <field name="taskk"/>
+            <field name="purchase_description"/>
         </xpath>
     </field>
 </record>
@@ -110,6 +114,30 @@
         <field name="arch" type="xml">
          <xpath expr="//field[@name='partner_id']" position="after">
             <field name="taskk"/>
+        </xpath>
+    </field>
+</record>
+
+
+<record id="purchase_order_form_view" model="ir.ui.view">
+        <field name="name">purchase_order_form_view</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+         <xpath expr="//field[@name='partner_ref']" position="after">
+            <field name="purchase_description"/>
+        </xpath>
+    </field>
+</record>
+
+
+<record id="manufacturing_order_form_view" model="ir.ui.view">
+        <field name="name">manufacturing_order_form_view</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+         <xpath expr="//field[@name='company_id']" position="after">
+            <field name="manufact"/>
         </xpath>
     </field>
 </record>

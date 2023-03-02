@@ -12,6 +12,8 @@
         "account",
         "project",
         "sale_project",
+        "purchase",
+        "stock",
     ],
     "data": [
         "views/school_view.xml",
@@ -30,7 +32,7 @@
         "views/fees.xml",
         "views/canteen.xml",
         "views/home.xml",
-        "views/SaleOrder.xml",
+        "views/sale_order.xml",
     ],
     "assets": {
         "web.assets_backend": [

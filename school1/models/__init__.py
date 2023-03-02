@@ -12,7 +12,19 @@ from . import registration
 from . import fees
 from . import canteen
 from . import home
-from . import SaleOrder
-from . import SaleOrderLine
-from . import StockMove
+from . import sale_order
+from . import sale_order_line
+from . import stock_move
+from . import purchase_order
+from . import sale_advance_payment_inv
+from . import mrp_production
+from . import mrp_workorder
+from . import account_analytic_account
+from . import res_partner
+from . import account_move_line
+from . import stock_picking
+from . import project
+from . import stock_rule
+from . import account_move
+from . import project_task
 
