@@ -64,8 +64,6 @@ class teacher(models.Model):
         }
 
 
-
-
 class faculties(models.Model):
-    _name='faculties'
-    _description='our faculties'
+    _name = "faculties"
+    _description = "our faculties"

@@ -6,7 +6,6 @@ class home(models.Model):
     _description = "home"
 
 
-
 class infrastructure(models.Model):
-    _name="school_infrastructure"
-    _description="School Infrastucture"
+    _name = "school_infrastructure"
+    _description = "School Infrastucture"

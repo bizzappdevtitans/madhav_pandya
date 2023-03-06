@@ -1,17 +1,32 @@
-from odoo import fields,models
-
-
+from odoo import fields, models
 
 
 class StockRule(models.Model):
-    _inherit="stock.rule"
-    purchase_description=fields.Char("Purchase")
+    _inherit = "stock.rule"
+    purchase_description = fields.Char("Purchase")
 
-
-
-
-    # def _prepare_purchase_order(self,company_id, origins, values):
-    #     print("\n\nHar har nMahaddev")
-    #     invoice_vals=super(StockRule,self)._prepare_purchase_order(company_id, origins, values)
-    #     invoice_vals.update({"purchase_description": self.purchase_description})
-    #     return invoice_vals
+    def _prepare_mo_vals(
+        self,
+        product_id,
+        product_qty,
+        product_uom,
+        location_id,
+        name,
+        origin,
+        company_id,
+        values,
+        bom,
+    ):
+        res = super()._prepare_mo_vals(
+            product_id,
+            product_qty,
+            product_uom,
+            location_id,
+            name,
+            origin,
+            company_id,
+            values,
+            bom,
+        )
+        res["manufact"] = values.get("manufact")
+        return res

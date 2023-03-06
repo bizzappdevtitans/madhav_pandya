@@ -5,6 +5,11 @@ school1.access_student,access_student,school1.model_student,base.group_user,1,1,
 
 school1.access_teacher,access_teacher,school1.model_teacher,base.group_user,1,1,1,1
 
+school1.access_create_appointment_wizard,access_create_appointment_wizard,school1.model_create_appointment_wizard,base.group_user,1,1,1,1
+
+
+school1.access_create_result_wizard,access_create_result_wizard,school1.model_create_result_wizard,base.group_user,1,1,1,1
+
 
 school1.access_result,access_result,school1.model_result,base.group_user,1,1,1,1
 

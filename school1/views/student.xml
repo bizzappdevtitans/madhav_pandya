@@ -77,7 +77,7 @@
                 <h1> <field name="reference_no"/></h1>
                   <group name="details">
                      <field name="name" widget="char_emojis" default_focus="1"/>
-                     <field name="LastName" widget="popover_widget"/>
+                     <field name="LastName" />
                      <field name="ContactNo"/>
                      <field name="age"/>
                      <field name="Address"/>

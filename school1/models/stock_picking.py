@@ -1,8 +1,7 @@
-from odoo import fields,models
-
+from odoo import fields, models
 
 
 class StockPicking(models.Model):
     _inherit = "stock.picking"
 
-    delivery_description = fields.Text('Delivery Description')
+    delivery_description = fields.Text("Delivery Description")

@@ -11,7 +11,7 @@ class student(models.Model):
     name = fields.Char(
         string="Student Name", tracking=True, help="Enter your name here"
     )
-    LastName = fields.Char(string="Last name", help="Enter your Lastname here")
+    LastName = fields.Char("Last Name")
     ContactNo = fields.Char("ContactNO", help="Enter your Contact No here")
     Address = fields.Char("Address", help="Enter your Address here")
     age = fields.Char(string="Age", help="Enter your age here")
@@ -201,7 +201,7 @@ class student(models.Model):
                 "|",
                 "|",
                 ("name", operator, name),
-                ("LastName", operator, name),
+                # ("LastName", operator, name),
                 ("email", operator, name),
             ]
         return self._search(args, limit=limit, access_rights_uid=name_get_uid)

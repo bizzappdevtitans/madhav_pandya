@@ -91,6 +91,7 @@
         <form >
             <header>
                 <button name="action_confirm" type="object" string="Confirm" class="oe_highlight"/>
+                <button id="button_create_apppointment" name="%(action_create_appointment)d" string="Create Appointment" class="btn-primary" type="action"/>
             </header>
             <sheet>
                 <group>

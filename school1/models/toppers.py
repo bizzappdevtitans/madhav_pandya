@@ -1,4 +1,4 @@
-from odoo import fields,api, models
+from odoo import fields, api, models
 from odoo.exceptions import UserError
 
 
@@ -34,7 +34,6 @@ class toppers(models.Model):
     _sql_constraints = [
         ("name_uniq", "UNIQUE(standard)", "You cannot repeat same standard!")
     ]
-
 
     @api.model
     def _name_search(

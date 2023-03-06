@@ -23,6 +23,7 @@
    <menuitem id="school_sub2_menu" name="Student" parent="school_root_menu" action="action_school"/>
    <menuitem id="school_sub2_1_menu" name="Student Information" parent="school_sub2_menu" action="action_student"/>
    <menuitem id="school_sub2_2menu" name="Student Appointment" parent="school_sub2_menu" action="action_student_appointment"/>
+   <menuitem id="school_sub2_22menu" name="Create Appointment" parent="school_sub2_menu" action="action_create_appointment"/>
 
 
    <menuitem id="school_sub3_menu" name="Teachers" parent="school_root_menu" action="action_school"/>

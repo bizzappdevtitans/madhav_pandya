@@ -18,6 +18,7 @@
     "data": [
         "views/school_view.xml",
         "security/ir.model.access.csv",
+        "wizard/create_appointment_view.xml",
         "views/student.xml",
         "views/teacher.xml",
         "views/student_appointment.xml",

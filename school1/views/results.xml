@@ -32,6 +32,10 @@
       <field name="model">result</field>
       <field name="arch" type="xml">
          <form >
+            <header>
+                <button name="%(action_create_result)d" type="action" string="Results"/>
+
+            </header>
             <sheet>
                 <widget name="web_ribbon" title="Result" bg_color="bg-danger"/>
                 <h1><field name="reference_no"/></h1>
