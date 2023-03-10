@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+   <menuitem id="school_root_menu" name="School" action="action_home"/>
+
+   <menuitem id="school_sub1111_menu" name="Home Page" parent="school_root_menu" sequence="1" action="action_home"/>
+
+   <menuitem id="school_sub1112_menu" name="School Infrastructure" parent="school_sub1111_menu" action="action_school_infrastructure"/>
+
+
+   <menuitem id="school_sub1_menu" name="Director" parent="school_root_menu" action="action_director" groups="school_management.group_school_teacher"/>
+
+
+
+
+
+
+   <menuitem id="school_sub2_menu" name="Student" parent="school_root_menu"/>
+   <menuitem id="school_sub2_1_menu" name="Student Information" parent="school_sub2_menu" action="action_student"/>
+   <menuitem id="school_sub2_2menu" name="Student Appointment" parent="school_sub2_menu" action="action_student_appointment"/>
+   <menuitem id="school_sub2_22menu" name="Create Appointment" parent="school_sub2_menu" action="action_create_appointment"/>
+
+
+   <menuitem id="school_sub3_menu" name="Teachers" parent="school_root_menu"/>
+   <menuitem id="school_sub3_1menu" name="Teachers Information" parent="school_sub3_menu" action="action_teacher"/>
+    <menuitem id="school_sub3_11menu" name="Our Faculties" parent="school_sub3_menu" action="action_faculties"/>
+
+
+   <menuitem id="school_sub43_menu" name="Contact Us" parent="school_root_menu" action="action_contact_us"/>
+   <menuitem id="school_sub43_1_menu" name="Mail Us" parent="school_sub43_menu" action="action_mail_us"/>
+
+
+   <menuitem id="school_sub53_menu" name="Student Result" parent="school_sub2_menu" action="action_result"/>
+
+
+
+   <menuitem id="school_sub63_menu" name="Admissions Open" parent="school_root_menu" action="action_admission"/>
+
+   <menuitem id="school_sub73_menu" name="Toppers" parent="school_root_menu" action="action_toppers"/>
+
+
+   <menuitem id="school_sub83_menu" name="Alumni" parent="school_root_menu" action="action_alumni"/>
+
+
+   <menuitem id="school_sub93_menu" name="Events" parent="school_root_menu" action="action_alumni"/>
+   <menuitem id="school_sub93_1menu" name="Registration" parent="school_sub93_menu" action="action_registration"/>
+
+   <menuitem id="school_sub931_1menu" name="Fees Structure" parent="school_root_menu" action="action_fees"/>
+
+    <menuitem id="school_sub91_1menu" name="Facilities" parent="school_root_menu" action="action_fees"/>
+
+    <menuitem id="school_sub91_11menu" name="Canteen Facilities" parent="school_sub91_1menu" action="action_canteen"/>
+    <menuitem id="school_sub921_11menu" name="Canteen menu" parent="school_sub91_1menu" action="action_canteen_menu"/>
+    <menuitem id="school_sub911_11menu" name="Library" parent="school_sub91_1menu" action="action_library"/>
+    <menuitem id="school_sub911_12menu" name="Sports room" parent="school_sub91_1menu" action="action_sports"/>
+    <menuitem id="school_sub911_13menu" name="Smart class room" parent="school_sub91_1menu" action="action_smart_class"/>
+
+
+
+</odoo>
