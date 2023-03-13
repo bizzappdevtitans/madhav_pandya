@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError, UserError
 
@@ -29,6 +29,10 @@ class Student(models.Model):
     date_of_birth = fields.Date(
         string="Date of birth", help="Enter your Date of Birth here"
     )
+
+    birthday = fields.Selection([("birth", "Happy Birthday")], readonly=True)
+    todays_date = fields.Char(default=fields.Date.today(), readonly=True)
+
     image = fields.Image(string="Image")
 
     leave = fields.Text("note")
@@ -58,6 +62,12 @@ class Student(models.Model):
     name_ids = fields.Many2many(comodel_name="teacher", string="Teachers")
 
     result_ids = fields.Many2many(comodel_name="result", string="results")
+
+    @api.model
+    def action_birthday_count(self):
+        self.env["student"].search([("date_of_birth", "=", "todays_date")]).write(
+            {"birthday": "birth"}
+        )
 
     def action_open_appointmentss(self):
         """Returns the result.model view from the smart button"""
@@ -135,6 +145,10 @@ class Student(models.Model):
                 progress = 100
             rec.progress = progress
 
+    def action_done(self):
+        for rec in self:
+            rec.state = "done"
+
     @api.onchange("date_of_birth")
     def onchange_date_of_birth(self):
         """This counts the age according to the date_of_birth"""
@@ -145,7 +159,7 @@ class Student(models.Model):
 
     def write(self, values):
         print("Values.....", values)
-        rtn = super(student, self).write(values)
+        rtn = super(Student, self).write(values)
         return rtn
 
     def action_open_appointments(self):

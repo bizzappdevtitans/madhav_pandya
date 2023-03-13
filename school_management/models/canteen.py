@@ -33,6 +33,4 @@ class CanteenMenu(models.Model):
     price = fields.Float("Price")
     image = fields.Image("Photo")
 
-    _sql_constraints = [
-        ("name_uniq", "UNIQUE(item)", "You cannot repeat same ITEM!")
-    ]
+    _sql_constraints = [("name_uniq", "UNIQUE(item)", "You cannot repeat same ITEM!")]

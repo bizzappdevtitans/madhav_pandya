@@ -17,6 +17,7 @@
         'mrp',
     ],
     "data": [
+        "data/cron.xml",
         "views/school_view.xml",
         "security/ir.model.access.csv",
         "security/security.xml",

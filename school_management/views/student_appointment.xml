@@ -13,7 +13,6 @@
       <field name="arch" type="xml">
          <tree multi_edit="1">
 
-            <field name="name"/>
             <field name="name_id" widget="many2one_avatar"/>
             <field name="lastname"/>
             <field name="email"/>
@@ -96,9 +95,8 @@
             <sheet>
                 <group>
                     <widget name="web_ribbon" title="Student Appointment" bg_color="bg-danger"/>
-                    <field name="name"/>
-                    <field name="contact_no"/>
                     <field name="name_id"/>
+                    <field name="contact_no"/>
                     <field name="lastname"/>
                     <field name="age"/>
                     <field name="gender"/>
@@ -106,6 +104,7 @@
                     <field name="address_lines_ids"/>
                     <field name="image" class="oe_avatar" widget="image"/>
                     <field name="aadhar" class="oe_avatar" widget="image"/>
+                     <field name="category" widget="radio"/>
                     <!-- <field name="reference_field"/> -->
             </group>
             </sheet>

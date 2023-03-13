@@ -29,6 +29,29 @@ class Result(models.Model):
 
     passing_class = fields.Char(compute="_compute_class", string="Passing Class")
 
+    state = fields.Selection(
+        [
+            ("pass", "Passed"),
+            ("fail", "Failed"),
+            ("promoted", "Congratulations,"),
+        ],
+        string="Result",
+        compute="_compute_pass",
+    )
+
+    @api.depends("percent")
+    def _compute_pass(self):
+        """This function will update whether student is passed or Failed"""
+        for rec in self:
+            if rec.percent > 35:
+                rec.update({"state": "pass"})
+            else:
+                rec.update({"state": "fail"})
+
+    def action_done(self):
+        for rec in self:
+            rec.state = "promoted"
+
     @api.depends("sub1", "sub2", "sub3", "sub4")
     def _compute_total(self):
         """compute the total marks of all 4 subjects"""
