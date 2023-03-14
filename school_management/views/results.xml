@@ -34,6 +34,7 @@
             <field name="total"/>
             <field name="percent" widget="percentpie"/>
             <field name="state" widget="badge" decoration-success = " state == 'pass'" decoration-danger = " state == 'fail'"/>
+            <field name="record"/>
 
          </tree>
       </field>
@@ -51,6 +52,7 @@
             <sheet>
                 <widget name="web_ribbon" title="Result" bg_color="bg-danger"/>
                 <h1><field name="reference_no"/></h1>
+
                <group>
                 <field name="name"/>
                <field name="sub1"/>
@@ -60,6 +62,8 @@
                <field name="total"/>
                <field name="percent"/>
                <field name="state" widget="badge" decoration-success = " state == 'pass'"/>
+               <field name="record"/>
+                <button name="action_url" type="object" string="Website" class="oe_highlight"/>
                </group>
             </sheet>
          </form>

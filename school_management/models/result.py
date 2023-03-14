@@ -39,6 +39,8 @@ class Result(models.Model):
         compute="_compute_pass",
     )
 
+    record = fields.Char("Total Records", readonly=True)
+
     @api.depends("percent")
     def _compute_pass(self):
         """This function will update whether student is passed or Failed"""
@@ -47,6 +49,12 @@ class Result(models.Model):
                 rec.update({"state": "pass"})
             else:
                 rec.update({"state": "fail"})
+
+    @api.model
+    def count_records(self):
+        total_len = self.env["result"].search_count([("state", "=", "pass")])
+        total_records = self.env["result"].update({"record": "self.total_len"})
+        print("\n\ntotal records", total_len)
 
     def action_done(self):
         for rec in self:
@@ -80,6 +88,9 @@ class Result(models.Model):
         rtn = super(result, self).unlink()
         print("Return Statement", rtn)
         return rtn
+
+    def action_url(self):
+        return {"type": "ir.actions.act_url", "url": "https://www.gturesults.in/"}
 
     @api.model
     def create(self, vals):

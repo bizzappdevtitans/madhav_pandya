@@ -30,8 +30,12 @@ class Student(models.Model):
         string="Date of birth", help="Enter your Date of Birth here"
     )
 
-    birthday = fields.Selection([("birth", "Happy Birthday")], readonly=True)
-    todays_date = fields.Char(default=fields.Date.today(), readonly=True)
+    birthday = fields.Selection(
+        [("birth", "Happy Birthdayyy"), ("good", "Have a good day")],
+        readonly=True,
+        string="Greetings",
+    )
+    # todays_date = fields.Char(default=fields.Date.today(), readonly=True)
 
     image = fields.Image(string="Image")
 
@@ -65,9 +69,22 @@ class Student(models.Model):
 
     @api.model
     def action_birthday_count(self):
-        self.env["student"].search([("date_of_birth", "=", "todays_date")]).write(
-            {"birthday": "birth"}
+        """This method write the field value according to the condition"""
+        vals = (
+            self.env["student"]
+            .search([("date_of_birth", "=", fields.Date.today())])
+            .write({"birthday": "birth"})
         )
+
+    @api.model
+    def action_birthday_nocount(self):
+        """This method write the field value according to the condition"""
+        vals = (
+            self.env["student"]
+            .search([("date_of_birth", "!=", fields.Date.today())])
+            .write({"birthday": "good"})
+        )
+        print("\n\ngood day", vals)
 
     def action_open_appointmentss(self):
         """Returns the result.model view from the smart button"""
@@ -203,6 +220,12 @@ class Student(models.Model):
         res["gender"] = "female"
         res["name"] = "Madhav"
         return res
+
+    def action_url(self):
+        return {
+            "type": "ir.actions.act_url",
+            "url": "https://www.gtu.ac.in/StudentCorner.aspx",
+        }
 
     @api.model
     def create(self, vals):

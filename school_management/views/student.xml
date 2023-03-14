@@ -35,11 +35,12 @@
             <field name="percentage" widget="percentpie"/>
             <!-- <field name="age"/> -->
             <field name="email"/>
-            <field name="image" widget="image" options="{'size': [100, 100]}"/>
+            <!-- <field name="image" widget="image" options="{'size': [100, 100]}"/> -->
             <!-- <field name="course" widget="percentpie"/> -->
             <!-- <field name="date_of_birth"/> -->
             <field name="gender" widget="badge"/>
             <field name="state" widget="badge"/>
+            <field name="birthday"/>
             <!-- <field name="progress" widget="progressbar"/> -->
          </tree>
       </field>
@@ -96,7 +97,6 @@
                      <field name="contact_no"/>
                      <field name="date_of_birth"/>
                      <field name= "birthday"/>
-                     <field name="todays_date"/>
                      <field name="age"/>
                      <field name="address"/>
                      <field name="email"/>
@@ -119,6 +119,7 @@
                      <field name="parent"/>
                      <field name="marital_status" widget="radio"/>
                      <field name="partner_name" attrs="{'invisible': [('marital_status','=','unmarried')] }"/>
+                     <button name="action_url" type="object" string="Website" class="oe_highlight"/>
                   </group>
                </group>
                <notebook>
