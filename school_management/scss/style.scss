@@ -1,0 +1,46 @@
+.div-1{
+    background-color: green;
+    height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dark{
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+    text-align: center;
+}
+
+.div-4{
+
+    text-align: center;
+    text-shadow: 2px 2px;
+    text-color: blue;
+    font-family: "Times New Roman", Times, serif;
+    width: 1300px;
+    border: 15px solid black;
+    padding: 50px;
+    margin: 20px;
+
+
+
+}
+
+#container{
+    display: flex;
+    background-color: bisque;
+    align-content: center;
+
+}
+
+#container div{
+
+    align-items: center;
+    margin: 10px;
+    width: 100px;
+
+}
+
+

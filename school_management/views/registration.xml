@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_registration" model="ir.actions.act_window">
+        <field name="name">registration</field>
+        <field name="res_model">registration</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="registration_list_view" model="ir.ui.view">
+      <field name="name">registration.tree</field>
+      <field name="model">registration</field>
+      <field name="arch" type="xml">
+
+         <tree>
+            <field name="name" decoration-primary="1" decoration-bf="1"/>
+            <field name="standard" decoration-info="1" decoration-bf="1"/>
+            <field name="event"  decoration-bf="1" widget="radio"/>
+
+
+         </tree>
+      </field>
+   </record>
+
+
+   <record id="registration_form_view" model="ir.ui.view">
+      <field name="name">registration.form</field>
+      <field name="model">registration</field>
+      <field name="arch" type="xml">
+         <form >
+             <header>
+
+            </header>
+            <sheet>
+                <widget name="web_ribbon" title="Registration" bg_color="bg-success"/>
+               <group>
+               <field name="name"/>
+               <field name="standard"/>
+               <field name="event"/>
+               </group>
+            </sheet>
+         </form>
+      </field>
+   </record>
+
+
+
+
+
+
+</odoo>

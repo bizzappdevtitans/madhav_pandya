@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_alumni" model="ir.actions.act_window">
+        <field name="name">alumni</field>
+        <field name="res_model">alumni</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="alumni_list_view" model="ir.ui.view">
+      <field name="name">alumni.tree</field>
+      <field name="model">alumni</field>
+      <field name="arch" type="xml">
+         <tree>
+            <field name="name" decoration-primary="1" decoration-bf="1"/>
+            <field name="batch" decoration-info="1" decoration-bf="1"/>
+            <field name="company" decoration-warning="1" decoration-bf="1"/>
+            <field name="position" />
+
+         </tree>
+      </field>
+   </record>
+
+
+
+
+
+    <record id="alumni_form_view" model="ir.ui.view">
+      <field name="name">alumni.form</field>
+      <field name="model">alumni</field>
+      <field name="arch" type="xml">
+         <form >
+            <sheet>
+                <widget name="web_ribbon" title="Alumni" bg_color="bg-success"/>
+               <group>
+               <field name="name"/>
+               <field name="batch"/>
+               <field name="company"/>
+               <field name="position"/>
+               </group>
+            </sheet>
+         </form>
+      </field>
+   </record>
+
+
+
+
+
+
+</odoo>
