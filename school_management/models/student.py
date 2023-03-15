@@ -15,7 +15,8 @@ class Student(models.Model):
     contact_no = fields.Char("contact_no", help="Enter your Contact No here")
     address = fields.Char("address", help="Enter your address here")
     age = fields.Char(string="Age", help="Enter your age here")
-    email = fields.Char("email", help="Enter your Email here", copy="false")
+    sender = fields.Char(default="madhavpandyapm@gmail.com", readonly=True)
+    email = fields.Char(string="email", help="Enter your Email here", copy="false")
 
     _sql_constraints = [
         ("name_uniq", "UNIQUE (email)", "You cannot have same email!"),
@@ -69,22 +70,24 @@ class Student(models.Model):
 
     @api.model
     def action_birthday_count(self):
-        """This method write the field value according to the condition"""
-        vals = (
-            self.env["student"]
-            .search([("date_of_birth", "=", fields.Date.today())])
-            .write({"birthday": "birth"})
-        )
+        for rec in self.search([]):
+            today = date.today()
+            if (
+                today.day == rec.date_of_birth.day
+                and today.month == rec.date_of_birth.month
+            ):
+                vals = rec.write({"birthday": "birth"})
+            else:
+                vals = rec.write({"birthday": "good"})
 
-    @api.model
-    def action_birthday_nocount(self):
-        """This method write the field value according to the condition"""
-        vals = (
-            self.env["student"]
-            .search([("date_of_birth", "!=", fields.Date.today())])
-            .write({"birthday": "good"})
-        )
-        print("\n\ngood day", vals)
+    def action_channel(self):
+        for rec in self.search([]):
+            today = date.today()
+            if (
+                today.day == rec.date_of_birth.day
+                and today.month == rec.date_of_birth.month
+            ):
+                vals = rec.message_post(body="Happy Birthdayyy")
 
     def action_open_appointmentss(self):
         """Returns the result.model view from the smart button"""
@@ -174,10 +177,10 @@ class Student(models.Model):
             if res.date_of_birth:
                 res.age = today.year - res.date_of_birth.year
 
-    def write(self, values):
-        print("Values.....", values)
-        rtn = super(Student, self).write(values)
-        return rtn
+    # def write(self, values):
+    #     print("Values.....123", values)
+    #     rtn = super(Student, self).write(values)
+    #     return rtn
 
     def action_open_appointments(self):
         """this will redirect to the records after clicking the smart button"""
@@ -190,6 +193,19 @@ class Student(models.Model):
             "domain": [("id", "in", self.name_ids.ids)],
             "context": "{'create': 'false'}",
         }
+
+    def action_send_card(self):
+        for rec in self.search([]):
+            today = date.today()
+            if (
+                today.day == rec.date_of_birth.day
+                and today.month == rec.date_of_birth.month
+            ):
+                template_id = self.env.ref(
+                    "school_management.student_card_email_template"
+                ).id
+                template = self.env["mail.template"].browse(template_id)
+                template.send_mail(self.id, force_send=True)
 
     @api.ondelete(at_uninstall=False)
     def _unlink_if_not_done(self):

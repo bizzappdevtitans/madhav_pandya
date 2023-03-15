@@ -18,6 +18,7 @@
     ],
     "data": [
         "data/cron.xml",
+        "data/mail_template.xml",
         "views/school_view.xml",
         "security/ir.model.access.csv",
         "security/security.xml",

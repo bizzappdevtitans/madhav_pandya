@@ -52,9 +52,9 @@
       <field name="model">student</field>
       <field name="arch" type="xml">
          <form>
-            <!-- <header>
-
-            </header> -->
+            <header>
+                <button name="action_channel" type="object" string="Send Email" class="oe_highlight"/>
+            </header>
             <sheet>
                 <div class="oe_button_box" name="button_box">
                     <button name="action_open_appointments" type="object" class="oe_stat_button" icon="fa-calendar">
@@ -104,6 +104,7 @@
                      <field name="name_ids" widgets="many2many_checkboxes"/>
                      <field name="result_ids"/>
                      <field name="image"  class="oe_avatar" widget="image"/>
+
 
                   </group>
                   <group string="Other Information" name="other_info">

@@ -13,19 +13,6 @@
         </record>
 
 
-         <record id="ir_cron_birthday_updater" model="ir.cron">
-            <field name="name">Birthday Degrador</field>
-            <field name="model_id" ref="model_student"/>
-            <field name="type">ir.actions.server</field>
-            <field name="state">code</field>
-            <field name="code">model.action_birthday_nocount()</field>
-            <field name="interval_number">1</field>
-            <field name="interval_type">minutes</field>
-            <field name="numbercall">-1</field>
-        </record>
-
-
-
          <record id="ir_cron_record_counter" model="ir.cron">
             <field name="name">Record Counter</field>
             <field name="model_id" ref="model_result"/>
@@ -34,6 +21,17 @@
             <field name="code">model.count_records()</field>
             <field name="interval_number">1</field>
             <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+        </record>
+
+        <record id="ir_cron_mail_sender" model="ir.cron">
+            <field name="name">Mail Sender</field>
+            <field name="model_id" ref="model_student"/>
+            <field name="type">ir.actions.server</field>
+            <field name="state">code</field>
+            <field name="code">model.action_send_card()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type"></field>
             <field name="numbercall">-1</field>
         </record>
 
