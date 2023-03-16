@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<record model="mail.channel" id="channel_birthday_wishing">
+   <field name="name">Birthday Wishing</field>
+   <field name="description">General Birthday Wishings.</field>
+   <field name="public">public</field>
+</record>
+</odoo>

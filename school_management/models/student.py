@@ -80,15 +80,6 @@ class Student(models.Model):
             else:
                 vals = rec.write({"birthday": "good"})
 
-    def action_channel(self):
-        for rec in self.search([]):
-            today = date.today()
-            if (
-                today.day == rec.date_of_birth.day
-                and today.month == rec.date_of_birth.month
-            ):
-                vals = rec.message_post(body="Happy Birthdayyy")
-
     def action_open_appointmentss(self):
         """Returns the result.model view from the smart button"""
         self.ensure_one()
@@ -205,7 +196,15 @@ class Student(models.Model):
                     "school_management.student_card_email_template"
                 ).id
                 template = self.env["mail.template"].browse(template_id)
-                template.send_mail(self.id, force_send=True)
+                template.send_mail(rec.id, force_send=True)
+                template_ids = self.env.ref("mail.channel_all_employees").id
+                channel_ids = self.env["mail.channel"].browse(template_ids)
+                message = ("Happy Birthdayyy %s") % (rec.name)
+                channel_ids.message_post(
+                    body=message,
+                    message_type="comment",
+                    subtype_xmlid="mail.mt_comment",
+                )
 
     @api.ondelete(at_uninstall=False)
     def _unlink_if_not_done(self):

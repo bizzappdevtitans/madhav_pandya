@@ -53,7 +53,7 @@ class Result(models.Model):
     @api.model
     def count_records(self):
         total_len = self.env["result"].search_count([("state", "=", "pass")])
-        total_records = self.env["result"].update({"record": "self.total_len"})
+        total_records = self.write({"record": "total_len"})
         print("\n\ntotal records", total_len)
 
     def action_done(self):
