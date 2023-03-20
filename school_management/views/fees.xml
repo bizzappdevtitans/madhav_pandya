@@ -30,9 +30,9 @@
             <sheet>
                 <widget name="web_ribbon" title="fees" bg_color="bg-success"/>
                <group>
-               <field name="department"/>
-               <field name="sem1"/>
-               <field name="sem2" attrs="{'invisible': [('sem1' , '>', 10000  )]}"/>
+               <field name="department" placeholder="Enter your department "/>
+               <field name="sem1" placeholder='sem 1 fees'/>
+               <field name="sem2" attrs="{'invisible': [('sem1' , '>', 10000  )]}" placeholder="sem2 fees"/>
                <field name="total"/>
                </group>
             </sheet>

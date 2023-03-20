@@ -54,11 +54,11 @@
                 <h1><field name="reference_no"/></h1>
 
                <group>
-                <field name="name"/>
-               <field name="sub1"/>
-               <field name="sub2"/>
-               <field name="sub3"/>
-               <field name="sub4"/>
+                <field name="name" placeholder="Enter your name"/>
+               <field name="sub1" placeholder="Enter marks"/>
+               <field name="sub2" placeholder="Enter marks"/>
+               <field name="sub3" placeholder="Enter marks"/>
+               <field name="sub4" placeholder="Enter marks"/>
                <field name="total"/>
                <field name="percent"/>
                <field name="state" widget="badge" decoration-success = " state == 'pass'"/>

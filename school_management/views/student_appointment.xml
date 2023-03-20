@@ -40,6 +40,7 @@
             <field name="email"/>
             <field name="lastname"/>
             <field name="booking_date"/>
+            <field name="teacher_id"/>
             <field name="address_lines_ids"/>
 
         </calendar>
@@ -90,6 +91,8 @@
         <form >
             <header>
                 <button name="action_confirm" type="object" string="Confirm" class="oe_highlight"/>
+                <button name="action_share_whatsapp" type="object" string="Share Whatsapp" class="oe_highlight" icon="fa-whatsapp"/>
+                <button name="action_notify" type="object" string="Notify" class="oe_highlight" icon="fa-bell"/>
                 <button id="button_create_apppointment" name="%(action_create_appointment)d" string="Create Appointment" class="btn-primary" type="action"/>
             </header>
             <sheet>
@@ -101,6 +104,7 @@
                     <field name="age"/>
                     <field name="gender"/>
                     <field name="booking_date"/>
+                    <field name="teacher_id"/>
                     <field name="address_lines_ids"/>
                     <field name="image" class="oe_avatar" widget="image"/>
                     <field name="aadhar" class="oe_avatar" widget="image"/>

@@ -5,7 +5,10 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     field_id = fields.Many2one("student", "Field value")
-    new_field = fields.Char("New or Refurbished")
+    product_template_id = fields.Many2one('product.template')
+    weight_id=fields.Many2one(comodel_name='stock.move')
+    new_field = fields.Boolean(related="product_template_id.weight_done")
+    weight_measure=fields.Float("Weight Measure")
 
     def _timesheet_create_project_prepare_values(self):
         """Returns the value from sale.order to project.project model"""

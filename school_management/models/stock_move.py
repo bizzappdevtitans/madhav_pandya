@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import fields,api, models
 
 
 class StockMove(models.Model):
@@ -7,6 +7,7 @@ class StockMove(models.Model):
     field_id = fields.Many2one(comodel_name="student", string="New field")
     delivery_description = fields.Text("Delivery Description")
     manufacture = fields.Char("manufacture")
+    weight_measure=fields.Float("Weight measure" )
 
     def _get_new_picking_values(self):
         """Returns the value from sale.order to stock.move model"""
@@ -19,3 +20,10 @@ class StockMove(models.Model):
         res = super()._prepare_procurement_values()
         res["manufacture"] = self.sale_line_id.order_id.manufacture
         return res
+
+
+    # def _action_done(self,cacel):
+    #     vals = super(StockMove, self)._action_done()
+    #     vals["weight_measure"] = self.weight_measure
+    #     return vals
+

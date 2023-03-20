@@ -12,11 +12,11 @@
       <field name="arch" type="xml">
 
          <tree>
-            <field name="name" decoration-primary="1" decoration-bf="1"/>
-            <field name="lastname" decoration-info="1" decoration-bf="1"/>
-            <field name="contact_no" decoration-bf="1"/>
-            <field name="standard"/>
-            <field name="pr_standard"/>
+            <field name="name" decoration-primary="1" decoration-bf="1" />
+            <field name="lastname" decoration-info="1" decoration-bf="1" />
+            <field name="contact_no" decoration-bf="1" />
+            <field name="standard" />
+            <field name="pr_standard" />
 
          </tree>
       </field>
@@ -33,11 +33,11 @@
             <sheet>
                 <widget name="web_ribbon" title="Admission Open" bg_color="bg-success"/>
                <group>
-               <field name="name"/>
-               <field name="lastname"/>
-               <field name="contact_no"/>
-               <field name="standard"/>
-               <field name="pr_standard"/>
+               <field name="name" placeholder="Enter your name "/>
+               <field name="lastname" placeholder="Enter your lastname"/>
+               <field name="contact_no" placeholder="Enter your contact no"/>
+               <field name="standard" placeholder="Enter your standard"/>
+               <field name="pr_standard" placeholder="Enter yout previous standard"/>
                </group>
             </sheet>
          </form>

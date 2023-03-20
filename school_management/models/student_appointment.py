@@ -1,4 +1,5 @@
-from odoo import fields, models
+from odoo import fields, api, models
+from odoo.exceptions import ValidationError, UserError
 
 
 class StudentAppointment(models.Model):
@@ -21,6 +22,8 @@ class StudentAppointment(models.Model):
     gender = fields.Selection(
         [("male", "Male"), ("female", "Female")], related="name_id.gender"
     )
+
+    teacher_id= fields.Many2one(comodel_name="teacher", string="Teacher")
 
     image = fields.Image(string="Image")
     aadhar = fields.Image("Aadhar")
@@ -47,6 +50,28 @@ class StudentAppointment(models.Model):
             "You can't enter less than 10 digits and more than 10 digits",
         )
     ]
+
+
+
+    def action_notify(self):
+        message = {
+       'type': 'ir.actions.client',
+       'tag': 'display_notification',
+       'params': {
+           'title': ('Warning!'),
+           'message':"Your appointment",
+           'sticky': False,
+         }
+            }
+        return message
+
+    def action_share_whatsapp(self):
+        if not self.name_id.contact_no:
+            raise ValidationError("Students having no phone number")
+        message = "Hi, %s" % self.lastname
+        whatsapp_api_url = "https://web.whatsapp.com/send?phone=" + self.contact_no +"&text=" +message
+
+        return {"type": "ir.actions.act_url", "target": "url", "url": whatsapp_api_url}
 
     def action_confirm(self):
         for rec in self:

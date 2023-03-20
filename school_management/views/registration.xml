@@ -33,9 +33,9 @@
             <sheet>
                 <widget name="web_ribbon" title="Registration" bg_color="bg-success"/>
                <group>
-               <field name="name"/>
-               <field name="standard"/>
-               <field name="event"/>
+               <field name="name" placeholder="Enter your name"/>
+               <field name="standard" placeholder="selectv your standard"/>
+               <field name="event" placeholder="Select event"/>
                </group>
             </sheet>
          </form>

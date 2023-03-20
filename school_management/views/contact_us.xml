@@ -33,10 +33,10 @@
             <sheet>
                 <widget name="web_ribbon" title="Contact Us" bg_color="bg-danger"/>
                <group>
-               <field name="name"/>
-               <field name="lastname"/>
-               <field name="contact_no"/>
-               <field name="email"/>
+               <field name="name" placeholder="Enter your name"/>
+               <field name="lastname" placeholder="Enter your lastname"/>
+               <field name="contact_no" placeholder="Enter your contact no"/>
+               <field name="email" placeholder="Enter your email address"/>
                <field name="color" widget="color_picker"/>
                <field name="priority" widget="priority" class="mr-3"/>
                </group>

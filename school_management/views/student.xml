@@ -53,7 +53,6 @@
       <field name="arch" type="xml">
          <form>
             <header>
-
             </header>
             <sheet>
                 <div class="oe_button_box" name="button_box">
@@ -92,15 +91,15 @@
                <group>
                 <h1> <field name="reference_no"/></h1>
                   <group name="details">
-                     <field name="name" widget="char_emojis" default_focus="1"/>
-                     <field name="lastname" />
-                     <field name="contact_no"/>
-                     <field name="date_of_birth"/>
+                     <field name="name" widget="char_emojis" default_focus="1" placeholder="Enter your name "/>
+                     <field name="lastname"  placeholder="Enter your lastname"/>
+                     <field name="contact_no" placeholder ="Enter your contact_no"/>
+                     <field name="date_of_birth" placeholder="Select your birth date "/>
                      <field name= "birthday"/>
                      <field name="age"/>
-                     <field name="address"/>
-                     <field name="email"/>
-                     <field name="percentage"/>
+                     <field name="address" placeholder="Enter your address"/>
+                     <field name="email" placeholder="Enter your email"/>
+                     <field name="percentage" placeholder="Enter your percentage"/>
                      <field name="name_ids" widgets="many2many_checkboxes"/>
                      <field name="result_ids"/>
                      <field name="image"  class="oe_avatar" widget="image"/>

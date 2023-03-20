@@ -34,12 +34,12 @@
             <sheet>
                 <widget name="web_ribbon" title="Director" bg_color="bg-danger"/>
                <group>
-               <field name="name"/>
-               <field name="lastname"/>
-               <field name="contact_no"/>
-               <field name="email"/>
-               <field name="experience"/>
-               <field name="department"/>
+               <field name="name" placeholder="Enter your name "/>
+               <field name="lastname" placeholder="Enter your lastname"/>
+               <field name="contact_no" placeholder="Enter your contact no"/>
+               <field name="email" placeholder="Enter your email"/>
+               <field name="experience" placeholder="Enter your experience"/>
+               <field name="department" placeholder="Enter your department"/>
                 <field name="image" class="oe_avatar" widget="image"/>
                 <field name="aadhar" class="oe_avatar" widget="image"/>
                </group>

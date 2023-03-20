@@ -32,10 +32,10 @@
             <sheet>
                 <widget name="web_ribbon" title="Alumni" bg_color="bg-success"/>
                <group>
-               <field name="name"/>
-               <field name="batch"/>
-               <field name="company"/>
-               <field name="position"/>
+               <field name="name" placeholder="Enter your name"/>
+               <field name="batch" placeholder="Enter your Batch"/>
+               <field name="company" placeholder="Enter your company"/>
+               <field name="position" placeholder="Enter your current position"/>
                </group>
             </sheet>
          </form>

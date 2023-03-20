@@ -48,6 +48,7 @@
     <field name="arch" type="xml">
         <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='name']" position="after">
             <field name="new_field"/>
+            <field name="weight_measure"/>
         </xpath>
     </field>
 </record>
@@ -75,6 +76,9 @@
         <field name="arch" type="xml">
          <xpath expr="//field[@name='picking_type_id']" position="after">
             <field name="delivery_description"/>
+        </xpath>
+         <xpath expr="/form/sheet/notebook/page/field[@name='move_ids_without_package']/tree/field[@name='product_packaging_id']" position="after">
+            <field name="weight_measure"/>
         </xpath>
     </field>
 </record>
@@ -138,7 +142,20 @@
 </record>
 
 
-
+<record id="product_template_order_form_view" model="ir.ui.view">
+        <field name="name">product_template_order_form_view</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view" />
+        <field name="arch" type="xml">
+         <!-- <xpath expr="//field[@name='sale_ok']" position="before"> -->
+            <span class="d-inline-block">
+                    <field name="weight_done"/>
+                    <label for="weight_done"/>
+            </span>
+            <field name="weight_done"/>
+        <!-- </xpath> -->
+    </field>
+</record>
 
 
 
