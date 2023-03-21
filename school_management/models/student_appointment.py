@@ -9,7 +9,7 @@ class StudentAppointment(models.Model):
 
     name = fields.Char(string="Sudent Name")
     lastname = fields.Char(string="Last name", related="name_id.lastname")
-    contact_no = fields.Char(string="contact_no")
+    contact_no = fields.Char(string="contact_no",related="name_id.contact_no")
     address = fields.Char(string="address")
     # email=fields.Char(string='email')
     booking_date = fields.Date(string="Appointment Date")
@@ -23,7 +23,7 @@ class StudentAppointment(models.Model):
         [("male", "Male"), ("female", "Female")], related="name_id.gender"
     )
 
-    teacher_id= fields.Many2one(comodel_name="teacher", string="Teacher")
+    teacher_id = fields.Many2one(comodel_name="teacher", string="Teacher")
 
     image = fields.Image(string="Image")
     aadhar = fields.Image("Aadhar")
@@ -51,25 +51,28 @@ class StudentAppointment(models.Model):
         )
     ]
 
-
-
     def action_notify(self):
         message = {
-       'type': 'ir.actions.client',
-       'tag': 'display_notification',
-       'params': {
-           'title': ('Warning!'),
-           'message':"Your appointment",
-           'sticky': False,
-         }
-            }
+            "type": "ir.actions.client",
+            "tag": "display_notification",
+            "params": {
+                "title": ("Warning!"),
+                "message": "Your appointment",
+                "sticky": False,
+            },
+        }
         return message
 
     def action_share_whatsapp(self):
         if not self.name_id.contact_no:
             raise ValidationError("Students having no phone number")
         message = "Hi, %s" % self.lastname
-        whatsapp_api_url = "https://web.whatsapp.com/send?phone=" + self.contact_no +"&text=" +message
+        whatsapp_api_url = (
+            "https://web.whatsapp.com/send?phone="
+            + self.contact_no
+            + "&text="
+            + message
+        )
 
         return {"type": "ir.actions.act_url", "target": "url", "url": whatsapp_api_url}
 

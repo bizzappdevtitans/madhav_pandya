@@ -23,3 +23,9 @@ class SaleOrderLine(models.Model):
         )
         values.update({"task": self.order_id.task})
         return values
+
+    # def _prepare_procurement_values(self, group_id=False):
+    #     print("\n\nprocurement")
+    #     res = super(SaleOrderLine, self)._prepare_procurement_values()
+    #     res.update({'weight_measure': self.weight_measure})
+    #     return res

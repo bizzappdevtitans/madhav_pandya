@@ -259,6 +259,3 @@ class Student(models.Model):
             "You can't enter less than 10 digits and more than 10 digits",
         )
     ]
-
-
-

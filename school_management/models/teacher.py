@@ -12,8 +12,6 @@ class Teacher(models.Model):
     email = fields.Char("email")
     image = fields.Image(string="image")
 
-
-
     subject = fields.Char("Subject")
 
     leave = fields.Text("note")

@@ -90,7 +90,7 @@
       <field name="arch" type="xml">
         <form >
             <header>
-                <button name="action_confirm" type="object" string="Confirm" class="oe_highlight"/>
+                <!-- <button name="action_confirm" type="object" string="Confirm" class="oe_highlight"/> -->
                 <button name="action_share_whatsapp" type="object" string="Share Whatsapp" class="oe_highlight" icon="fa-whatsapp"/>
                 <button name="action_notify" type="object" string="Notify" class="oe_highlight" icon="fa-bell"/>
                 <button id="button_create_apppointment" name="%(action_create_appointment)d" string="Create Appointment" class="btn-primary" type="action"/>

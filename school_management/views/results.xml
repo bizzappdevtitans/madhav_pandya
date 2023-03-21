@@ -34,7 +34,7 @@
             <field name="total"/>
             <field name="percent" widget="percentpie"/>
             <field name="state" widget="badge" decoration-success = " state == 'pass'" decoration-danger = " state == 'fail'"/>
-            <field name="record"/>
+            <!-- <field name="record"/> -->
 
          </tree>
       </field>
@@ -62,7 +62,7 @@
                <field name="total"/>
                <field name="percent"/>
                <field name="state" widget="badge" decoration-success = " state == 'pass'"/>
-               <field name="record"/>
+               <!-- <field name="record"/> -->
                 <button name="action_url" type="object" string="Website" class="oe_highlight"/>
                </group>
             </sheet>
