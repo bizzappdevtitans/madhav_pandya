@@ -9,7 +9,7 @@ class StudentAppointment(models.Model):
 
     name = fields.Char(string="Sudent Name")
     lastname = fields.Char(string="Last name", related="name_id.lastname")
-    contact_no = fields.Char(string="contact_no",related="name_id.contact_no")
+    contact_no = fields.Char(string="contact_no", related="name_id.contact_no")
     address = fields.Char(string="address")
     # email=fields.Char(string='email')
     booking_date = fields.Date(string="Appointment Date")

@@ -5,10 +5,10 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     field_id = fields.Many2one("student", "Field value")
-    product_template_id = fields.Many2one('product.template')
-    weight_id=fields.Many2one(comodel_name='stock.move')
+    product_template_id = fields.Many2one("product.template")
+    weight_id = fields.Many2one(comodel_name="stock.move")
     new_field = fields.Boolean(related="product_template_id.weight_done")
-    weight_measure=fields.Float("Weight Measure")
+    weight_measure = fields.Float("Weight Measure")
 
     def _timesheet_create_project_prepare_values(self):
         """Returns the value from sale.order to project.project model"""
@@ -23,9 +23,3 @@ class SaleOrderLine(models.Model):
         )
         values.update({"task": self.order_id.task})
         return values
-
-    # def _prepare_procurement_values(self, group_id=False):
-    #     print("\n\nprocurement")
-    #     res = super(SaleOrderLine, self)._prepare_procurement_values()
-    #     res.update({'weight_measure': self.weight_measure})
-    #     return res

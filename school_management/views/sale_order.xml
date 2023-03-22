@@ -74,11 +74,26 @@
         <field name="model">stock.picking</field>
         <field name="inherit_id" ref="stock.view_picking_form" />
         <field name="arch" type="xml">
+            <header>
+                <button name="button_validate" type="object" string="Validate"/>
+            </header>
          <xpath expr="//field[@name='picking_type_id']" position="after">
             <field name="delivery_description"/>
         </xpath>
          <xpath expr="/form/sheet/notebook/page/field[@name='move_ids_without_package']/tree/field[@name='product_packaging_id']" position="after">
             <field name="weight_measure"/>
+        </xpath>
+    </field>
+</record>
+
+
+<record id="stock_picking_type_form_view" model="ir.ui.view">
+        <field name="name">stock.picking.type.form.view</field>
+        <field name="model">stock.picking.type</field>
+        <field name="inherit_id" ref="stock.view_picking_type_form" />
+        <field name="arch" type="xml">
+         <xpath expr="//field[@name='warehouse_id']" position="after">
+            <field name="create_invoice"/>
         </xpath>
     </field>
 </record>

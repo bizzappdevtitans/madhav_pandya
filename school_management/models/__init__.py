@@ -24,4 +24,5 @@ from . import stock_rule
 from . import account_move
 from . import project_task
 from . import product_template
+from . import stock_picking_type
 
