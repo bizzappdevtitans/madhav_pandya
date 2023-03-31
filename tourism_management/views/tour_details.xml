@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_tour_details" model="ir.actions.act_window">
+        <field name="name">tour_details</field>
+        <field name="res_model">tour_details</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+
+    <record id="tour_details_list_view" model="ir.ui.view">
+      <field name="name">tour_details.tree</field>
+      <field name="model">tour_details</field>
+      <field name="arch" type="xml">
+
+         <tree>
+
+            <field name="tour_season"/>
+            <field name="start_date"/>
+            <field name="last_date_booking"/>
+            <field name="payment_due_date"/>
+            <field name="total_seats"/>
+            <field name="available_seats"/>
+            <field name="status" widget="badge" decoration-success = " status == 'done'"/>
+
+
+         </tree>
+      </field>
+   </record>
+
+   <record id="tour_details_form_view" model="ir.ui.view">
+      <field name="name">tour_details_form</field>
+      <field name="model">tour_details</field>
+      <field name="arch" type="xml">
+         <form >
+            <sheet>
+                <widget name="web_ribbon" title="Information Line" bg_color="bg-success"/>
+               <group>
+                    <field name="tour_season"/>
+                    <field name="start_date"/>
+                    <field name="email"/>
+                    <field name="mobile"/>
+                    <field name="last_date_booking" />
+                    <field name="payment_due_date" />
+                    <field name="total_seats"/>
+                    <field name="available_seats"/>
+                    <field name="status" widget="statusbar" options="{'clickable':'1'}"/>
+                </group>
+
+            </sheet>
+         </form>
+      </field>
+   </record>
+
+
+   <record id="tour_details_kanban_view" model="ir.ui.view">
+            <field name="name">tour_details.kanban</field>
+            <field name="model">tour_details</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="tour_season"/>
+                    <field name="start_date"/>
+                    <field name="email"/>
+                    <field name="mobile"/>
+                    <field name="last_date_booking" />
+                    <field name="payment_due_date" />
+                    <field name="total_seats"/>
+                    <field name="available_seats"/>
+
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+
+                                <div class="oe_kanban_details">
+                                    <ul>
+                                        <li>
+                                           Tour Season <field name="tour_season"/>
+                                        </li>
+                                        <li>
+                                            Start Date <field name="start_date"/>
+                                        </li>
+                                        <li>
+                                            Email: <field name="email"/>
+                                        </li>
+                                        <li>
+                                            Mobile: <field name="mobile"/>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+   <record id="action_mark_as_done" model="ir.actions.server">
+            <field name="name">Mark as Done</field>
+            <field name="type">ir.actions.server</field>
+            <field name="state">code</field>
+            <field name="model_id" ref="model_tour_details"/>
+            <field name="binding_model_id" ref="model_tour_details"/>
+            <field name="code">
+                for record in records:
+                    if record.status=='confirm':
+                        record.action_done()
+            </field>
+</record>
+</odoo>

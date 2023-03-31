@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<odoo>
+        <record id="view_booking_accomodation_form" model="ir.ui.view">
+            <field name="name">update.booking.accomodation.wizard.form</field>
+            <field name="model">update.booking.accomodation.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Update tour">
+                    <group>
+                        <field name="date_in"/>
+                        <field name="date_out"/>
+                        <field name="room_type"/>
+                    </group>
+                    <footer>
+                        <button type="object" string="Update form" name= "create_field" class="oe_highlight"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_update_booking_accomodation" model="ir.actions.act_window">
+            <field name="name">Update Booking Accomodation</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">update.booking.accomodation.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_booking_accomodation_form"/>
+            <field name="target">new</field>
+        </record>
+</odoo>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_booking_accomodation" model="ir.actions.act_window">
+        <field name="name">booking_accomodatioin</field>
+        <field name="res_model">booking_accomodation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <record id="booking_accomodation_list_view" model="ir.ui.view">
+      <field name="name">booking_accomodation.tree</field>
+      <field name="model">booking_accomodation</field>
+      <field name="arch" type="xml">
+
+         <tree>
+            <field name="tour_name"/>
+            <field name="date_in"/>
+            <field name="date_out"/>
+            <field name="room_type" />
+            <field name="meal"/>
+
+
+         </tree>
+      </field>
+   </record>
+
+
+   <record id="booking_accomodation_form_view" model="ir.ui.view">
+      <field name="name">booking_accomodation</field>
+      <field name="model">booking_accomodation</field>
+      <field name="arch" type="xml">
+         <form >
+            <header>
+                 <button name="action_sure_confirm" string="Confirm Booking" class="btn-primary" type="object" icon="fa-check"/>
+                 <button id="button_update_booking_accomodation" name="%(action_update_booking_accomodation)d" string="Update Tour Itenerary" class="btn-primary" type="action"/>
+
+
+            </header>
+            <sheet>
+                <widget name="web_ribbon" title="Booking Accomodation" bg_color="bg-success"/>
+               <group>
+                    <field name="tour_name"/>
+                    <field name="date_in"/>
+                    <field name="date_out"/>
+                    <field name="days" widget="badge"/>
+                    <field name="room_type" />
+                    <field name="hotel_dubai" attrs="{'invisible': [('tour_name','!=','dubai')] }"/>
+                    <field name="hotel_philipines" attrs="{'invisible': [('tour_name','!=','philipines')] }"/>
+                    <field name="hotel_maldives" attrs="{'invisible': [('tour_name','!=','maldives')] }"/>
+                    <field name="cost_per_night" widget="badge"/>
+                    <field name="meal"/>
+
+
+
+
+
+                </group>
+
+            </sheet>
+         </form>
+      </field>
+   </record>
+</odoo>

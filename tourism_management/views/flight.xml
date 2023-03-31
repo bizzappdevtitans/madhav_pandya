@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_flight" model="ir.actions.act_window">
+        <field name="name">flight</field>
+        <field name="res_model">flight</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <record id="flight_list_view" model="ir.ui.view">
+      <field name="name">flight.tree</field>
+      <field name="model">flight</field>
+      <field name="arch" type="xml">
+
+         <tree>
+
+            <field name="flight" decoration-primary="1" decoration-bf="1"/>
+            <field name="date_in"/>
+            <field name="date_out"/>
+            <field name="place_from"/>
+            <field name="place_to"/>
+            <field name="fare"/>
+            <field name="booked_by"/>
+
+            <field name="tour_reservation"/>
+
+         </tree>
+      </field>
+   </record>
+
+
+    <record id="flight_form_view" model="ir.ui.view">
+      <field name="name">flight_form</field>
+      <field name="model">flight</field>
+      <field name="arch" type="xml">
+         <form >
+            <sheet>
+                <widget name="web_ribbon" title="Flight" bg_color="bg-success"/>
+               <group>
+                    <field name="flight"/>
+                    <field name="date_in"/>
+                    <field name="date_out" />
+                    <field name="place_from" />
+                    <field name="place_to"/>
+                    <field name="fare"/>
+                    <field name="booked_by"/>
+                    <field name="tour_reservation"/>
+                </group>
+
+            </sheet>
+         </form>
+      </field>
+   </record>
+</odoo>
+

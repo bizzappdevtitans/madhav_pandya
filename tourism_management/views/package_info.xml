@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_package_info" model="ir.actions.act_window">
+        <field name="name">package_info</field>
+        <field name="res_model">package_info</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <record id="package_info_list_view" model="ir.ui.view">
+      <field name="name">Package_info_tree</field>
+      <field name="model">package_info</field>
+      <field name="arch" type="xml">
+
+         <tree>
+
+            <field name="country"/>
+            <field name="package_info_ids"/>
+
+
+
+
+         </tree>
+      </field>
+   </record>
+
+
+    <record id="package_info_form_view" model="ir.ui.view">
+      <field name="name">Package_info_form</field>
+      <field name="model">package_info</field>
+      <field name="arch" type="xml">
+         <form >
+            <sheet>
+
+               <group>
+                    <field name="country"/>
+                     <field name="package_info_ids"/>
+                </group>
+
+            </sheet>
+         </form>
+      </field>
+   </record>
+</odoo>

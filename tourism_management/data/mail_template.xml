@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="customer_journey_email_template" model="mail.template">
+            <field name="name">Customer Journey: Send by email</field>
+            <field name="model_id" ref="model_tour_details"/>
+            <field name="email_from">madhavpandyapm@gmail.com</field>
+            <field name="email_to">{{object.email}}</field>
+            <field name="subject">Journey Date {{object.start_date}}</field>
+            <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px;">
+    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+        Your journey date is :
+        <t t-out="object.start_date"/>
+        <br /><br />
+        Wish you a Happy Journey
+        <br /><br />
+        Enjoy your journey......
+    </p>
+</div>
+</field>
+
+        </record>
+
+
+
+
+        <record id="customer_ticket_email_template" model="mail.template">
+            <field name="name">Customer Tickets: Send by email</field>
+            <field name="model_id" ref="model_tour_details"/>
+            <field name="email_from">madhavpandyapm@gmail.com</field>
+            <field name="email_to">{{object.email}}</field>
+            <field name="subject">Journey Date {{object.start_date}}</field>
+            <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px;">
+    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+        Congratulations your Ticket is 'CONFIRMED' dated
+        <t t-out="object.start_date"/>
+        <br /><br />
+        Wish you a Happy Journey
+        <br /><br />
+        Enjoy your journey......
+    </p>
+</div>
+</field>
+
+        </record>
+</data>
+</odoo>
