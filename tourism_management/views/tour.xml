@@ -61,7 +61,7 @@
 
                 <h1> <field name="reference_no"/></h1>
                <group>
-                    <field name="tour_name" invisible="1"/>
+                    <field name="tour_name"/>
                     <field name="tour_type"/>
                     <field name="tour_packages_id"/>
                     <field name="tour_name_id"/>
@@ -76,7 +76,7 @@
                 </page>
 
                </notebook>
-               <!-- <notebook>
+               <notebook>
                 <page string="Tour Details">
                     <group>
                         <field name="tour_details_ids"/>
@@ -85,10 +85,10 @@
                 </page>
 
                </notebook>
- -->
+
             </sheet>
              <div class="oe_chatter">
-                <field name="message_follower" group="base.group_user"/>
+                <field name="message_follower_id" />
                 <field name="activity_ids"/>
                 <field name="message_ids"/>
             </div>

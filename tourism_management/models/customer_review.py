@@ -4,12 +4,14 @@ from odoo.exceptions import ValidationError, UserError
 
 
 class CustomerReview(models.Model):
-    _name= 'customer_review'
-    _description='Customer Review'
+    _name = "customer_review"
+    _description = "Customer Review"
 
-
-    name=fields.Char("Customer Name")
-    tour_name= fields.Selection([('dubai', 'Dubai'), ('philipines', 'Philipines'), ('maldives', 'Maldives')],string="Tour Name")
+    name = fields.Char(string="Customer Name")
+    tour_name = fields.Selection(
+        [("dubai", "Dubai"), ("philipines", "Philipines"), ("maldives", "Maldives")],
+        string="Tour Name",
+    )
     priority = fields.Selection(
         [
             ("0", "Normal"),
@@ -21,7 +23,5 @@ class CustomerReview(models.Model):
         ],
         string="Feedback",
     )
-    description= fields.Text(string="Description")
-    photos= fields.Image(string= "Some photos of tour")
-
-
+    description = fields.Text(string="Description")
+    photos = fields.Image(string="Some photos of tour")

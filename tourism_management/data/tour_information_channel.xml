@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<record model="mail.channel" id="channel_tour_information">
+   <field name="name">Tour Information</field>
+   <field name="description">General Tour Information</field>
+   <field name="public">public</field>
+</record>
+</odoo>

@@ -22,8 +22,6 @@
             <field name="fare"/>
             <field name="booked_by"/>
 
-            <field name="tour_reservation"/>
-
          </tree>
       </field>
    </record>
@@ -39,12 +37,11 @@
                <group>
                     <field name="flight"/>
                     <field name="date_in"/>
+                     <field name="place_from" />
                     <field name="date_out" />
-                    <field name="place_from" />
                     <field name="place_to"/>
                     <field name="fare"/>
                     <field name="booked_by"/>
-                    <field name="tour_reservation"/>
                 </group>
 
             </sheet>

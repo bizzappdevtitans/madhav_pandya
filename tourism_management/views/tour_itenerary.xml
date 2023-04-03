@@ -67,6 +67,16 @@
                     <field name="tour_days"/>
                 </group>
             </group>
+            <notebook>
+                <page string="Tour Description">
+                    <group>
+                        <field name="tour_description_ids"/>
+
+                    </group>
+
+                </page>
+
+            </notebook>
 
             </sheet>
          </form>

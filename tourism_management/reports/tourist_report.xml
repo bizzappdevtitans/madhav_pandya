@@ -75,8 +75,8 @@
                 </center>
                 <table border="1" align="center">
                 <tr>
-                <td>reference_no</td><td><t t-foreach="o.reference_no" t-as="l"><span t-field="l.reference_no"/></t></td></tr>
-                <tr><td>customer</td><td><t t-foreach="o.customer" t-as="l"><span t-field="l.name"/></t></td></tr>
+                <td>Reference_no</td><td><t t-foreach="o.reference_no" t-as="l"><span t-field="l.reference_no"/></t></td></tr>
+                <tr><td>Customer</td><td><t t-foreach="o.customer" t-as="l"><span t-field="l.name"/></t></td></tr>
                 <tr><td>Sales person</td><td><t t-foreach="o.sales_person" t-as="l"><span t-field="l.name"/></t></td></tr>
                 <tr><td>Tax Excluded</td><td> <t t-esc="docs.tax_excluded"/></td></tr>
                 <tr><td>Tax </td><td> <t t-esc="docs.tax"/></td></tr>

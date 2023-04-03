@@ -13,6 +13,7 @@
         "data/cron.xml",
         "data/mail_template.xml",
         "data/data.xml",
+        "data/tour_information_channel.xml",
         "reports/tourist_report.xml",
         "wizard/update_tour_view.xml",
         "wizard/update_booking_accomodation.xml",

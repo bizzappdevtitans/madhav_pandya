@@ -5,7 +5,10 @@ tourism_management.access_tour,access_tour,tourism_management.model_tour,base.gr
 
 
 
-tourism_management.access_booking_accomodation,access_booking_accomodation,tourism_management.model_booking_accomodation,base.group_user,1,1,1,1
+tourism_management.access_booking_accomodation1,access_booking_accomodation1,tourism_management.model_booking_accomodation,tourism_management.group_tourism_admin,1,1,1,1
+
+tourism_management.access_booking_accomodation2,access_booking_accomodation2,tourism_management.model_booking_accomodation,tourism_management.group_tourism_traveller,0,0,0,0
+
 
 tourism_management.access_update_tour_wizard,access_update_tour_wizard,tourism_management.model_update_tour_wizard,base.group_user,1,1,1,1
 

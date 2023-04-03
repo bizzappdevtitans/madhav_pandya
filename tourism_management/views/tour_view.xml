@@ -9,7 +9,7 @@
     <menuitem id="tour_sub12_menu" name="Tour Itenerary" parent="tour_sub1_menu" action="action_tour_itenerary" sequence="2"/>
 
 
-    <menuitem id="tour_sub2_menu" name="Booking Accomodation" parent="tour_root_menu" action="action_booking_accomodation" groups="tourism_management.group_tourism_admin"  sequence="5"/>
+    <menuitem id="tour_sub2_menu" name="Booking Accomodation" parent="tour_root_menu" action="action_booking_accomodation" sequence="5"/>
 
 
     <menuitem id="tour_sub3_menu" name="Information" parent="tour_root_menu" action="action_information_line" groups="tourism_management.group_tourism_admin"/>

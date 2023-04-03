@@ -57,14 +57,14 @@
       <field name="model">tour_packages_details</field>
       <field name="arch" type="xml">
           <form  edit="0" create="0">
-            <body>
+
             <div class="div-1">
                  <h1> Welcome to BizzAppDev Tours and Travels </h1>
                 <img src="/tourism_management/static/description/details.png" style="height:45%;width:100%;" />
                 <img src="/tourism_management/static/description/details1.png" style="height:45%;width:100%;" />
 
             </div>
-        </body>
+
          </form>
       </field>
    </record>
