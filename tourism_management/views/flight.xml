@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_flight" model="ir.actions.act_window">
+        <field name="name">flight</field>
+        <field name="res_model">flight</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+        <!-- Flight Tree view -->
+    <record id="flight_list_view" model="ir.ui.view">
+      <field name="name">flight.tree</field>
+      <field name="model">flight</field>
+      <field name="arch" type="xml">
+
+         <tree>
+
+            <field name="flight" decoration-primary="1" decoration-bf="1"/>
+            <field name="date_in"/>
+            <field name="date_out"/>
+            <field name="place_from"/>
+            <field name="place_to"/>
+            <field name="fare"/>
+            <field name="booked_by"/>
+
+         </tree>
+      </field>
+   </record>
+
+        <!-- Flight form view -->
+    <record id="flight_form_view" model="ir.ui.view">
+      <field name="name">flight_form</field>
+      <field name="model">flight</field>
+      <field name="arch" type="xml">
+         <form >
+            <sheet>
+                <widget name="web_ribbon" title="Flight" bg_color="bg-success"/>
+               <group>
+                    <field name="flight"/>
+                    <field name="date_in"/>
+                     <field name="place_from" />
+                    <field name="date_out" />
+                    <field name="place_to"/>
+                    <field name="fare"/>
+                    <field name="booked_by"/>
+                </group>
+
+            </sheet>
+         </form>
+      </field>
+   </record>
+
+        <!-- Flight model Kanban view -->
+    <record id="flight_kanban_view" model="ir.ui.view">
+            <field name="name">flight.kanban</field>
+            <field name="model">flight</field>
+            <field name="arch" type="xml">
+                <kanban>
+                       <field name="flight"/>
+                         <field name="date_in"/>
+                        <field name="place_from" />
+                        <field name="date_out" />
+                        <field name="place_to"/>
+                        <field name="fare"/>
+                        <field name="booked_by"/>
+
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+
+                                <div class="oe_kanban_details">
+                                    <ul>
+                                        <li>
+                                           Flight :<field name="flight"/>
+                                        </li>
+                                        <li>
+                                          Date in : <field name="date_in"/>
+                                        </li>
+                                        <li>
+                                          Departure : <field name="place_from"/>
+                                        </li>
+                                        <li>
+                                          Date out : <field name="date_out"/>
+                                        </li>
+                                        <li>
+                                          Arrival:  <field name="place_to"/>
+                                        </li>
+                                        <li>
+                                          Fare: <field name="fare"/>
+                                        </li>
+                                        <li>
+                                          Booked by:   <field name="booked_by"/>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+</odoo>
+

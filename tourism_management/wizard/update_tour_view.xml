@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<odoo>
+        <record id="view_update_tour_form" model="ir.ui.view">
+            <field name="name">update.tour.wizard.form</field>
+            <field name="model">update.tour.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Update tour">
+                    <group>
+                        <field name="tour_name"/>
+                        <field name="tour_type"/>
+
+                    </group>
+                    <footer>
+                        <button type="object" string="Update form" name= "create_field" class="oe_highlight"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_update_tour" model="ir.actions.act_window">
+            <field name="name">Update Tour</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">update.tour.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_update_tour_form"/>
+            <field name="target">new</field>
+        </record>
+
+
+        <record id="view_update_tour_itenerary_form" model="ir.ui.view">
+            <field name="name">update.tour.itenerary.wizard.form</field>
+            <field name="model">update.tour.itenerary.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Update tour">
+                    <group>
+
+                        <field name="email"/>
+                        <field name="mobile"/>
+                        <field name="prefer_start_date"/>
+                        <field name="prefer_end_date"/>
+                    </group>
+                    <footer>
+                        <button type="object" string="Create form" name= "create_form" class="oe_highlight"/>
+                        <button type="object" string="Update form" name= "update_form" class="oe_highlight"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_update_tour_itenerary" model="ir.actions.act_window">
+            <field name="name">Update Tour Itenerary</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">update.tour.itenerary.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_update_tour_itenerary_form"/>
+            <field name="target">new</field>
+        </record>
+
+
+
+</odoo>

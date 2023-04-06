@@ -1,0 +1,91 @@
+<odoo>
+    <record id="tour_report" model="ir.actions.report">
+        <field name="name">tourist_report</field>
+        <field name="model">tour</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tourism_management.report_tour</field>
+        <field name="report_file">tourism_management.report_tour</field>
+        <field name="binding_model_id" ref="model_tour"/>
+        <field name="binding_type">report</field>
+    </record>
+
+
+    <template id="report_tour">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <center>
+                    <h1>Tourist Report</h1>
+                </center>
+                Tour Name: <t t-esc="docs.tour_name"/><br/>
+                Tour Type: <t t-esc="docs.tour_type"/><br/>
+                Tour Details <t t-esc="docs.information_line_ids"/><br/>
+
+            </t>
+        </t>
+    </template>
+
+
+
+    <record id="tour_itenerary_report" model="ir.actions.report">
+        <field name="name">tour_itenerary_report</field>
+        <field name="model">tour_itenerary</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tourism_management.report_tour_itenerary</field>
+        <field name="report_file">tourism_management.report_tour_itenerary</field>
+        <field name="binding_model_id" ref="model_tour_itenerary"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_tour_itenerary">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <center>
+                    <h1>Tour Itenerary Report</h1>
+                </center>
+                <table border="1" align="center">
+                <tr>
+                <td>Prefer Start Date </td><td><t t-esc="docs.prefer_start_date"/></td></tr>
+                <tr><td>Prefer End Date: </td><td><t t-esc="docs.prefer_end_date"/></td></tr>
+                <tr><td>Room required</td><td><t t-esc="docs.room_required"/></td></tr>
+                <tr><td>Adults:</td><td> <t t-esc="docs.adults"/></td></tr>
+                <tr><td>Children: </td><td> <t t-esc="docs.children"/></td></tr>
+            </table>
+
+            </t>
+        </t>
+    </template>
+
+
+    <record id="ticket_details_report" model="ir.actions.report">
+        <field name="name">ticket_details_report</field>
+        <field name="model">ticket_details</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tourism_management.report_ticket_details</field>
+        <field name="report_file">tourism_management.report_ticket_details</field>
+        <field name="binding_model_id" ref="model_ticket_details"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_ticket_details">
+        <t t-call="web.html_container">
+
+            <t t-foreach="docs" t-as="o">
+                <center>
+                    <h1>Ticket Details</h1>
+                </center>
+                <table border="1" align="center">
+                <tr>
+                <td>Reference_no</td><td><t t-foreach="o.reference_no" t-as="l"><span t-field="l.reference_no"/></t></td></tr>
+                <tr><td>Customer</td><td><t t-foreach="o.customer" t-as="l"><span t-field="l.name"/></t></td></tr>
+                <tr><td>Sales person</td><td><t t-foreach="o.sales_person" t-as="l"><span t-field="l.name"/></t></td></tr>
+                <tr><td>Tax Excluded</td><td> <t t-esc="docs.tax_excluded"/></td></tr>
+                <tr><td>Tax </td><td> <t t-esc="docs.tax"/></td></tr>
+                <tr><td>Total</td><td> <t t-esc="docs.total"/></td></tr>
+
+            </table>
+
+            </t>
+        </t>
+    </template>
+</odoo>
+

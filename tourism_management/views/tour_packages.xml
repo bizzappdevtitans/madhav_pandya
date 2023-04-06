@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_tour_packages" model="ir.actions.act_window">
+        <field name="name">Tour Packages</field>
+        <field name="res_model">tour.packages</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+                <!-- Tour packages List view -->
+    <record id="tour_packages_list_view" model="ir.ui.view">
+      <field name="name">tour_packages_tree</field>
+      <field name="model">tour.packages</field>
+      <field name="arch" type="xml">
+
+         <tree>
+            <field name="packages" decoration-primary="1" decoration-bf="1"/>
+            <field name="duration" decoration-primary="1" decoration-bf="1"/>
+            <field name="price"/>
+            <field name="inclusions"/>
+
+         </tree>
+      </field>
+   </record>
+
+
+            <!-- Tour packages form view -->
+   <record id="tour_packages_form_view" model="ir.ui.view">
+      <field name="name">tour_packages_form</field>
+      <field name="model">tour.packages</field>
+      <field name="arch" type="xml">
+         <form >
+            <sheet>
+                <widget name="web_ribbon" title="Tour Packages" bg_color="bg-success"/>
+               <group>
+
+                    <field name="packages" decoration-primary="1" decoration-bf="1"/>
+                    <field name="duration" decoration-primary="1" decoration-bf="1"/>
+                    <field name="price"/>
+                    <field name="inclusions"/>
+
+                    <button name="action_packages_details" type="object"  string="Details" class="oe_highlight"/>
+                </group>
+
+            </sheet>
+         </form>
+      </field>
+   </record>
+
+
+
+
+        <!-- Tour Package details form view -->
+   <record id="action_tour_packages_details" model="ir.actions.act_window">
+        <field name="name">Tour Packages</field>
+        <field name="res_model">tour.packages.details</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+    </record>
+
+   <record id="tour_packages_details_view" model="ir.ui.view">
+      <field name="name">tour_packages_details_form</field>
+      <field name="model">tour.packages.details</field>
+      <field name="arch" type="xml">
+          <form  edit="0" create="0">
+
+            <div class="div-1">
+                 <h1> Welcome to BizzAppDev Tours and Travels </h1>
+                <img src="/tourism_management/static/description/details.png" style="height:45%;width:100%;" />
+                <img src="/tourism_management/static/description/details1.png" style="height:45%;width:100%;" />
+
+            </div>
+
+         </form>
+      </field>
+   </record>
+</odoo>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+   <menuitem id="tour_root_menu" name="Tourism Management" action="action_home"/>
+
+
+   <menuitem id="tour_sub1_menu" name="Tour Reservation" parent="tour_root_menu" action="action_tour"  sequence="4"/>
+    <menuitem id="tour_sub11_menu" name="Tour" parent="tour_sub1_menu" action="action_tour"/>
+    <menuitem id="tour_sub12_menu" name="Tour Itenerary" parent="tour_sub1_menu" action="action_tour_itenerary" sequence="2"/>
+
+
+    <menuitem id="tour_sub2_menu" name="Booking Accomodation" parent="tour_root_menu" action="action_booking_accomodation" sequence="5"/>
+
+
+    <menuitem id="tour_sub3_menu" name="Information" parent="tour_root_menu" action="action_information_line" groups="tourism_management.group_tourism_admin"/>
+
+
+    <menuitem id="tour_sub4_menu" name="Tour Details" parent="tour_root_menu" action="action_tour_details" sequence="7"/>
+
+    <menuitem id="tour_sub5_menu" name="Flight" parent="tour_root_menu" action="action_flight" sequence="6"/>
+
+    <menuitem id="tour_sub6_menu" name="Ticket Details" parent="tour_root_menu" action="action_ticket_details" sequence="8"/>
+
+
+    <menuitem id="tour_sub7_menu" name="Customer Review" parent="tour_root_menu" action="action_customer_review" sequence="110"/>
+
+    <menuitem id="tour_sub8_menu" name="Tour Description" parent="tour_root_menu" action="action_tour_description" sequence='100'/>
+
+    <menuitem id="tour_sub9_menu" name="Tour Packages" parent="tour_root_menu" action="action_tour_packages"/>
+
+
+     <menuitem id="tour_sub10_menu" name="Package Info" parent="tour_root_menu" action="action_package_info" sequence="1"/>
+
+
+
+
+
+</odoo>
+
+

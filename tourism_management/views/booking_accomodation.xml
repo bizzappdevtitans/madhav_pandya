@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_booking_accomodation" model="ir.actions.act_window">
+        <field name="name">booking_accomodatioin</field>
+        <field name="res_model">booking.accomodation</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+        <!-- Booking Accomodation model tree view -->
+    <record id="booking_accomodation_list_view" model="ir.ui.view">
+      <field name="name">booking_accomodation.tree</field>
+      <field name="model">booking.accomodation</field>
+      <field name="arch" type="xml">
+
+         <tree>
+            <field name="tour_name"/>
+            <field name="date_in"/>
+            <field name="date_out"/>
+            <field name="room_type" />
+            <field name="meal"/>
+
+
+         </tree>
+      </field>
+   </record>
+
+    <!-- Booking Accomodation model form view -->
+   <record id="booking_accomodation_form_view" model="ir.ui.view">
+      <field name="name">booking_accomodation</field>
+      <field name="model">booking.accomodation</field>
+      <field name="arch" type="xml">
+         <form >
+            <header>
+                 <button name="action_sure_confirm" string="Confirm Booking" class="btn-primary" type="object" icon="fa-check"/>
+                 <button id="button_update_booking_accomodation" name="%(action_update_booking_accomodation)d" string="Update Tour Itenerary" class="btn-primary" type="action"/>
+
+
+            </header>
+            <sheet>
+                <widget name="web_ribbon" title="Booking Accomodation" bg_color="bg-success"/>
+               <group>
+                    <field name="tour_name"/>
+                    <field name="date_in"/>
+                    <field name="date_out"/>
+                    <field name="days" widget="badge"/>
+                    <field name="room_type" />
+                    <field name="hotel_dubai" attrs="{'invisible': [('tour_name','!=','dubai')] }"/>
+                    <field name="hotel_philipines" attrs="{'invisible': [('tour_name','!=','philipines')] }"/>
+                    <field name="hotel_maldives" attrs="{'invisible': [('tour_name','!=','maldives')] }"/>
+                    <field name="cost_per_night" widget="badge"/>
+                    <field name="meal"/>
+
+
+
+
+
+                </group>
+
+            </sheet>
+         </form>
+      </field>
+   </record>
+
+        <!-- Booking Accomodation kanban view -->
+   <record id="booking_accomodation_kanban_view" model="ir.ui.view">
+            <field name="name">booking_accomodation.kanban</field>
+            <field name="model">booking.accomodation</field>
+            <field name="arch" type="xml">
+                <kanban>
+                     <field name="tour_name"/>
+                    <field name="date_in"/>
+                    <field name="date_out"/>
+                    <field name="room_type" />
+                    <field name="meal"/>
+
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+
+                                <div class="oe_kanban_details">
+                                    <ul>
+                                        <li>
+                                           Tour Name <field name="tour_name"/>
+                                        </li>
+                                        <li>
+                                            Date in <field name="date_in"/>
+                                        </li>
+                                        <li>
+                                            Date Out <field name="date_out"/>
+                                        </li>
+                                        <li>
+                                            Room Type <field name="room_type"/>
+                                        </li>
+                                        <li>
+                                            Meal <field name="meal"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+</odoo>

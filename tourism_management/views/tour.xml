@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_tour" model="ir.actions.act_window">
+        <field name="name">tour</field>
+        <field name="res_model">tour</field>
+        <field name="view_mode">tree,search,form</field>
+    </record>
+
+            <!-- Tour Tree view -->
+    <record id="tour_list_view" model="ir.ui.view">
+      <field name="name">tour.tree</field>
+      <field name="model">tour</field>
+      <field name="arch" type="xml">
+
+         <tree>
+            <field name="tour_name" decoration-primary="1" decoration-bf="1"/>
+            <field name="tour_type" decoration-primary="1" decoration-bf="1"/>
+            <field name="information_line_ids"/>
+         </tree>
+      </field>
+   </record>
+
+
+            <!-- Tour form view -->
+ <record id="tour_form_view" model="ir.ui.view">
+      <field name="name">tour.form</field>
+      <field name="model">tour</field>
+      <field name="arch" type="xml">
+         <form >
+            <header>
+                 <button id="button_update_tour" name="%(action_update_tour)d" string="Update Tour" class="btn-primary" type="action"/>
+
+
+            </header>
+            <sheet>
+                <div class="oe_button_box" name="button_box">
+                    <button name="action_open_tour_details" type="object" class="oe_stat_button" icon="fa-info">
+                        <div class="o_stat_info">
+                            <field name="information_count"/>
+                            <span class= "o_stat_text">
+                               <b>Tour Details</b>
+                            </span>
+                        </div>
+                    </button>
+                            <button name="action_open_flight_details" type="object" class="oe_stat_button" icon="fa-plane">
+                        <div class="o_stat_info">
+                            <span class= "o_stat_text">
+                               <b>Tour Information</b>
+
+                            </span>
+
+                    </div>
+
+
+
+                    </button>
+
+
+                </div>
+                <widget name="web_ribbon" title="Tours Information" bg_color="bg-success"/>
+
+                <h1> <field name="reference_no"/></h1>
+               <group>
+                    <field name="tour_name"/>
+                    <field name="tour_type"/>
+                    <field name="tour_packages_id"/>
+                    <field name="tour_name_id"/>
+
+               </group>
+               <notebook>
+                <page string="Tour Plans">
+                    <group>
+                        <field name="information_line_ids"/>
+
+                    </group>
+                </page>
+
+               </notebook>
+               <notebook>
+                <page string="Tour Details">
+                    <group>
+                        <field name="tour_details_ids"/>
+
+                    </group>
+                </page>
+
+               </notebook>
+
+            </sheet>
+             <div class="oe_chatter">
+                <field name="message_follower_id" />
+                <field name="activity_ids"/>
+                <field name="message_ids"/>
+            </div>
+         </form>
+      </field>
+   </record>
+
+
+        <!-- Tour search view -->
+    <record id="tour_search" model="ir.ui.view">
+        <field name="name">tour.search</field>
+        <field name="model">tour</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="tour_name"/>
+                <field name="tour_type"/>
+                <!-- <field name="age"/> -->
+                <field name="reference_no"/>
+                <searchpanel>
+                    <field name="tour_name" string="Tour Name" enable_counters="1"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+
+
+
+
+
+
+
+</odoo>

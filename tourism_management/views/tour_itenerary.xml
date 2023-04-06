@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_tour_itenerary" model="ir.actions.act_window">
+        <field name="name">tour_itenerary</field>
+        <field name="res_model">tour.itenerary</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+            <!-- Tour Itinerary Tree view -->
+    <record id="tour_itenerary_list_view" model="ir.ui.view">
+      <field name="name">tour_itenerary_tree</field>
+      <field name="model">tour.itenerary</field>
+      <field name="arch" type="xml">
+
+         <tree>
+            <field name="contact_name_id" decoration-primary="1" decoration-bf="1"/>
+            <field name="email" decoration-primary="1" decoration-bf="1"/>
+            <field name="mobile"/>
+            <field name="prefer_start_date"/>
+            <field name="prefer_end_date"/>
+            <field name="room_required"/>
+            <field name="adults"/>
+            <field name="children"/>
+
+         </tree>
+      </field>
+   </record>
+
+        <!-- Tour Itinerary Form view -->
+   <record id="tour_itenerary_form_view" model="ir.ui.view">
+      <field name="name">tour_itenerary_form</field>
+      <field name="model">tour.itenerary</field>
+      <field name="arch" type="xml">
+         <form >
+            <header>
+                 <button id="button_update_tour_itenerary" name="%(action_update_tour_itenerary)d" string="Update Tour Itenerary" class="btn-primary" type="action"/>
+                 <button name="action_share_whatsapp_message" string="Send Whatsapp Message" class="btn-primary" type="object" icon="fa-whatsapp"/>
+
+
+            </header>
+            <sheet>
+                <div class="oe_button_box" name="button_box">
+                    <button name="action_open_tour_description" type="object" class="oe_stat_button" icon="fa-info">
+                        <div class="o_stat_info">
+                            <span class= "o_stat_text">
+                               <b>Tour Description</b>
+                            </span>
+                        </div>
+                    </button>
+                </div>
+                <widget name="web_ribbon" title="Tour Itenerary" bg_color="bg-success"/>
+                <h1> <field name="reference_noo"/></h1>
+               <group>
+               <!-- <field name="tour_id"/> -->
+               <field name="contact_name_id" />
+               <field name="email" />
+               <field name="mobile"/>
+               <field name="adults"/>
+                <field name="children"/>
+
+               </group>
+               <group string="Other Information" name="other_info">
+                <group>
+                    <field name="prefer_start_date"/>
+                    <field name="prefer_end_date"/>
+                    <field name="room_required"/>
+                    <field name="tour_days"/>
+                </group>
+            </group>
+            <notebook>
+                <page string="Tour Description">
+                    <group>
+                        <field name="tour_description_ids"/>
+
+                    </group>
+
+                </page>
+
+            </notebook>
+
+            </sheet>
+         </form>
+      </field>
+   </record>
+
+            <!-- Tour itinerary Kanban view -->
+   <record id="tour_itenerary_kanban_view" model="ir.ui.view">
+            <field name="name">tour_itenerary.kanban</field>
+            <field name="model">tour.itenerary</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="tour_id"/>
+                    <field name="contact_name_id"/>
+                    <field name="email"/>
+                    <field name="mobile"/>
+                    <field name="adults"/>
+                    <field name="children"/>
+
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+
+                                <div class="oe_kanban_details">
+                                    <ul>
+                                        <li>
+                                           Tour Id:  <field name="tour_id"/>
+                                        </li>
+                                        <li>
+                                            Contact Name Id:  <field name="contact_name_id"/>
+                                        </li>
+                                        <li>
+                                            Email: <field name="email"/>
+                                        </li>
+                                        <li>
+                                            Mobile: <field name="mobile"/>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+
+
+
+
+
+
+
+</odoo>

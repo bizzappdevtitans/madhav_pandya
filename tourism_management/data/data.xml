@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+        <record id="tour_sequence" model="ir.sequence">
+            <field name="name">Tour Sequence</field>
+            <field name="code">tour</field>
+            <field name="prefix">TO</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+         <record id="tour_iteneneray_sequence" model="ir.sequence">
+            <field name="name">Tour Itenerary</field>
+            <field name="code">tour_itenerary</field>
+            <field name="prefix">TI</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

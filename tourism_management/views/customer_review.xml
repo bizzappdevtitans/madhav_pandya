@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_customer_review" model="ir.actions.act_window">
+        <field name="name">customer_review</field>
+        <field name="res_model">customer.review</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+         <!-- Customer Review Tree view -->
+    <record id="customer_review_list_view" model="ir.ui.view">
+      <field name="name">customer_review.tree</field>
+      <field name="model">customer.review</field>
+      <field name="arch" type="xml">
+
+         <tree>
+            <field name="name"/>
+            <field name="tour_name"/>
+            <field name="priority"/>
+            <field name="description"/>
+            <field name="photos" widget="image" options="{'size': [100, 100]}"/>
+
+         </tree>
+      </field>
+   </record>
+
+      <!-- Customer Review form view -->
+   <record id="customer_review_form_view" model="ir.ui.view">
+      <field name="name">customer_review_form</field>
+      <field name="model">customer.review</field>
+      <field name="arch" type="xml">
+         <form >
+            <sheet>
+                <widget name="web_ribbon" title="Customer Review" bg_color="bg-success"/>
+               <group>
+                     <field name="name"/>
+                    <field name="tour_name"/>
+                    <field name="priority" widget="priority" class="mr-3"/>
+                    <field name="description"/>
+                    <field name="photos" class="oe_avatar" widget="image"/>
+                </group>
+
+            </sheet>
+         </form>
+      </field>
+   </record>
+
+            <!-- Customer Review Kanban view -->
+   <record id="customer_review_kanban_view" model="ir.ui.view">
+            <field name="name">customer_review.kanban</field>
+            <field name="model">customer.review</field>
+            <field name="arch" type="xml">
+                <kanban>
+                      <field name="name"/>
+                     <field name="tour_name"/>
+                     <field name="priority" widget="priority" class="mr-3"/>
+                     <field name="description"/>
+                     <field name="photos" class="oe_avatar" widget="image"/>
+
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+
+                                <div class="oe_kanban_details">
+                                    <ul>
+                                        <li>
+                                           Name<field name="name"/>
+                                        </li>
+                                        <li>
+                                          Tour Name <field name="tour_name"/>
+                                        </li>
+                                        <li>
+                                          Priority <field name="priority"/>
+                                        </li>
+                                        <li>
+                                          Description <field name="description"/>
+                                        </li>
+                                        <li>
+                                          Photo<field name="photos" widget="image" class="oe_avatar" />
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+</odoo>

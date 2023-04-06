@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_home" model="ir.actions.act_window">
+        <field name="name">home</field>
+        <field name="res_model">home</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+    </record>
+
+
+        <!-- Home Page form view -->
+    <record id="home_form_view" model="ir.ui.view">
+      <field name="name">home.form</field>
+      <field name="model">home</field>
+      <field name="arch" type="xml">
+         <form  edit="0" create="0">
+            <body>
+            <div class="div-1">
+                <img src="/tourism_management/static/description/finalbackground.png" style="height:45%;width:100%;" />
+                <h1> Welcome to Falcon Travels </h1>
+                <div>
+
+               <img src="/tourism_management/static/description/tour_front1.png" style="height:45%;width:100%;" />
+               </div>
+
+                <div class="dark">
+                    <b><p><h5>
+
+                    <br/>
+                <br/>
+                    FULL DAY DESSERT SAFARI
+You will be picked up from Doha by our well experienced and professional 4x4 wheel desert drivers. You will be drove from Doha to Messaid on the tarmac road and once your reach sealine golden dunes entrance the drivers will deflate the tires to take you off road where you will have the best ever experience you can ever expect for! They will also drive you on a thrilling rollercoaster ride over the dunes and also stop for few photographs. After the drive you will reach the camp site in Khor Al Udeid which is located right by the sea. You could enjoy a nice swim, play volley ball or sand boarding on the dunes while the BBQ lunch/Dinner is served. Thereafter you will head back to Doha and on your way back you will be stop to inflate the tires at a local workshop.
+
+    <br/>
+<br/>
+
+
+<h3 align="center" color= "red">Maldives You Beauty</h3>
+
+
+.</h5></p>
+</b>
+
+                    <img src="/tourism_management/static/description/tour4.jpg" style="height:45%;width:120%;" />
+
+                </div>
+                <div>
+                    <img src="/tourism_management/static/description/tour3.png" style="height:45%;width:100%;" />
+
+                </div>
+                <div>
+                    <h3> Why Us</h3>
+                </div>
+                <div>
+                    <img src="/tourism_management/static/description/tour5.png" style="height:45%;width:100%;" />
+                </div>
+            </div>
+            </body>
+            <footer>
+            </footer>
+         </form>
+      </field>
+   </record>
+</odoo>

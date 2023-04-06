@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_tour_description" model="ir.actions.act_window">
+        <field name="name">tour_description</field>
+        <field name="res_model">tour.description</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+            <!-- Tour Description Tree view -->
+    <record id="tour_description_list_view" model="ir.ui.view">
+      <field name="name">tour_description.tree</field>
+      <field name="model">tour.description</field>
+      <field name="arch" type="xml">
+
+         <tree>
+            <field name="tour_code"/>
+            <field name="tour_nights"/>
+            <field name="tour_day_description"/>
+            <field name="breakfast" />
+            <field name="lunch" />
+            <field name="dinner" />
+
+         </tree>
+      </field>
+   </record>
+
+         <!-- Tour Description form view -->
+   <record id="tour_description_form_view" model="ir.ui.view">
+      <field name="name">tour_description_form</field>
+      <field name="model">tour.description</field>
+      <field name="arch" type="xml">
+         <form >
+            <sheet>
+                <widget name="web_ribbon" title="Customer Review" bg_color="bg-success"/>
+               <group>
+                  <field name="tour_code"/>
+                  <field name="tour_nights"/>
+                  <field name="tour_day_description"/>
+                  <field name="breakfast" />
+                  <field name="lunch" />
+                  <field name="dinner" />
+                  <field name="products_id"/>
+                </group>
+
+            </sheet>
+         </form>
+      </field>
+   </record>
+</odoo>
