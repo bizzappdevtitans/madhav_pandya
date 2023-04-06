@@ -68,6 +68,9 @@ class Student(models.Model):
 
     result_ids = fields.Many2many(comodel_name="result", string="results")
 
+    appointment_count = fields.Integer(string="Teacher Count", compute="compute_count")
+    appointment_count1 = fields.Integer(string="Result Count", compute="compute_countt")
+
     @api.model
     def action_birthday_count(self):
         for rec in self.search([]):
@@ -92,8 +95,7 @@ class Student(models.Model):
             "context": "{'create': 'false'}",
         }
 
-    appointment_count = fields.Integer(string="Teacher Count", compute="compute_count")
-    appointment_count1 = fields.Integer(string="Result Count", compute="compute_countt")
+
 
     def compute_countt(self):
         """Count the number of students and shows the count value on smart button"""
@@ -210,7 +212,7 @@ class Student(models.Model):
     def _unlink_if_not_done(self):
         """if state is 100% in record, and if we try to delete than this will raise an error."""
         if any(batch.state == "done" for batch in self):
-            raise UserError("You cannot delete, because state is at 100%")
+            raise UserError("You cannot delete, because state is at")
 
     @api.model
     def _name_search(
