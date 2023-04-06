@@ -4,7 +4,7 @@ from odoo.exceptions import ValidationError, UserError
 
 
 class TourDetails(models.Model):
-    _name = "tour_details"
+    _name = "tour.details"
     _description = "Tour Details"
 
     tour_season = fields.Selection(
@@ -61,7 +61,7 @@ class TourDetails(models.Model):
                 )
 
     @api.ondelete(at_uninstall=False)
-    def _unlink_if_not_done(self):
+    def _unlink_not_done(self):
         """if status  is Confirmed  in record, and if we try to delete than this will raise an error."""
         if any(batch.status == "done" for batch in self):
             raise UserError("You cannot delete, ticket is confirmed")

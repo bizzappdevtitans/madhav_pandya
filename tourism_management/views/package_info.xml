@@ -2,14 +2,14 @@
 <odoo>
     <record id="action_package_info" model="ir.actions.act_window">
         <field name="name">package_info</field>
-        <field name="res_model">package_info</field>
+        <field name="res_model">package.info</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-
+         <!-- Package Info Tree view -->
     <record id="package_info_list_view" model="ir.ui.view">
       <field name="name">Package_info_tree</field>
-      <field name="model">package_info</field>
+      <field name="model">package.info</field>
       <field name="arch" type="xml">
 
          <tree>
@@ -24,10 +24,10 @@
       </field>
    </record>
 
-
+         <!-- Package Info form view -->
     <record id="package_info_form_view" model="ir.ui.view">
       <field name="name">Package_info_form</field>
-      <field name="model">package_info</field>
+      <field name="model">package.info</field>
       <field name="arch" type="xml">
          <form >
             <sheet>

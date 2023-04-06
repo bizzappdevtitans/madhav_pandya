@@ -4,7 +4,7 @@ from odoo.exceptions import ValidationError, UserError
 
 
 class CustomerReview(models.Model):
-    _name = "customer_review"
+    _name = "customer.review"
     _description = "Customer Review"
 
     name = fields.Char(string="Customer Name")

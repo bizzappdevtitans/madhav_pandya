@@ -4,7 +4,7 @@ from odoo.exceptions import ValidationError, UserError
 
 
 class TourDescription(models.Model):
-    _name = "tour_description"
+    _name = "tour.description"
     _description = "Tour Description"
 
     tour_code = fields.Integer(string="Tour Code")
@@ -14,3 +14,4 @@ class TourDescription(models.Model):
     breakfast = fields.Boolean(string="Breakfast")
     lunch = fields.Boolean(string="Lunch")
     dinner = fields.Boolean(string="Dinner")
+    products_id=fields.Many2one("product.product", string="Products")

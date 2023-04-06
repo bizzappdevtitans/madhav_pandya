@@ -4,7 +4,7 @@ from odoo.exceptions import ValidationError, UserError
 
 
 class TourItenerary(models.Model):
-    _name = "tour_itenerary"
+    _name = "tour.itenerary"
     _description = "Tour whole Information"
 
     tour_id = fields.Many2one("tour", string="Customer Inquiry")
@@ -28,7 +28,7 @@ class TourItenerary(models.Model):
     tour_days = fields.Char(string="Tour Days")
 
     tour_description_ids = fields.Many2many(
-        comodel_name="tour_description", string="Tour Description"
+        comodel_name="tour.description", string="Tour Description"
     )
 
     _sql_constraints = [
@@ -53,7 +53,7 @@ class TourItenerary(models.Model):
         """Returns the unique sequence number whenever new form is created"""
         if vals.get("reference_noo", ("New")) == ("New"):
             vals["reference_noo"] = self.env["ir.sequence"].next_by_code(
-                "tour_itenerary"
+                "tour.itenerary"
             ) or _("New")
         res = super(TourItenerary, self).create(vals)
         return res
@@ -65,7 +65,7 @@ class TourItenerary(models.Model):
             "type": "ir.actions.act_window",
             "name": "Tour Description",
             "view_mode": "tree,form",
-            "res_model": "tour_description",
+            "res_model": "tour.description",
             "domain": [("id", "in", self.tour_description_ids.ids)],
             "context": "{'create': 'false'}",
         }

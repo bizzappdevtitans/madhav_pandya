@@ -2,14 +2,14 @@
 <odoo>
     <record id="action_ticket_details" model="ir.actions.act_window">
         <field name="name">ticket_details</field>
-        <field name="res_model">ticket_details</field>
+        <field name="res_model">ticket.details</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-
+            <!-- Ticket details list view -->
     <record id="ticket_details_list_view" model="ir.ui.view">
       <field name="name">ticket_details.tree</field>
-      <field name="model">ticket_details</field>
+      <field name="model">ticket.details</field>
       <field name="arch" type="xml">
 
          <tree>
@@ -28,10 +28,10 @@
       </field>
    </record>
 
-
+            <!-- Ticket details Form view -->
     <record id="ticket_details_form_view" model="ir.ui.view">
       <field name="name">ticket_details_form</field>
-      <field name="model">ticket_details</field>
+      <field name="model">ticket.details</field>
       <field name="arch" type="xml">
          <form >
             <sheet>

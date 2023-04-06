@@ -4,7 +4,7 @@ from odoo.exceptions import ValidationError, UserError
 
 
 class InformationLine(models.Model):
-    _name = "information_line"
+    _name = "information.line"
     _description = "Tour Information"
 
     start_place = fields.Char(string="From", default="Ahmedabad", readonly=True)

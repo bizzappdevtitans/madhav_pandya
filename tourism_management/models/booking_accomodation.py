@@ -4,7 +4,7 @@ from odoo.exceptions import ValidationError, UserError
 
 
 class BookingAccomodation(models.Model):
-    _name = "booking_accomodation"
+    _name = "booking.accomodation"
     _description = "Booking Information"
 
     tour_name = fields.Selection(
@@ -117,6 +117,5 @@ class BookingAccomodation(models.Model):
     def constrains_valid_date(self):
         """This will raise error if we select past dates"""
         for rec in self:
-            today = date.today()
-            if today.month > rec.date_in.month:
+            if self.date_in < fields.Date.today():
                 raise ValidationError("You cannot select past date")

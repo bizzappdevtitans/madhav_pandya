@@ -2,14 +2,14 @@
 <odoo>
     <record id="action_tour_packages" model="ir.actions.act_window">
         <field name="name">Tour Packages</field>
-        <field name="res_model">tour_packages</field>
+        <field name="res_model">tour.packages</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-
+                <!-- Tour packages List view -->
     <record id="tour_packages_list_view" model="ir.ui.view">
       <field name="name">tour_packages_tree</field>
-      <field name="model">tour_packages</field>
+      <field name="model">tour.packages</field>
       <field name="arch" type="xml">
 
          <tree>
@@ -22,9 +22,11 @@
       </field>
    </record>
 
+
+            <!-- Tour packages form view -->
    <record id="tour_packages_form_view" model="ir.ui.view">
       <field name="name">tour_packages_form</field>
-      <field name="model">tour_packages</field>
+      <field name="model">tour.packages</field>
       <field name="arch" type="xml">
          <form >
             <sheet>
@@ -45,16 +47,19 @@
    </record>
 
 
+
+
+        <!-- Tour Package details form view -->
    <record id="action_tour_packages_details" model="ir.actions.act_window">
         <field name="name">Tour Packages</field>
-        <field name="res_model">tour_packages_details</field>
+        <field name="res_model">tour.packages.details</field>
         <field name="view_mode">form</field>
         <field name="target">inline</field>
     </record>
 
    <record id="tour_packages_details_view" model="ir.ui.view">
       <field name="name">tour_packages_details_form</field>
-      <field name="model">tour_packages_details</field>
+      <field name="model">tour.packages.details</field>
       <field name="arch" type="xml">
           <form  edit="0" create="0">
 

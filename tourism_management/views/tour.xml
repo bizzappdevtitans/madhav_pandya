@@ -6,7 +6,7 @@
         <field name="view_mode">tree,search,form</field>
     </record>
 
-
+            <!-- Tour Tree view -->
     <record id="tour_list_view" model="ir.ui.view">
       <field name="name">tour.tree</field>
       <field name="model">tour</field>
@@ -21,7 +21,7 @@
    </record>
 
 
-
+            <!-- Tour form view -->
  <record id="tour_form_view" model="ir.ui.view">
       <field name="name">tour.form</field>
       <field name="model">tour</field>
@@ -96,6 +96,8 @@
       </field>
    </record>
 
+
+        <!-- Tour search view -->
     <record id="tour_search" model="ir.ui.view">
         <field name="name">tour.search</field>
         <field name="model">tour</field>

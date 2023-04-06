@@ -2,14 +2,14 @@
 <odoo>
     <record id="action_information_line" model="ir.actions.act_window">
         <field name="name">information_line</field>
-        <field name="res_model">information_line</field>
+        <field name="res_model">information.line</field>
         <field name="view_mode">tree,form</field>
     </record>
 
 
     <record id="information_line_list_view" model="ir.ui.view">
       <field name="name">information_line.tree</field>
-      <field name="model">information_line</field>
+      <field name="model">information.line</field>
       <field name="arch" type="xml">
 
          <tree>
@@ -27,7 +27,7 @@
 
    <record id="information_line_form_view" model="ir.ui.view">
       <field name="name">information_line_form</field>
-      <field name="model">information_line</field>
+      <field name="model">information.line</field>
       <field name="arch" type="xml">
          <form >
             <sheet>

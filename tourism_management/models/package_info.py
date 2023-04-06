@@ -4,13 +4,13 @@ from odoo.exceptions import ValidationError, UserError
 
 
 class PackageInfo(models.Model):
-    _name = "package_info"
+    _name = "package.info"
     _description = "Tour Packages"
     _rec_name = "country"
 
     country = fields.Many2one("res.country", string="Country")
     package_info_ids = fields.One2many(
-        comodel_name="tour_packages", inverse_name="package_details_ids"
+        comodel_name="tour.packages", inverse_name="package_details_ids"
     )
 
     tour_id = fields.Many2one("tour")

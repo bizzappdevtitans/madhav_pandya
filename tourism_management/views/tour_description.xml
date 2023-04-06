@@ -2,14 +2,14 @@
 <odoo>
     <record id="action_tour_description" model="ir.actions.act_window">
         <field name="name">tour_description</field>
-        <field name="res_model">tour_description</field>
+        <field name="res_model">tour.description</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-
+            <!-- Tour Description Tree view -->
     <record id="tour_description_list_view" model="ir.ui.view">
       <field name="name">tour_description.tree</field>
-      <field name="model">tour_description</field>
+      <field name="model">tour.description</field>
       <field name="arch" type="xml">
 
          <tree>
@@ -24,10 +24,10 @@
       </field>
    </record>
 
-
+         <!-- Tour Description form view -->
    <record id="tour_description_form_view" model="ir.ui.view">
       <field name="name">tour_description_form</field>
-      <field name="model">tour_description</field>
+      <field name="model">tour.description</field>
       <field name="arch" type="xml">
          <form >
             <sheet>
@@ -39,6 +39,7 @@
                   <field name="breakfast" />
                   <field name="lunch" />
                   <field name="dinner" />
+                  <field name="products_id"/>
                 </group>
 
             </sheet>

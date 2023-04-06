@@ -14,9 +14,9 @@ class Tour(models.Model):
         string="Tour Name",
         Tracking=True,
     )
-    tour_name_id = fields.Many2one(comodel_name="package_info", string="country")
+    tour_name_id = fields.Many2one(comodel_name="package.info", string="country")
 
-    tour_info_ids = fields.One2many(comodel_name="package_info", inverse_name="tour_id")
+    tour_info_ids = fields.One2many(comodel_name="package.info", inverse_name="tour_id")
 
     tour_packages_id = fields.Many2one(
         related="tour_name_id.country", string="Click for Packages"
@@ -32,7 +32,7 @@ class Tour(models.Model):
         Tracking=True,
     )
 
-    information_line_ids = fields.Many2many(comodel_name="information_line")
+    information_line_ids = fields.Many2many(comodel_name="information.line")
 
     reference_no = fields.Char(
         string="Order Reference",
@@ -41,7 +41,7 @@ class Tour(models.Model):
         default=lambda self: ("New"),
     )
 
-    tour_details_ids = fields.Many2many(comodel_name="tour_details")
+    tour_details_ids = fields.Many2many(comodel_name="tour.details")
 
     information_count = fields.Integer(
         string="Information Count", compute="compute_count"
@@ -82,7 +82,7 @@ class Tour(models.Model):
             "type": "ir.actions.act_window",
             "name": "Tour",
             "view_mode": "tree",
-            "res_model": "tour_details",
+            "res_model": "tour.details",
             "domain": [("id", "in", self.tour_details_ids.ids)],
             "context": "{'create': 'false'}",
         }
@@ -94,7 +94,7 @@ class Tour(models.Model):
             "type": "ir.actions.act_window",
             "name": "Flight",
             "view_mode": "tree",
-            "res_model": "information_line",
+            "res_model": "information.line",
             "domain": [("id", "in", self.information_line_ids.ids)],
             "context": "{'create': 'false'}",
         }

@@ -2,14 +2,14 @@
 <odoo>
     <record id="action_tour_itenerary" model="ir.actions.act_window">
         <field name="name">tour_itenerary</field>
-        <field name="res_model">tour_itenerary</field>
+        <field name="res_model">tour.itenerary</field>
         <field name="view_mode">tree,form,kanban</field>
     </record>
 
-
+            <!-- Tour Itinerary Tree view -->
     <record id="tour_itenerary_list_view" model="ir.ui.view">
       <field name="name">tour_itenerary_tree</field>
-      <field name="model">tour_itenerary</field>
+      <field name="model">tour.itenerary</field>
       <field name="arch" type="xml">
 
          <tree>
@@ -26,10 +26,10 @@
       </field>
    </record>
 
-
+        <!-- Tour Itinerary Form view -->
    <record id="tour_itenerary_form_view" model="ir.ui.view">
       <field name="name">tour_itenerary_form</field>
-      <field name="model">tour_itenerary</field>
+      <field name="model">tour.itenerary</field>
       <field name="arch" type="xml">
          <form >
             <header>
@@ -83,10 +83,10 @@
       </field>
    </record>
 
-
+            <!-- Tour itinerary Kanban view -->
    <record id="tour_itenerary_kanban_view" model="ir.ui.view">
             <field name="name">tour_itenerary.kanban</field>
-            <field name="model">tour_itenerary</field>
+            <field name="model">tour.itenerary</field>
             <field name="arch" type="xml">
                 <kanban>
                     <field name="tour_id"/>

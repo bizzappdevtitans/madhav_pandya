@@ -4,7 +4,7 @@ from odoo.exceptions import ValidationError, UserError
 
 
 class TicketDetails(models.Model):
-    _name = "ticket_details"
+    _name = "ticket.details"
     _description = "Ticket Details"
 
     reference_no = fields.Many2one(comodel_name="tour", string="Reference No")

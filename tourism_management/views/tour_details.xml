@@ -2,14 +2,14 @@
 <odoo>
     <record id="action_tour_details" model="ir.actions.act_window">
         <field name="name">tour_details</field>
-        <field name="res_model">tour_details</field>
+        <field name="res_model">tour.details</field>
         <field name="view_mode">tree,form,kanban</field>
     </record>
 
-
+            <!-- Tour Details Tree view -->
     <record id="tour_details_list_view" model="ir.ui.view">
       <field name="name">tour_details.tree</field>
-      <field name="model">tour_details</field>
+      <field name="model">tour.details</field>
       <field name="arch" type="xml">
 
          <tree>
@@ -27,9 +27,11 @@
       </field>
    </record>
 
+
+        <!-- Tour Details form view -->
    <record id="tour_details_form_view" model="ir.ui.view">
       <field name="name">tour_details_form</field>
-      <field name="model">tour_details</field>
+      <field name="model">tour.details</field>
       <field name="arch" type="xml">
          <form >
             <sheet>
@@ -50,10 +52,10 @@
       </field>
    </record>
 
-
+        <!-- Tour Details Kanban view -->
    <record id="tour_details_kanban_view" model="ir.ui.view">
             <field name="name">tour_details.kanban</field>
-            <field name="model">tour_details</field>
+            <field name="model">tour.details</field>
             <field name="arch" type="xml">
                 <kanban>
                     <field name="tour_season"/>
@@ -93,6 +95,9 @@
             </field>
         </record>
 
+
+
+            <!-- Tour details code for Server Action -->
    <record id="action_mark_as_done" model="ir.actions.server">
             <field name="name">Mark as Confirmed</field>
             <field name="type">ir.actions.server</field>
