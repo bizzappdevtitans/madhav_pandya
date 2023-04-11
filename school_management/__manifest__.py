@@ -28,6 +28,7 @@
         "views/teacher.xml",
         "views/student_appointment.xml",
         "reports/student_report.xml",
+        "reports/invoice_reports.xml",
         "views/contact_us.xml",
         "views/director.xml",
         "views/results.xml",

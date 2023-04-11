@@ -5,6 +5,11 @@
             <field name="model">create.appointment.wizard</field>
             <field name="arch" type="xml">
                 <form string="Create New Appointment">
+
+                    <header>
+                         <button name="create_invoice_school" string="Create Invoice" type="object" class="oe_highlight"/>
+                    </header>
+
                     <group>
                         <field name="name"/>
                         <field name="contact_no"/>
@@ -15,6 +20,7 @@
                         <button type="object" string="Update form" name= "create_field" class="oe_highlight"/>
                         <button type="object" string="Create form" name= "create_form" class="oe_highlight"/>
                         <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z"/>
+
                     </footer>
                 </form>
             </field>

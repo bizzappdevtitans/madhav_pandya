@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+<template id="invoice_cop" inherit_id="account.report_invoice_document">
+   <xpath expr="//div[hasclass('page')]" position="after">
+       <t t-if="o.lum_sum">
+
+           <div style="border-bottom:2px solid;height:120px;width:320px; align:left; padding-bottom:122px !important;">
+
+            Madhav Pandya , Senior Odoo Developer
+           </div>
+       </t>
+     </xpath>
+      <!-- <xpath expr="//div[hasclass('tax_ids')" position="replace">
+      </xpath> -->
+</template>
+
+
+
+</data>
+</odoo>

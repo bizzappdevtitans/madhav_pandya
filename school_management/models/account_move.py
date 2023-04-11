@@ -8,3 +8,8 @@ class AccountMove(models.Model):
     invoice_description_id = fields.Many2one(
         comodel_name="student", string="Invoice Description"
     )
+
+    saleee_id= fields.Many2one(comodel_name='sale.order')
+
+
+    lum_sum=fields.Boolean(string="Lum Sum",readonly=True)

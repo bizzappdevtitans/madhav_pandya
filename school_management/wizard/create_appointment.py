@@ -40,3 +40,9 @@ class CreateAppointmentWizard(models.TransientModel):
             "booking_date": self.booking_date,
         }
         upd_vals.write(vals)
+
+
+    def create_invoice_school(self):
+        print("Madhav")
+
+

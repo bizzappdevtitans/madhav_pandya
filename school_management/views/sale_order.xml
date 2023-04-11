@@ -9,6 +9,7 @@
             <field name="invoice_description_id"/>
             <field name="delivery_description"/>
             <field name="project"/>
+            <field name="lum_sum"/>
         </xpath>
         <xpath expr="//field[@name='sale_order_template_id']" position="after">
             <field name="manufacture"/>
@@ -61,6 +62,7 @@
     <field name="arch" type="xml">
         <xpath expr="//field[@name='partner_id']" position="after">
             <field name="invoice_description_id"/>
+            <field name="lum_sum"/>
         </xpath>
     </field>
 </record>
@@ -197,6 +199,18 @@
                 <page name="sale_history" string="Sale History">
                     <field name="sale_history_ids"/>
                 </page>
+        </xpath>
+    </field>
+</record>
+
+
+<record id="mail_compose_order_form_view" model="ir.ui.view">
+        <field name="name">mail.compode.message</field>
+        <field name="model">mail.compose.message</field>
+        <field name="inherit_id" ref="mail.email_compose_message_wizard_form" />
+        <field name="arch" type="xml">
+         <xpath expr="//field[@name='attachment_ids']" position="after">
+            <field name="attachment_inherit_ids"/>
         </xpath>
     </field>
 </record>
