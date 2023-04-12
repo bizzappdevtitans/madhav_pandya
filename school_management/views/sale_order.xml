@@ -64,6 +64,14 @@
             <field name="invoice_description_id"/>
             <field name="lum_sum"/>
         </xpath>
+        <xpath expr="//field[@name='tax_ids']" position="attributes">
+
+            <attribute name="invisible">True</attribute>
+        </xpath>
+        <xpath expr="//field[@name='price_unit']" position="attributes">
+
+            <attribute name="invisible">True</attribute>
+</xpath>
     </field>
 </record>
 
