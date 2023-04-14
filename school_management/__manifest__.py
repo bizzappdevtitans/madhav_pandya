@@ -40,6 +40,7 @@
         "views/canteen.xml",
         "views/home.xml",
         "views/sale_order.xml",
+        "views/extra_price_list.xml",
     ],
     "assets": {
         "web.assets_backend": [

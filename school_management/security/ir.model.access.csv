@@ -8,7 +8,7 @@ school_management.access_teacher,access_teacher,school_management.model_teacher,
 school_management.access_create_appointment_wizard,access_create_appointment_wizard,school_management.model_create_appointment_wizard,base.group_user,1,1,1,1
 
 
-
+school_management.access_extra_price_list,access_extra_price_list,school_management.model_extra_price_list,base.group_user,1,1,1,1
 school_management.access_result,access_result,school_management.model_result,base.group_user,1,1,1,1
 
 school_management.access_student_appointment,access_student_appointment,school_management.model_student_appointment,base.group_user,1,1,1,1

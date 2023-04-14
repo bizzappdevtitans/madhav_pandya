@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import fields,api ,models
 
 
 class SaleOrderLine(models.Model):
@@ -9,6 +9,7 @@ class SaleOrderLine(models.Model):
     weight_id = fields.Many2one(comodel_name="stock.move")
     new_field = fields.Boolean(related="product_template_id.weight_done")
     weight_measure = fields.Float("Weight Measure")
+    total_extra_price= fields.Float('Total Extra price',related='product_template_id.total_price')
 
     def _timesheet_create_project_prepare_values(self):
         """Returns the value from sale.order to project.project model"""
@@ -23,3 +24,5 @@ class SaleOrderLine(models.Model):
         )
         values.update({"task": self.order_id.task})
         return values
+
+

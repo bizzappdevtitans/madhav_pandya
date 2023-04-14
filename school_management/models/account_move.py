@@ -10,6 +10,7 @@ class AccountMove(models.Model):
     )
 
     saleee_id= fields.Many2one(comodel_name='sale.order')
+    product_pro_id= fields.Many2one(comodel_name='product.product')
 
 
     lum_sum=fields.Boolean(string="Lum Sum",readonly=True)

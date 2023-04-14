@@ -26,4 +26,5 @@ from . import project_task
 from . import product_template
 from . import stock_picking_type
 from . import product_product
+from . import extra_price_list
 

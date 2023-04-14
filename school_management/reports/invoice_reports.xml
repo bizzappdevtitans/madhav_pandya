@@ -20,13 +20,13 @@
 
 
             </xpath>
-            <!-- <xpath expr="//td[@name='account_invoice_line_name']" position="attributes">
-                <attribute name="t-if">o.lum_sum==False</attribute>
+
+
+            <!-- <xpath expr="//th[@name='th_subtotal']" position="replace">
+                <span> Amount</span>
             </xpath> -->
 
-            <xpath expr="//th[@name='th_subtotal']" position="after">
 
-            </xpath>
 
 
             <xpath expr="//td[hasclass('text-right')]" position="attributes">
@@ -36,8 +36,58 @@
              <xpath expr="//span[hasclass('text-nowrap')]" position="attributes">
                 <attribute name="t-if">o.lum_sum==False</attribute>
             </xpath>
-            <!-- <xpath expr="//table[@name='invoice_line_table']" position="after">
-                MDHv Pndya
+
+
+
+
+             <!-- <xpath expr="//th[@name='th_subtotal']" position="replace">
+                <t t-if='o.lum_sum==true'>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><span> Amount</span></td>
+                </t>
+            </xpath>
+
+
+            <xpath expr="//tbody[hasclass('invoice_tbody')]" position="replace">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><span> Madhav</span></td>
+            </xpath> -->
+
+
+
+            <!-- <xpath expr="//table[@name='invoice_line_table']" position="attributes">
+                <attribute name="t-if">o.lum_sum==False</attribute>
+
+                <style>
+                    table, th{
+                    border: 1px solid black;
+                    }
+                 </style>
+
+            <table border="1" style="width:100%;">
+                    <tr style="font-weight:bold;">
+                    <td>Description</td>
+                    <td>Amount</td>
+                    </tr>
+                    <tr>
+                        <td><span t-field="o.invoice_line_ids.product_id.name"/></td>
+                        <td><span t-field="o.invoice_line_ids.price_subtotal"/></td>
+
+                    </tr>
+                </table>
             </xpath> -->
 
 
@@ -49,14 +99,7 @@
 
 
 
-        <!-- <xpath expr="//th[@name='th_priceunit']" position="replace">
 
-
-            </xpath>
-            <xpath expr="//th[@name='th_taxes']" position="replace">
-            </xpath>
-            <xpath expr="//th[@name='th_quantity']" position="replace">
-            </xpath> -->
 
 
 

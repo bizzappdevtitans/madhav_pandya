@@ -5,6 +5,9 @@
 
    <menuitem id="school_sub1111_menu" name="Home Page" parent="school_root_menu" sequence="1" action="action_home"/>
 
+
+   <menuitem id="school_sub11112_menu" name="Price List" parent="school_root_menu" sequence="2" action="action_extra_price_list"/>
+
    <menuitem id="school_sub1112_menu" name="School Infrastructure" parent="school_sub1111_menu" action="action_school_infrastructure"/>
 
 
@@ -54,6 +57,9 @@
     <menuitem id="school_sub911_11menu" name="Library" parent="school_sub91_1menu" action="action_library"/>
     <menuitem id="school_sub911_12menu" name="Sports room" parent="school_sub91_1menu" action="action_sports"/>
     <menuitem id="school_sub911_13menu" name="Smart class room" parent="school_sub91_1menu" action="action_smart_class"/>
+
+
+
 
 
 
