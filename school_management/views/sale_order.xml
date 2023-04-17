@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<record id="sale_order_view" model="ir.ui.view">
+    <field name="name">sale.order.view</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='payment_term_id']" position="after">
+            <field name="invoice_description_id"/>
+            <field name="delivery_description"/>
+            <field name="project"/>
+            <field name="lum_sum"/>
+        </xpath>
+
+        <xpath expr="//field[@name='sale_order_template_id']" position="after">
+            <field name="manufacture"/>
+            <field name="task"/>
+            <field name="purchase_description"/>
+        </xpath>
+    </field>
+</record>
+
+
+<record id="sale_order_view" model="ir.ui.view">
+    <field name="name">sale.order.view</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="arch" type="xml">
+            <!-- <div class="oe_button_box" name="button_box">
+                        <button name="preview_sale_order" position='after'>
+                            <button name="create_delivery" type="object" class="oe_stat_button" icon="fa-truck" attrs="{'invisible': [('delivery_number', '=', 0)]}"  groups="stock.group_stock_user">
+                                <field name="delivery_number" widget="statinfo" string="Delivery"/>
+                            </button>
+                                <div class="o_stat_info">
+                                    <span class= "o_stat_text">
+                                        <b> Delivery</b>
+                                    </span>
+                                </div>
+                        </button>
+            </div> -->
+            <xpath expr="//button[@name='action_view_invoice']" position="before">
+                    <button type="object" name="create_delivery" class="oe_stat_button" icon="fa-truck" attrs="{'invisible': [('delivery_count', '=', 0)]}" groups="stock.group_stock_user">
+                        <field name="delivery_count" widget="statinfo" string="Delivery"/>
+                    </button>
+                </xpath>
+        <button name="action_quotation_send" position="after">
+            <button name='create_delivery' string='Create Delivery' type='object'/>
+        </button>
+    </field>
+</record>
+
+
+
+<record id="action_create_delivery" model="ir.actions.act_window">
+    <field name="name">Create Delivery</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">sale.order</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+    <!-- <field name="context">{'default_state': 'draft'}</field> -->
+    <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+            Click to create a delivery order.
+        </p>
+    </field>
+</record>
+
+
+<record id="view_partner_form_inherit" model="ir.ui.view">
+    <field name="name">res.partner.inherit</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
+         <field name="mobile" position="attributes">
+            <attribute name="required">1</attribute>
+        </field>
+         <field name="email" position="attributes">
+            <attribute name="readonly">1</attribute>
+        </field>
+        <!-- <field name="website" position="attributes">
+            <attribute name="attrs">{'required': [('customer','=', True)]}</attribute>
+        </field> -->
+    </field>
+</record>
+
+
+
+
+
+
+<record model="ir.ui.view" id="sale_order_view_inherit">
+    <field name="name">sale.order.view.inherit1</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="arch" type="xml">
+        <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='name']" position="after">
+            <field name="new_field"/>
+            <field name="weight_measure"/>
+            <field name='total_extra_price' widget='monetary'/>
+            <field name="currency_id" widget="monetary" options="{'currency_field': 'currency_id'}" invisible='1'/>
+        </xpath>
+    </field>
+</record>
+
+
+<record model="ir.ui.view" id="view_move_form">
+    <field name="name">account.move.inherit</field>
+    <field name="model">account.move</field>
+    <field name="inherit_id" ref="account.view_move_form"/>
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='partner_id']" position="after">
+            <field name="invoice_description_id"/>
+            <field name="lum_sum"/>
+        </xpath>
+        <!-- <xpath expr="//field[@name='tax_ids']" position="attributes">
+
+            <attribute name="invisible">True</attribute>
+        </xpath>
+        <xpath expr="//field[@name='price_unit']" position="attributes">
+
+            <attribute name="invisible">True</attribute>
+</xpath> -->
+    </field>
+</record>
+
+
+
+
+
+    <record id="stock_picking_form_view" model="ir.ui.view">
+        <field name="name">stock.picking.form.view</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <header>
+                <button name="button_validate" type="object" string="Validate"/>
+            </header>
+         <xpath expr="//field[@name='picking_type_id']" position="after">
+            <field name="delivery_description"/>
+        </xpath>
+         <xpath expr="/form/sheet/notebook/page/field[@name='move_ids_without_package']/tree/field[@name='product_packaging_id']" position="after">
+            <field name="weight_measure"/>
+        </xpath>
+    </field>
+</record>
+
+
+<record id="stock_picking_type_form_view" model="ir.ui.view">
+        <field name="name">stock.picking.type.form.view</field>
+        <field name="model">stock.picking.type</field>
+        <field name="inherit_id" ref="stock.view_picking_type_form" />
+        <field name="arch" type="xml">
+         <xpath expr="//field[@name='warehouse_id']" position="after">
+            <field name="create_invoice"/>
+        </xpath>
+    </field>
+</record>
+
+<record id="stock_move_form_view" model="ir.ui.view">
+        <field name="name">stock.move.form.view</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_form" />
+        <field name="arch" type="xml">
+         <xpath expr="//field[@name='company_id']" position="after">
+            <field name="field_id"/>
+        </xpath>
+    </field>
+</record>
+
+
+<record id="project_project_form_view" model="ir.ui.view">
+        <field name="name">project_project_form_view</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project" />
+        <field name="arch" type="xml">
+         <xpath expr="//field[@name='partner_id']" position="after">
+            <field name="project"/>
+        </xpath>
+    </field>
+</record>
+
+<record id="project_task_form_view" model="ir.ui.view">
+        <field name="name">project_task_form_view</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2" />
+        <field name="arch" type="xml">
+         <xpath expr="//field[@name='partner_id']" position="after">
+            <field name="task"/>
+        </xpath>
+    </field>
+</record>
+
+
+<record id="purchase_order_form_view" model="ir.ui.view">
+        <field name="name">purchase_order_form_view</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+         <xpath expr="//field[@name='partner_ref']" position="after">
+            <field name="purchase_description"/>
+        </xpath>
+    </field>
+</record>
+
+
+<record id="manufacturing_order_form_view" model="ir.ui.view">
+        <field name="name">manufacturing_order_form_view</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+         <xpath expr="//field[@name='company_id']" position="after">
+            <field name="manufacture"/>
+        </xpath>
+    </field>
+</record>
+
+
+<record id="product_template_order_form_view" model="ir.ui.view">
+        <field name="name">product_template_order_form_view</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view" />
+        <field name="arch" type="xml">
+         <xpath expr="//field[@name='company_id']" position="after">
+            <!-- <field name="extra_price_of_product"/> -->
+            <field name="total_price"/>
+            <field name="price_list_ids"/>
+            <field name="calculated_amount" widget='monetary'/>
+        </xpath>
+            <span class="d-inline-block">
+                    <field name="weight_done"/>
+                    <label for="weight_done"/>
+            </span>
+            <field name="weight_done"/>
+        <!-- </xpath> -->
+    </field>
+</record>
+
+
+<record id="product_product_form_view" model="ir.ui.view">
+        <field name="name">product_product_form_view</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view" />
+        <field name="arch" type="xml">
+          <xpath expr="//page[@name='general_information']" position="after">
+                <page name="purchase_history" string="Purchase History">
+                    <field name="purchase_history_ids"/>
+                </page>
+        </xpath>
+    </field>
+</record>
+
+
+
+<record id="product_product1_form_view" model="ir.ui.view">
+        <field name="name">product_product_form_view</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view" />
+        <field name="arch" type="xml">
+          <xpath expr="//page[@name='purchase_history']" position="after">
+                <page name="sale_history" string="Sale History">
+                    <field name="sale_history_ids"/>
+                </page>
+        </xpath>
+    </field>
+</record>
+
+
+<record id="mail_compose_order_form_view" model="ir.ui.view">
+        <field name="name">mail.compode.message</field>
+        <field name="model">mail.compose.message</field>
+        <field name="inherit_id" ref="mail.email_compose_message_wizard_form" />
+        <field name="arch" type="xml">
+         <xpath expr="//field[@name='attachment_ids']" position="after">
+            <field name="attachment_inherit_ids" widget="many2many_binary"/>
+        </xpath>
+    </field>
+</record>
+
+
+
+
+
+
+
+
+
+</odoo>

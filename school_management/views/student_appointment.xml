@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_student_appointment" model="ir.actions.act_window">
+        <field name="name">student_appointment</field>
+        <field name="res_model">student_appointment</field>
+        <field name="view_mode">tree,form,pivot,activity,calendar</field>
+    </record>
+
+
+<record id="student_appointment_tree_view" model="ir.ui.view">
+      <field name="name">student_appointment.tree</field>
+      <field name="model">student_appointment</field>
+      <field name="arch" type="xml">
+         <tree multi_edit="1">
+
+            <field name="name_id" widget="many2one_avatar"/>
+            <field name="lastname"/>
+            <field name="email"/>
+            <field name="age"/>
+            <field name="gender"/>
+            <field name="image" widget="image" options="{'size': [100, 100]}"/>
+            <field name="booking_date"/>
+            <field name="address_lines_ids"/>
+            <!-- <field name="reference_field"/> -->
+            <field name="aadhar" widget="image" options="{'size': [100, 100]}"/>
+            <field name="category" widget="radio"/>
+
+
+         </tree>
+      </field>
+   </record>
+
+<record id="student_appointment_calendar_view" model="ir.ui.view">
+      <field name="name">student_appointment.calendar</field>
+      <field name="model">student_appointment</field>
+      <field name="arch" type="xml">
+        <calendar string="Appointment" date_start="booking_date" color="name">
+            <field name="name"/>
+            <field name="name_id"/>
+            <field name="email"/>
+            <field name="lastname"/>
+            <field name="booking_date"/>
+            <field name="teacher_id"/>
+            <field name="address_lines_ids"/>
+
+        </calendar>
+      </field>
+</record>
+
+
+<record id="student_appointment_activity_view" model="ir.ui.view">
+      <field name="name">student_appointment.activity</field>
+      <field name="model">student_appointment</field>
+      <field name="arch" type="xml">
+        <activity string="Appointment">
+            <field name="booking_date"/>
+            <templates>
+                <div t-name="activity-box">
+                    <field name="name"></field>
+                </div>
+            </templates>
+        </activity>
+      </field>
+</record>
+
+
+<record id="student_appointment_pivot_view" model="ir.ui.view">
+      <field name="name">student_appointment.pivot</field>
+      <field name="model">student_appointment</field>
+      <field name="arch" type="xml">
+        <pivot string="Appointment">
+            <field name="name"/>
+            <field name="name_id"/>
+            <field name="lastname"/>
+            <field name="address"/>
+        </pivot>
+      </field>
+</record>
+
+
+
+
+
+
+
+
+<record id="student_appointment_form_view" model="ir.ui.view">
+      <field name="name">student_appointment.form</field>
+      <field name="model">student_appointment</field>
+      <field name="arch" type="xml">
+        <form >
+            <header>
+                <!-- <button name="action_confirm" type="object" string="Confirm" class="oe_highlight"/> -->
+                <button name="action_share_whatsapp" type="object" string="Share Whatsapp" class="oe_highlight" icon="fa-whatsapp"/>
+                <button name="action_notify" type="object" string="Notify" class="oe_highlight" icon="fa-bell"/>
+                <button id="button_create_apppointment" name="%(action_create_appointment)d" string="Create Appointment" class="btn-primary" type="action"/>
+            </header>
+            <sheet>
+                <group>
+                    <widget name="web_ribbon" title="Student Appointment" bg_color="bg-danger"/>
+                    <field name="name_id"/>
+                    <field name="contact_no"/>
+                    <field name="lastname"/>
+                    <field name="age"/>
+                    <field name="gender"/>
+                    <field name="booking_date"/>
+                    <field name="teacher_id"/>
+                    <field name="address_lines_ids"/>
+                    <field name="image" class="oe_avatar" widget="image"/>
+                    <field name="aadhar" class="oe_avatar" widget="image"/>
+                     <field name="category" widget="radio"/>
+                    <!-- <field name="reference_field"/> -->
+            </group>
+            </sheet>
+         </form>
+      </field>
+   </record>
+
+</odoo>
+

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<odoo>
+        <record id="view_create_appointment_form" model="ir.ui.view">
+            <field name="name">create.appointment.wizard.form</field>
+            <field name="model">create.appointment.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Create New Appointment">
+
+                    <header>
+                         <button name="create_invoice_school" string="Create Invoice" type="object" class="oe_highlight"/>
+                    </header>
+
+                    <group>
+                        <field name="name"/>
+                        <field name="contact_no"/>
+                        <field name="lastname"/>
+                        <field name="booking_date"/>
+                    </group>
+                    <footer>
+                        <button type="object" string="Update form" name= "create_field" class="oe_highlight"/>
+                        <button type="object" string="Create form" name= "create_form" class="oe_highlight"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z"/>
+
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_create_appointment" model="ir.actions.act_window">
+            <field name="name">Create Appointment</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">create.appointment.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_create_appointment_form"/>
+            <field name="target">new</field>
+        </record>
+
+
+
+</odoo>

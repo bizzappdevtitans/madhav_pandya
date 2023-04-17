@@ -1,0 +1,132 @@
+<odoo>
+    <record id="student_report" model="ir.actions.report">
+        <field name="name">student_report</field>
+        <field name="model">student</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">school_management.report_student</field>
+        <field name="report_file">school_management.report_student</field>
+        <field name="binding_model_id" ref="model_student"/>
+        <field name="binding_type">report</field>
+    </record>
+
+
+    <template id="report_student">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <center>
+                    <h1>Student Report</h1>
+                </center>
+                Name: <t t-esc="docs.name"/><br/>
+                lastname: <t t-esc="docs.lastname"/><br/>
+                Contact NO:<t t-esc="docs.contact_no"/><br/>
+                address: <t t-esc="docs.address"/><br/>
+                Age: <t t-esc="docs.age"/><br/>
+                Email:  <t t-esc="docs.email"/><br/>
+                Date of birth: <t t-esc="docs.date_of_birth"/>
+                Image: <img src="/school_management/static/description/icon.png" height="50" width="50"/>
+
+
+            </t>
+        </t>
+    </template>
+
+    <record id="teacher_report" model="ir.actions.report">
+        <field name="name">teacher_report</field>
+        <field name="model">teacher</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">school_management.report_teacher</field>
+        <field name="report_file">school_management.report_teacher</field>
+        <field name="binding_model_id" ref="model_teacher"/>
+        <field name="binding_type">report</field>
+    </record>
+
+
+    <template id="report_teacher">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <center>
+                    <h1>Teacher Report</h1>
+                </center>
+                <table border="1" align="center">
+                <tr>
+                <td>Name: </td><td><t t-esc="docs.name"/></td></tr>
+                <tr><td>lastname: </td><td><t t-esc="docs.lastname"/></td></tr>
+                <tr><td>Contact NO:</td><td><t t-esc="docs.contact_no"/></td></tr>
+                <tr><td>address:</td><td> <t t-esc="docs.address"/></td></tr>
+                <tr><td>Email: </td><td> <t t-esc="docs.email"/></td></tr>
+            </table>
+
+            </t>
+        </t>
+    </template>
+
+
+
+
+
+    <record id="result_report" model="ir.actions.report">
+        <field name="name">result_report</field>
+        <field name="model">result</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">school_management.report_result</field>
+        <field name="report_file">school_management.report_result</field>
+        <field name="binding_model_id" ref="model_result"/>
+        <field name="binding_type">report</field>
+    </record>
+
+
+    <template id="report_result">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <center>
+                    <h1>Student Result</h1>
+                </center>
+                <table border="1" align="center">
+                <tr><td>Name </td><td><t t-esc="docs.name"/></td></tr>
+                <tr><td>Physics:</td><td> <t t-esc="docs.sub1"/></td></tr>
+                <tr><td>Maths:</td><td><t t-esc="docs.sub2"/></td></tr>
+                <tr><td>chemistry:</td><td> <t t-esc="docs.sub3"/></td></tr>
+                <tr><td>English: </td><td> <t t-esc="docs.sub4"/></td></tr>
+                <tr><td>Total Marks obtained:</td><td><t t-esc="docs.total"/></td></tr>
+                <tr><td>Percentage:</td><td><t t-esc="docs.percent"/></td></tr>
+            </table>
+
+            </t>
+        </t>
+    </template>
+
+
+
+    <record id="admission_report" model="ir.actions.report">
+        <field name="name">admission_report</field>
+        <field name="model">admission</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">school_management.report_admission</field>
+        <field name="report_file">school_management.report_admission</field>
+        <field name="binding_model_id" ref="model_admission"/>
+        <field name="binding_type">report</field>
+    </record>
+
+
+
+
+    <template id="report_admission">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <center>
+                    <h1>Admission Report</h1>
+                </center>
+                <table border="1" align="center">
+                <tr><td>Name </td><td><t t-esc="docs.name"/></td></tr>
+                <tr><td>lastname:</td><td> <t t-esc="docs.lastname"/></td></tr>
+                <tr><td>contact_no:</td><td><t t-esc="docs.contact_no"/></td></tr>
+                <tr><td>Standard:</td><td> <t t-esc="docs.standard"/></td></tr>
+                <tr><td>Percentage: </td><td> <t t-esc="docs.pr_standard"/></td></tr>
+            </table>
+
+            </t>
+        </t>
+    </template>
+
+
+</odoo>

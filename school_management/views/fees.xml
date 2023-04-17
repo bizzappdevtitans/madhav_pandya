@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_fees" model="ir.actions.act_window">
+        <field name="name">fees</field>
+        <field name="res_model">fees</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+         <!-- Fees tree view -->
+    <record id="fees_list_view" model="ir.ui.view">
+      <field name="name">fees.tree</field>
+      <field name="model">fees</field>
+      <field name="arch" type="xml">
+
+         <tree>
+            <field name="department" decoration-primary="1" decoration-bf="1"/>
+            <field name="sem1" decoration-info="1" decoration-bf="1"/>
+            <field name="sem2" attrs="{'invisible': [('sem1' , '>', 10000  )]}" decoration-danger="1" decoration-it="1"/>
+            <field name="total" decoration-bf="1"/>
+
+         </tree>
+      </field>
+   </record>
+
+         <!-- Fees Form view -->
+   <record id="fees_form_view" model="ir.ui.view">
+      <field name="name">fees.form</field>
+      <field name="model">fees</field>
+      <field name="arch" type="xml">
+         <form >
+            <sheet>
+                <widget name="web_ribbon" title="fees" bg_color="bg-success"/>
+               <group>
+               <field name="department" placeholder="Enter your department "/>
+               <field name="sem1" placeholder='sem 1 fees'/>
+               <field name="sem2" attrs="{'invisible': [('sem1' , '>', 10000  )]}" placeholder="sem2 fees"/>
+               <field name="total"/>
+               </group>
+            </sheet>
+         </form>
+      </field>
+   </record>
+
+
+
+
+</odoo>

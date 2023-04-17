@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_admission" model="ir.actions.act_window">
+        <field name="name">admission</field>
+        <field name="res_model">admission</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="admission_list_view" model="ir.ui.view">
+      <field name="name">admission.tree</field>
+      <field name="model">admission</field>
+      <field name="arch" type="xml">
+
+         <tree>
+            <field name="name" decoration-primary="1" decoration-bf="1" />
+            <field name="lastname" decoration-info="1" decoration-bf="1" />
+            <field name="contact_no" decoration-bf="1" />
+            <field name="standard" />
+            <field name="pr_standard" />
+
+         </tree>
+      </field>
+   </record>
+
+
+
+
+<record id="admission_form_view" model="ir.ui.view">
+      <field name="name">admission.form</field>
+      <field name="model">admission</field>
+      <field name="arch" type="xml">
+         <form >
+            <sheet>
+                <widget name="web_ribbon" title="Admission Open" bg_color="bg-success"/>
+               <group>
+               <field name="name" placeholder="Enter your name "/>
+               <field name="lastname" placeholder="Enter your lastname"/>
+               <field name="contact_no" placeholder="Enter your contact no"/>
+               <field name="standard" placeholder="Enter your standard"/>
+               <field name="pr_standard" placeholder="Enter yout previous standard"/>
+               </group>
+            </sheet>
+         </form>
+      </field>
+   </record>
+
+
+
+
+</odoo>
