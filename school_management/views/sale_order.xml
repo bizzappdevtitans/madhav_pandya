@@ -11,11 +11,57 @@
             <field name="project"/>
             <field name="lum_sum"/>
         </xpath>
+
         <xpath expr="//field[@name='sale_order_template_id']" position="after">
             <field name="manufacture"/>
             <field name="task"/>
             <field name="purchase_description"/>
         </xpath>
+    </field>
+</record>
+
+
+<record id="sale_order_view" model="ir.ui.view">
+    <field name="name">sale.order.view</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="arch" type="xml">
+            <!-- <div class="oe_button_box" name="button_box">
+                        <button name="preview_sale_order" position='after'>
+                            <button name="create_delivery" type="object" class="oe_stat_button" icon="fa-truck" attrs="{'invisible': [('delivery_number', '=', 0)]}"  groups="stock.group_stock_user">
+                                <field name="delivery_number" widget="statinfo" string="Delivery"/>
+                            </button>
+                                <div class="o_stat_info">
+                                    <span class= "o_stat_text">
+                                        <b> Delivery</b>
+                                    </span>
+                                </div>
+                        </button>
+            </div> -->
+            <xpath expr="//button[@name='action_view_invoice']" position="before">
+                    <button type="object" name="create_delivery" class="oe_stat_button" icon="fa-truck" attrs="{'invisible': [('delivery_count', '=', 0)]}" groups="stock.group_stock_user">
+                        <field name="delivery_count" widget="statinfo" string="Delivery"/>
+                    </button>
+                </xpath>
+        <button name="action_quotation_send" position="after">
+            <button name='create_delivery' string='Create Delivery' type='object'/>
+        </button>
+    </field>
+</record>
+
+
+
+<record id="action_create_delivery" model="ir.actions.act_window">
+    <field name="name">Create Delivery</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">sale.order</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+    <!-- <field name="context">{'default_state': 'draft'}</field> -->
+    <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+            Click to create a delivery order.
+        </p>
     </field>
 </record>
 
@@ -50,7 +96,8 @@
         <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='name']" position="after">
             <field name="new_field"/>
             <field name="weight_measure"/>
-            <field name='total_extra_price'/>
+            <field name='total_extra_price' widget='monetary'/>
+            <field name="currency_id" widget="monetary" options="{'currency_field': 'currency_id'}" invisible='1'/>
         </xpath>
     </field>
 </record>
@@ -174,9 +221,10 @@
         <field name="inherit_id" ref="product.product_template_only_form_view" />
         <field name="arch" type="xml">
          <xpath expr="//field[@name='company_id']" position="after">
-            <field name="extra_price_of_product"/>
+            <!-- <field name="extra_price_of_product"/> -->
             <field name="total_price"/>
-            <field name="price_list_ids" widget="many2many_tags"/>
+            <field name="price_list_ids"/>
+            <field name="calculated_amount" widget='monetary'/>
         </xpath>
             <span class="d-inline-block">
                     <field name="weight_done"/>
@@ -223,7 +271,7 @@
         <field name="inherit_id" ref="mail.email_compose_message_wizard_form" />
         <field name="arch" type="xml">
          <xpath expr="//field[@name='attachment_ids']" position="after">
-            <field name="attachment_inherit_ids"/>
+            <field name="attachment_inherit_ids" widget="many2many_binary"/>
         </xpath>
     </field>
 </record>

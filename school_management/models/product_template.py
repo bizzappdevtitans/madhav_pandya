@@ -10,18 +10,24 @@ class ProductTemplate(models.Model):
     sale_history= fields.One2many(comodel_name="sale.order",inverse_name="grid_product_tmpl_id")
 
 
-    extra_price_of_product= fields.Float(string="Price")
-
-    price_list=fields.Many2one(comodel_name='extra.price.list',string='Price list')
-
-    price_list_ids= fields.Many2many(comodel_name='extra.price.list',limit=1)
+    price_list_ids= fields.Many2many(comodel_name='extra.price.list',string="Extra Price List")
 
 
-    total_price= fields.Float("Total Price",compute="compute_total_price")
+    total_price= fields.Float("Total Price",compute="_compute_total_amount")
+
+    calculated_amount= fields.Float(string="Calculated amount",compute="compute_total_calculated_amount")
 
 
 
-    @api.depends('total_price')
-    def compute_total_price(self):
+    @api.depends('calculated_amount')
+    def compute_total_calculated_amount(self):
         for rec in self:
-            rec.update({'total_price': rec.extra_price_of_product*rec.standard_price})
+            rec.update({'calculated_amount': rec.total_price*rec.standard_price})
+
+
+    def _compute_total_amount(self):
+        for record in self:
+            record.total_price=sum(record.price_list_ids.mapped('price'))
+
+
+
