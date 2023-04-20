@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Menu item which will be shown on Inventory model -->
+ <menuitem id="delivery_order" name="Delivery Order Barcode" parent="stock.menu_stock_root" action="action_create_wizard"/>
+</odoo>
