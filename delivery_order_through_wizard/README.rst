@@ -3,24 +3,44 @@
 ===================================
 
 **Description**
-Through this module, delivery order with partner values are created from wizard button and products are fetched on the basis of barcode and shown
-in move_lines
+***************
+
+Delivery Order is created through delivery_payload and products get fetched on the basis
+of barcode and shown in move_lines
+
 
 **Author**
-Bizzappdev
+**********
+
+BizzAppDev
+
+
+**Used by**
+***********
+
+* #N/A
+
+
+**Installation**
+****************
 
 * #N/A
 
 
 **Configuration**
 *****************
-* We need to just click on sub menu of Inventory to open wizard and create new delivery
-order.
+
+Just click on menu item of Inventory model and delivery order will get created.
+
 
 **Usage**
 *********
-By changing the payload of the dictionary we can create the new users, we can search the product through its barcode and if it doesn't fetch it will
-raise validation error, By clicking the "create delivery order " the delivery order will get prepared and the product which need to be searched through barcode will get pasted in move lines with the values of delivery payload
+
+By pressing the menu item of Inventory model wizard will get open and by clicking
+"Create Delivery Order" button new delivery order will get created and the products will
+get fetched on the basis of barcode and shown in movelines, if barcode doesn't get
+match with any product it will raise ValidationError.
+
 
 **Known issues/Roadmap**
 ************************
@@ -30,3 +50,5 @@ raise validation error, By clicking the "create delivery order " the delivery or
 
 **Changelog**
 *************
+
+* #N/A

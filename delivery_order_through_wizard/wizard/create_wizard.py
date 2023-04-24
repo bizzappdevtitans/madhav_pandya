@@ -1,5 +1,5 @@
-from odoo import fields, models
-from odoo.exceptions import ValidationError, UserError
+from odoo import _, fields, models
+from odoo.exceptions import ValidationError
 
 
 class CreateWizard(models.TransientModel):
@@ -8,11 +8,11 @@ class CreateWizard(models.TransientModel):
 
     unit = fields.Integer(default=1, uom="units")
 
-    def get_payload(self):
+    def get_delivery_payload(self):
         """Method returns the delivery order payload"""
 
         return {
-            "name": "AT/PL:123456:",
+            "name": "AT/PL:123056:",
             "customer": {
                 "name": "xyz",
                 "address": {
@@ -22,6 +22,12 @@ class CreateWizard(models.TransientModel):
                     "phone": "9900266933",
                 },
             },
+            "source_location": {"name": "source", "operation_type": "internal"},
+            "stock_operation_type": {"name": "delivery order", "sequence_code": "OUT"},
+            "destination_location": {
+                "name": "destination",
+                "operation_type": "internal",
+            },
             "move_lines": [
                 {"productId": "5112976146", "quantity": 3},
                 {"productId": "5112974885", "quantity": 15},
@@ -30,57 +36,87 @@ class CreateWizard(models.TransientModel):
         }
 
     def create_delivery_order_mapping(self):
-        """Method creates the delivery order on the basis of partner value and fetch and
-        fetch the products on the basis of barcode"""
-        record = self.get_payload()
+        """Method creates the delivery order through delivery_payload and fetch the
+        products on the basis of barcode"""
+        record = self.get_delivery_payload()
 
-        name_value = record["name"]
-        partner_value = record["customer"]["name"]
-        city = record["customer"]["address"]["city"]
-        zipp = record["customer"]["address"]["zip"]
-        phone = record["customer"]["address"]["phone"]
-        barcode = record["move_lines"][0]["productId"]
-        barcode_two = record["move_lines"][1]["productId"]
-        barcode_three = record["move_lines"][2]["productId"]
-        quantity = record["move_lines"][0]["quantity"]
-        quantity_one = record["move_lines"][1]["quantity"]
-        quantity_two = record["move_lines"][2]["quantity"]
-
-        product_one = self.env["product.product"].search([("barcode", "=", barcode)])
+        product_one = self.env["product.product"].search(
+            [("barcode", "=", record.get("move_lines")[0].get("productId"))]
+        )
 
         if not product_one:
-            raise ValidationError("Sorry the barcode didn't match with any of product")
+            raise ValidationError(
+                _("Sorry the barcode didn't match with any of product")
+            )
+
         product_two = self.env["product.product"].search(
-            [("barcode", "=", barcode_two)]
+            [("barcode", "=", record.get("move_lines")[1].get("productId"))]
         )
         if not product_two:
-            raise ValidationError("Sorry the barcode didn't match with any of product")
+            raise ValidationError(
+                _("Sorry the barcode didn't match with any of product")
+            )
 
         product_three = self.env["product.product"].search(
-            [("barcode", "=", barcode_three)]
+            [("barcode", "=", record.get("move_lines")[2].get("productId"))]
         )
         if not product_three:
-            raise ValidationError("Sorry the barcode didn't match with any of product")
+            raise ValidationError(
+                _("Sorry the barcode didn't match with any of product")
+            )
 
-        location_value = self.env["stock.location"].search([("name", "=", "Stock")])
+        location_value = self.env["stock.location"].search(
+            [("name", "=", record.get("source_location").get("name"))]
+        )
+
+        if not location_value:
+            location_value = self.env["stock.location"].create(
+                {
+                    "name": record.get("source_location").get("name"),
+                    "usage": record.get("source_location").get("operation_type"),
+                }
+            )
         destination_value = self.env["stock.picking.type"].search(
-            [("sequence_code", "=", "OUT")]
+            [
+                (
+                    "sequence_code",
+                    "=",
+                    record.get("stock_operation_type").get("sequence_code"),
+                )
+            ]
         )
-        location_value_2 = self.env["stock.location"].search(
-            [("name", "=", "Customers")]
+        location_destination = self.env["stock.location"].search(
+            [("name", "=", record.get("destination_location").get("name"))]
         )
 
-        user = self.env["res.partner"].search([("name", "=", "xyz")])
+        if not location_destination:
+            location_destination = self.env["stock.location"].create(
+                {
+                    "name": record.get("destination_location").get("name"),
+                    "usage": record.get("destination_location").get("operation_type"),
+                }
+            )
+
+        user = self.env["res.partner"].search(
+            [("name", "=", record.get("customer").get("name"))]
+        )
 
         if not user.id:
             partner_name = self.env["res.partner"].create(
-                {"name": partner_value, "city": city, "zip": zipp, "phone": phone}
+                {
+                    "name": record.get("customer").get("name"),
+                    "city": record.get("customer").get("address").get("city"),
+                    "zip": record.get("customer").get("address").get("zip"),
+                    "phone": record.get("customer").get("address").get("phone"),
+                }
             )
         else:
-            partner_name = self.env["res.partner"].search([("name", "=", "xyz")])
+            partner_name = self.env["res.partner"].search(
+                [("name", "=", record.get("customer").get("name"))]
+            )
 
         delivery_value = self.env["stock.picking"].search(
-            [("name", "=", "AT/PL:123456:")]
+            [("name", "=", record.get("name"))]
         )
         if delivery_value:
             return {
@@ -94,18 +130,20 @@ class CreateWizard(models.TransientModel):
         else:
             partner_values = self.env["stock.picking"].create(
                 {
-                    "name": name_value,
+                    "name": record.get("name"),
                     "partner_id": partner_name.id,
                     "location_id": location_value.id,
                     "picking_type_id": destination_value.id,
-                    "location_dest_id": location_value_2.id,
+                    "location_dest_id": location_destination.id,
                     "move_lines": [
                         (
                             0,
                             0,
                             {
                                 "product_id": product_one.id,
-                                "product_uom_qty": quantity,
+                                "product_uom_qty": record.get("move_lines")[0].get(
+                                    "quantity"
+                                ),
                                 "name": product_one.id,
                                 "product_uom": self.unit,
                             },
@@ -115,7 +153,9 @@ class CreateWizard(models.TransientModel):
                             0,
                             {
                                 "product_id": product_two.id,
-                                "product_uom_qty": quantity_one,
+                                "product_uom_qty": record.get("move_lines")[1].get(
+                                    "quantity"
+                                ),
                                 "name": product_two.id,
                                 "location_id": location_value.id,
                                 "product_uom": self.unit,
@@ -126,7 +166,9 @@ class CreateWizard(models.TransientModel):
                             0,
                             {
                                 "product_id": product_three.id,
-                                "product_uom_qty": quantity_two,
+                                "product_uom_qty": record.get("move_lines")[2].get(
+                                    "quantity"
+                                ),
                                 "name": product_three.id,
                                 "location_id": location_value.id,
                                 "product_uom": self.unit,
