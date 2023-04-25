@@ -5,14 +5,14 @@
 **Description**
 ***************
 
-Delivery Order is created through delivery_payload and products get fetched on the basis
-of barcode and shown in move_lines
+* Delivery Order is created through delivery_payload and products get fetched on the
+  basis of barcode and shown in move_lines.
 
 
 **Author**
 **********
 
-BizzAppDev
+* BizzAppDev.
 
 
 **Used by**
@@ -30,16 +30,16 @@ BizzAppDev
 **Configuration**
 *****************
 
-Just click on menu item of Inventory model and delivery order will get created.
+* Just click on menu item of Inventory model and delivery order will get created.
 
 
 **Usage**
 *********
 
-By pressing the menu item of Inventory model wizard will get open and by clicking
-"Create Delivery Order" button new delivery order will get created and the products will
-get fetched on the basis of barcode and shown in movelines, if barcode doesn't get
-match with any product it will raise ValidationError.
+* By pressing the menu item of Inventory model wizard will get open and by clicking
+  "Create Delivery Order" button new delivery order will get created and the products
+  will get fetched on the basis of barcode and shown in movelines, if barcode doesn't
+  get match with any product it will raise ValidationError.
 
 
 **Known issues/Roadmap**

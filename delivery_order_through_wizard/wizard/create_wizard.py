@@ -2,13 +2,13 @@ from odoo import _, fields, models
 from odoo.exceptions import ValidationError
 
 
-class CreateWizard(models.TransientModel):
-    _name = "create.wizard"
+class CreateDeliveryWizard(models.TransientModel):
+    _name = "create.delivery.wizard"
     _description = "Create Wizard"
 
     unit = fields.Integer(default=1, uom="units")
 
-    def get_delivery_payload(self):
+    def get_delivery_order_payload(self):
         """Method returns the delivery order payload"""
 
         return {
@@ -22,7 +22,7 @@ class CreateWizard(models.TransientModel):
                     "phone": "9900266933",
                 },
             },
-            "source_location": {"name": "source", "operation_type": "internal"},
+            "source_location": {"name": "sourceee", "operation_type": "internal"},
             "stock_operation_type": {"name": "delivery order", "sequence_code": "OUT"},
             "destination_location": {
                 "name": "destination",
@@ -38,31 +38,29 @@ class CreateWizard(models.TransientModel):
     def create_delivery_order_mapping(self):
         """Method creates the delivery order through delivery_payload and fetch the
         products on the basis of barcode"""
-        record = self.get_delivery_payload()
+        record = self.get_delivery_order_payload()
 
-        product_one = self.env["product.product"].search(
-            [("barcode", "=", record.get("move_lines")[0].get("productId"))]
-        )
+        move_values = []
 
-        if not product_one:
-            raise ValidationError(
-                _("Sorry the barcode didn't match with any of product")
+        for values in record["move_lines"]:
+            product = self.env["product.product"].search(
+                [("barcode", "=", values.get("productId"))]
             )
-
-        product_two = self.env["product.product"].search(
-            [("barcode", "=", record.get("move_lines")[1].get("productId"))]
-        )
-        if not product_two:
-            raise ValidationError(
-                _("Sorry the barcode didn't match with any of product")
-            )
-
-        product_three = self.env["product.product"].search(
-            [("barcode", "=", record.get("move_lines")[2].get("productId"))]
-        )
-        if not product_three:
-            raise ValidationError(
-                _("Sorry the barcode didn't match with any of product")
+            if not product:
+                raise ValidationError(
+                    _("Product with Barcode  %s not found" % values.get("productId"))
+                )
+            move_values.append(
+                (
+                    0,
+                    0,
+                    {
+                        "product_id": product.id,
+                        "product_uom_qty": values.get("quantity"),
+                        "name": product.id,
+                        "product_uom": self.unit,
+                    },
+                )
             )
 
         location_value = self.env["stock.location"].search(
@@ -101,7 +99,7 @@ class CreateWizard(models.TransientModel):
             [("name", "=", record.get("customer").get("name"))]
         )
 
-        if not user.id:
+        if not user:
             partner_name = self.env["res.partner"].create(
                 {
                     "name": record.get("customer").get("name"),
@@ -111,10 +109,7 @@ class CreateWizard(models.TransientModel):
                 }
             )
         else:
-            partner_name = self.env["res.partner"].search(
-                [("name", "=", record.get("customer").get("name"))]
-            )
-
+            partner_name = user
         delivery_value = self.env["stock.picking"].search(
             [("name", "=", record.get("name"))]
         )
@@ -135,46 +130,7 @@ class CreateWizard(models.TransientModel):
                     "location_id": location_value.id,
                     "picking_type_id": destination_value.id,
                     "location_dest_id": location_destination.id,
-                    "move_lines": [
-                        (
-                            0,
-                            0,
-                            {
-                                "product_id": product_one.id,
-                                "product_uom_qty": record.get("move_lines")[0].get(
-                                    "quantity"
-                                ),
-                                "name": product_one.id,
-                                "product_uom": self.unit,
-                            },
-                        ),
-                        (
-                            0,
-                            0,
-                            {
-                                "product_id": product_two.id,
-                                "product_uom_qty": record.get("move_lines")[1].get(
-                                    "quantity"
-                                ),
-                                "name": product_two.id,
-                                "location_id": location_value.id,
-                                "product_uom": self.unit,
-                            },
-                        ),
-                        (
-                            0,
-                            0,
-                            {
-                                "product_id": product_three.id,
-                                "product_uom_qty": record.get("move_lines")[2].get(
-                                    "quantity"
-                                ),
-                                "name": product_three.id,
-                                "location_id": location_value.id,
-                                "product_uom": self.unit,
-                            },
-                        ),
-                    ],
+                    "move_lines": move_values,
                 }
             )
 

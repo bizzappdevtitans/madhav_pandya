@@ -1,20 +1,25 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <odoo>
         <!-- Wizard view will be shown after clicking the menu item of Inventory -->
         <record id="view_update_delivery_form" model="ir.ui.view">
             <field name="name">update.delivey.form</field>
-            <field name="model">create.wizard</field>
+            <field name="model">create.delivery.wizard</field>
             <field name="arch" type="xml">
                 <form string="Update Delivery">
-                      <button name="create_delivery_order_mapping" type="object" string="Create Delivery Order"/>
+                      <button
+                    name="create_delivery_order_mapping"
+                    type="object"
+                    string="Create Delivery Order"
+                    class="oe_highlight"
+                />
                 </form>
             </field>
         </record>
-            <!-- Wizard action which is given to the button of wizard in Inventory model-->
+            <!-- Wizard action which is given to the menu button of Inventory model-->
         <record id="action_create_wizard" model="ir.actions.act_window">
             <field name="name">Update Wizard</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">create.wizard</field>
+            <field name="res_model">create.delivery.wizard</field>
             <field name="view_mode">form</field>
             <field name="target">new</field>
         </record>
