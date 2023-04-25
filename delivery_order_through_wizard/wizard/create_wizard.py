@@ -22,7 +22,7 @@ class CreateDeliveryWizard(models.TransientModel):
                     "phone": "9900266933",
                 },
             },
-            "source_location": {"name": "sourceee", "operation_type": "internal"},
+            "source_location": {"name": "source", "operation_type": "internal"},
             "stock_operation_type": {"name": "delivery order", "sequence_code": "OUT"},
             "destination_location": {
                 "name": "destination",
