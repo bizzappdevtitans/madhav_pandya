@@ -42,7 +42,7 @@ class CreateDeliveryWizard(models.TransientModel):
 
         move_values = []
 
-        for values in record["move_lines"]:
+        for values in record.get("move_lines"):
             product = self.env["product.product"].search(
                 [("barcode", "=", values.get("productId"))]
             )
