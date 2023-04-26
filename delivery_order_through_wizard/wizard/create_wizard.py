@@ -83,7 +83,9 @@ class CreateDeliveryOrderWizard(models.TransientModel):
             ]
         )
         if not operation_value:
-            raise ValidationError(_("No operation Value found"))
+            raise ValidationError(
+                _("No delivery orders of operation type,'delivery' found")
+            )
 
         location_destination = self.env["stock.location"].search(
             [("name", "=", record.get("destination_location").get("name"))]
