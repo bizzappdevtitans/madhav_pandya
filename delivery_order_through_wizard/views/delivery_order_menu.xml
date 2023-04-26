@@ -3,7 +3,7 @@
     <!-- Menu item to show on Inventory model -->
  <menuitem
         id="delivery_order"
-        name="Delivery Order Barcode"
+        name="Delivery Order Management"
         parent="stock.menu_stock_root"
         action="action_create_wizard"
     />

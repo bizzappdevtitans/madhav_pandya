@@ -1,5 +1,5 @@
 {
-    "name": "Delivery Order Mapping ",
+    "name": "Delivery Order Management",
     "summary": "Creation of Delivery Order through Wizard",
     "author": "Odoo Community Association (OCA)",
     "license": "AGPL-3",

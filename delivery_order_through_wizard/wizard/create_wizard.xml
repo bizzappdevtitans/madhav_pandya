@@ -1,11 +1,11 @@
 <?xml version="1.0" ?>
 <odoo>
-        <!-- Wizard view will be shown after clicking the menu item of Inventory -->
-        <record id="view_update_delivery_form" model="ir.ui.view">
-            <field name="name">update.delivey.form</field>
-            <field name="model">create.delivery.wizard</field>
+        <!-- Wizard view shown after clicking the menu item of Inventory -->
+        <record id="view_update_delivery_order_form" model="ir.ui.view">
+            <field name="name">delivey.order.wizard.form</field>
+            <field name="model">create.delivery.order.wizard</field>
             <field name="arch" type="xml">
-                <form string="Update Delivery">
+                <form string="Update Delivery Order">
                       <button
                     name="create_delivery_order_mapping"
                     type="object"
@@ -15,11 +15,11 @@
                 </form>
             </field>
         </record>
-            <!-- Wizard action which is given to the menu button of Inventory model-->
+        <!-- Wizard action to the menu button "Delivery Order Management" of Inventory model-->
         <record id="action_create_wizard" model="ir.actions.act_window">
-            <field name="name">Update Wizard</field>
+            <field name="name">Update Delivery Order</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">create.delivery.wizard</field>
+            <field name="res_model">create.delivery.order.wizard</field>
             <field name="view_mode">form</field>
             <field name="target">new</field>
         </record>

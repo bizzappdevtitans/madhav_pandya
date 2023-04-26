@@ -2,14 +2,14 @@ from odoo import _, fields, models
 from odoo.exceptions import ValidationError
 
 
-class CreateDeliveryWizard(models.TransientModel):
-    _name = "create.delivery.wizard"
-    _description = "Create Wizard"
+class CreateDeliveryOrderWizard(models.TransientModel):
+    _name = "create.delivery.order.wizard"
+    _description = "Create Delivery Order Wizard"
 
     unit = fields.Integer(default=1, uom="units")
 
     def get_delivery_order_payload(self):
-        """Method returns the delivery order payload"""
+        """T6234 Method returns the delivery order payload"""
 
         return {
             "name": "AT/PL:123056:",
@@ -41,7 +41,6 @@ class CreateDeliveryWizard(models.TransientModel):
         record = self.get_delivery_order_payload()
 
         move_values = []
-
         for values in record.get("move_lines"):
             product = self.env["product.product"].search(
                 [("barcode", "=", values.get("productId"))]
@@ -74,7 +73,7 @@ class CreateDeliveryWizard(models.TransientModel):
                     "usage": record.get("source_location").get("operation_type"),
                 }
             )
-        destination_value = self.env["stock.picking.type"].search(
+        operation_value = self.env["stock.picking.type"].search(
             [
                 (
                     "sequence_code",
@@ -83,6 +82,9 @@ class CreateDeliveryWizard(models.TransientModel):
                 )
             ]
         )
+        if not operation_value:
+            raise ValidationError(_("No operation Value found"))
+
         location_destination = self.env["stock.location"].search(
             [("name", "=", record.get("destination_location").get("name"))]
         )
@@ -95,12 +97,12 @@ class CreateDeliveryWizard(models.TransientModel):
                 }
             )
 
-        user = self.env["res.partner"].search(
+        customer = self.env["res.partner"].search(
             [("name", "=", record.get("customer").get("name"))]
         )
 
-        if not user:
-            partner_name = self.env["res.partner"].create(
+        if not customer:
+            customer_values = self.env["res.partner"].create(
                 {
                     "name": record.get("customer").get("name"),
                     "city": record.get("customer").get("address").get("city"),
@@ -109,7 +111,8 @@ class CreateDeliveryWizard(models.TransientModel):
                 }
             )
         else:
-            partner_name = user
+            customer_values = customer
+
         delivery_value = self.env["stock.picking"].search(
             [("name", "=", record.get("name"))]
         )
@@ -123,22 +126,22 @@ class CreateDeliveryWizard(models.TransientModel):
                 "context": self.env.context,
             }
         else:
-            partner_values = self.env["stock.picking"].create(
+            delivery_order_values = self.env["stock.picking"].create(
                 {
                     "name": record.get("name"),
-                    "partner_id": partner_name.id,
+                    "partner_id": customer_values.id,
                     "location_id": location_value.id,
-                    "picking_type_id": destination_value.id,
+                    "picking_type_id": operation_value.id,
                     "location_dest_id": location_destination.id,
                     "move_lines": move_values,
                 }
             )
 
             return {
-                "name": partner_values.name,
+                "name": delivery_order_values.name,
                 "type": "ir.actions.act_window",
                 "res_model": "stock.picking",
                 "view_mode": "form",
-                "res_id": partner_values.id,
+                "res_id": delivery_order_values.id,
                 "context": self.env.context,
             }

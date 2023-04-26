@@ -5,6 +5,8 @@
 **Description**
 ***************
 
+* Technical Name:- delivery_order_through_wizard
+
 * Delivery Order is created through delivery_payload and products get fetched on the
   basis of barcode and shown in move_lines.
 
@@ -12,7 +14,7 @@
 **Author**
 **********
 
-* BizzAppDev.
+* BizzAppDev
 
 
 **Used by**
