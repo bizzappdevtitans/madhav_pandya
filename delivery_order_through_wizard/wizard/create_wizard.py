@@ -27,9 +27,9 @@ class CreateDeliveryOrderWizard(models.TransientModel):
                 "operation_type": "internal",
             },
             "move_lines": [
-                {"productId": "5112976146", "quantity": 3, "unit": 2},
-                {"productId": "5112974885", "quantity": 15, "unit": 2},
-                {"productId": "5112973994", "quantity": 3, "unit": 2},
+                {"productId": "5112976146", "quantity": 3, "unit": "Units"},
+                {"productId": "5112974885", "quantity": 15, "unit": "Units"},
+                {"productId": "5112973994", "quantity": 3, "unit": "Units"},
             ],
         }
 
@@ -37,6 +37,10 @@ class CreateDeliveryOrderWizard(models.TransientModel):
         """Method creates the delivery order through delivery_payload and fetch the
         products on the basis of barcode"""
         record = self.get_delivery_order_payload()
+
+        units = self.env["uom.uom"].search(
+            [("name", "=", record.get("move_lines")[0].get("unit"))]
+        )
 
         move_values = []
         for values in record.get("move_lines"):
@@ -54,8 +58,8 @@ class CreateDeliveryOrderWizard(models.TransientModel):
                     {
                         "product_id": product.id,
                         "product_uom_qty": values.get("quantity"),
-                        "name": product.id,
-                        "product_uom": values.get("unit"),
+                        "name": product.name,
+                        "product_uom": units.id,
                     },
                 )
             )
@@ -71,7 +75,7 @@ class CreateDeliveryOrderWizard(models.TransientModel):
                     "usage": record.get("source_location").get("operation_type"),
                 }
             )
-        operation_value = self.env["stock.picking.type"].search(
+        operation_type = self.env["stock.picking.type"].search(
             [
                 (
                     "sequence_code",
@@ -80,7 +84,7 @@ class CreateDeliveryOrderWizard(models.TransientModel):
                 )
             ]
         )
-        if not operation_value:
+        if not operation_type:
             raise ValidationError(
                 _("No delivery orders of operation type,'delivery' found")
             )
@@ -102,7 +106,7 @@ class CreateDeliveryOrderWizard(models.TransientModel):
         )
 
         if not customer:
-            customer_values = self.env["res.partner"].create(
+            customer = self.env["res.partner"].create(
                 {
                     "name": record.get("customer").get("name"),
                     "city": record.get("customer").get("address").get("city"),
@@ -110,38 +114,27 @@ class CreateDeliveryOrderWizard(models.TransientModel):
                     "phone": record.get("customer").get("address").get("phone"),
                 }
             )
-        else:
-            customer_values = customer
 
         delivery_value = self.env["stock.picking"].search(
             [("name", "=", record.get("name"))]
         )
-        if delivery_value:
-            return {
-                "name": delivery_value.name,
-                "type": "ir.actions.act_window",
-                "res_model": "stock.picking",
-                "view_mode": "form",
-                "res_id": delivery_value.id,
-                "context": self.env.context,
-            }
-        else:
-            delivery_order_values = self.env["stock.picking"].create(
+        if not delivery_value:
+            delivery_value = self.env["stock.picking"].create(
                 {
                     "name": record.get("name"),
-                    "partner_id": customer_values.id,
+                    "partner_id": customer.id,
                     "location_id": location_value.id,
-                    "picking_type_id": operation_value.id,
+                    "picking_type_id": operation_type.id,
                     "location_dest_id": location_destination.id,
                     "move_lines": move_values,
                 }
             )
 
-            return {
-                "name": delivery_order_values.name,
-                "type": "ir.actions.act_window",
-                "res_model": "stock.picking",
-                "view_mode": "form",
-                "res_id": delivery_order_values.id,
-                "context": self.env.context,
-            }
+        return {
+            "name": delivery_value.name,
+            "type": "ir.actions.act_window",
+            "res_model": "stock.picking",
+            "view_mode": "form",
+            "res_id": delivery_value.id,
+            "context": self.env.context,
+        }
