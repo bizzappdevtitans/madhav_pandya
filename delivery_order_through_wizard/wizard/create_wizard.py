@@ -118,6 +118,7 @@ class CreateDeliveryOrderWizard(models.TransientModel):
         delivery_value = self.env["stock.picking"].search(
             [("name", "=", record.get("name"))]
         )
+
         if not delivery_value:
             delivery_value = self.env["stock.picking"].create(
                 {
@@ -136,5 +137,4 @@ class CreateDeliveryOrderWizard(models.TransientModel):
             "res_model": "stock.picking",
             "view_mode": "form",
             "res_id": delivery_value.id,
-            "context": self.env.context,
         }
