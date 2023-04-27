@@ -1,12 +1,10 @@
-from odoo import _, fields, models
+from odoo import _, models
 from odoo.exceptions import ValidationError
 
 
 class CreateDeliveryOrderWizard(models.TransientModel):
     _name = "create.delivery.order.wizard"
     _description = "Create Delivery Order Wizard"
-
-    unit = fields.Integer(default=1, uom="units")
 
     def get_delivery_order_payload(self):
         """T6234 Method returns the delivery order payload"""
@@ -29,9 +27,9 @@ class CreateDeliveryOrderWizard(models.TransientModel):
                 "operation_type": "internal",
             },
             "move_lines": [
-                {"productId": "5112976146", "quantity": 3},
-                {"productId": "5112974885", "quantity": 15},
-                {"productId": "5112973994", "quantity": 3},
+                {"productId": "5112976146", "quantity": 3, "unit": 2},
+                {"productId": "5112974885", "quantity": 15, "unit": 2},
+                {"productId": "5112973994", "quantity": 3, "unit": 2},
             ],
         }
 
@@ -57,7 +55,7 @@ class CreateDeliveryOrderWizard(models.TransientModel):
                         "product_id": product.id,
                         "product_uom_qty": values.get("quantity"),
                         "name": product.id,
-                        "product_uom": self.unit,
+                        "product_uom": values.get("unit"),
                     },
                 )
             )
