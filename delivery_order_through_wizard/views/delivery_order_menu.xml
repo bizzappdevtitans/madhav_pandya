@@ -2,9 +2,9 @@
 <odoo>
     <!-- Menu item to show on Inventory model -->
  <menuitem
-        id="delivery_order"
+        action="action_create_wizard"
+        id="delivery_order_menu"
         name="Delivery Order Management"
         parent="stock.menu_stock_root"
-        action="action_create_wizard"
     />
 </odoo>

@@ -11,8 +11,8 @@
     ],
     "data": [
         "security/ir.model.access.csv",
+        "wizard/create_delivery_order_wizard.xml",
         "views/delivery_order_menu.xml",
-        "wizard/create_wizard.xml",
     ],
     "installable": True,
     "application": False,

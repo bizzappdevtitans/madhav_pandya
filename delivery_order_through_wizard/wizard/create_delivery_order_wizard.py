@@ -12,7 +12,7 @@ class CreateDeliveryOrderWizard(models.TransientModel):
         return {
             "name": "AT/PL:123056:",
             "customer": {
-                "name": "xyz",
+                "name": "Virat",
                 "address": {
                     "city": "Pune",
                     "country": "",

@@ -18,9 +18,9 @@
         <!-- Wizard action to the menu button "Delivery Order Management" of Inventory model-->
         <record id="action_create_wizard" model="ir.actions.act_window">
             <field name="name">Update Delivery Order</field>
-            <field name="type">ir.actions.act_window</field>
             <field name="res_model">create.delivery.order.wizard</field>
             <field name="view_mode">form</field>
+            <field name="view_id" ref="view_update_delivery_order_form" />
             <field name="target">new</field>
         </record>
 </odoo>
