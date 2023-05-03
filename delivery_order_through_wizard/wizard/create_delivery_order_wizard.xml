@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<odoo>
+        <!-- Wizard view shown after clicking the menu item of Inventory -->
+        <record id="view_update_delivery_order_form" model="ir.ui.view">
+            <field name="name">delivey.order.wizard.form</field>
+            <field name="model">create.delivery.order.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Update Delivery Order">
+                      <button
+                    name="create_delivery_order_mapping"
+                    type="object"
+                    string="Create Delivery Order"
+                    class="oe_highlight"
+                />
+                </form>
+            </field>
+        </record>
+        <!-- Wizard action to the menu button "Delivery Order Management" of Inventory model-->
+        <record id="action_create_wizard" model="ir.actions.act_window">
+            <field name="name">Update Delivery Order</field>
+            <field name="res_model">create.delivery.order.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_update_delivery_order_form" />
+            <field name="target">new</field>
+        </record>
+</odoo>

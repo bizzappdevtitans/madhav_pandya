@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Menu item to show on Inventory model -->
+ <menuitem
+        action="action_create_wizard"
+        id="delivery_order_menu"
+        name="Delivery Order Management"
+        parent="stock.menu_stock_root"
+    />
+</odoo>
