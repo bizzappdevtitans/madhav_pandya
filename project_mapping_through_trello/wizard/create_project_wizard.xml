@@ -18,7 +18,7 @@
                  <button
                         name="import_task_from_trello"
                         type="object"
-                        string="Import Task"
+                        string="Import stage"
                         class="oe_highlight"
                     />
             </group>
@@ -31,6 +31,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">create.project.wizard</field>
             <field name="view_mode">form</field>
+            <field name="view_id" ref="view_project_creation_order_form" />
             <field name="target">new</field>
         </record>
 </odoo>
