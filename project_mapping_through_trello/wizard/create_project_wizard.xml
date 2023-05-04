@@ -16,9 +16,9 @@
                         class="oe_highlight"
                     />
                  <button
-                        name="import_task_from_trello"
+                        name="import_all_project_from_trello"
                         type="object"
-                        string="Import stage"
+                        string="Import all Project"
                         class="oe_highlight"
                     />
             </group>
