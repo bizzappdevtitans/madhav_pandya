@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<record id="project_project_formm_view" model="ir.ui.view">
+<field name="name">project_project_form_view</field>
+<field name="model">project.project</field>
+<field name="inherit_id" ref="project.edit_project" />
+<field name="arch" type="xml">
+<xpath expr="//field[@name='partner_id']" position="after">
+<field name="external_id" />
+<field name="trello_bind_ids" />
+</xpath>
+</field>
+</record>
+
+
+</odoo>
