@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<odoo>
+        <!-- Wizard view shown after clicking the menu item of Project -->
+        <record id="view_project_creation_order_form" model="ir.ui.view">
+            <field name="name">project.wizard.form</field>
+            <field name="model">create.project.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Create Project Through trello">
+                    <group>
+                    <field name="project_option" />
+                    <field
+                        name="project_importer"
+                        attrs="{'invisible': [('project_option', '=', 'all')]}"
+                    />
+                    <field
+                        name="workspace"
+                        attrs="{'invisible': [('project_option', '=', 'single')]}"
+                    />
+                    <field name="api_key" />
+                    <field name="token" />
+                      <button
+                        name="import_data_from_trello"
+                        type="object"
+                        string="Import Project through External Id"
+                        class="oe_highlight"
+                        attrs="{'invisible':[('project_option','=','all')]}"
+                    />
+
+                 <button
+                        name="import_all_project_from_trello"
+                        type="object"
+                        string="Import all Project without external id"
+                        class="oe_highlight"
+                        attrs="{'invisible':[('project_option','=','single')]}"
+                    />
+            </group>
+                </form>
+            </field>
+        </record>
+        <!-- Wizard action to the menu button "Project Model" of Project-->
+        <record id="action_create_project_wizard" model="ir.actions.act_window">
+            <field name="name">Create Project</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">create.project.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_project_creation_order_form" />
+            <field name="target">new</field>
+        </record>
+</odoo>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Menu item to show on Project model -->
+ <menuitem
+        id="project_mapping"
+        name="Project Model"
+        parent="project.menu_main_pm"
+        action="action_create_project_wizard"
+    />
+</odoo>
