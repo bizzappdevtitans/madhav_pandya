@@ -12,3 +12,7 @@ class TrelloProjectTask(models.Model):
     )
 
     external_id = fields.Char("external_id")
+    api_key = fields.Char("Api_key")
+    token = fields.Char("Token")
+    project_external_id = fields.Char("project_external_id")
+    task_created_date = fields.Datetime("Task Created Date")

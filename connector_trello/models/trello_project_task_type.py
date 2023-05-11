@@ -10,3 +10,5 @@ class TrelloProjectTaskType(models.Model):
     odoo_id = fields.Many2one(
         comodel_name="project.task.type", required=True, ondelete="cascade"
     )
+    external_id = fields.Char("external_id")
+    project_external_id = fields.Char("project_external_id")

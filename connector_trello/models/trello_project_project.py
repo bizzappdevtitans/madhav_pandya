@@ -12,3 +12,6 @@ class TrelloProject(models.Model):
     odoo_id = fields.Many2one(
         comodel_name="project.project", required=True, ondelete="cascade"
     )
+    api_key = fields.Char("Api Key")
+    token = fields.Char("Token")
+    project_created_date = fields.Datetime("Created")

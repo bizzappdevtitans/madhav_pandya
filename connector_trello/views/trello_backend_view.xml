@@ -15,6 +15,8 @@
                <field name="api_key" />
                <field name="token" />
                <field name="workspace" />
+               <field name="visible_button" invisible="1" />
+               <field name="visible_button_two" invisible="1" />
                </group>
                <group>
                 <button
@@ -23,19 +25,24 @@
                             string="Import Projects"
                             class="oe_highlight"
                         />
+               </group>
+               <group>
                 <button
                             name="import_stage_from_trello"
                             type="object"
                             string="Import Stages"
                             class="oe_highlight"
+                            attrs="{'invisible': [('visible_button', '=', False)]}"
                         />
+               </group>
+               <group>
                 <button
                             name="import_task_from_trello"
                             type="object"
                             string="Import Task"
                             class="oe_highlight"
+                            attrs="{'invisible': [('visible_button_two', '=', False)]}"
                         />
-
                </group>
             </sheet>
          </form>
@@ -79,6 +86,7 @@
                <group>
                <field name="odoo_id" />
                <field name="external_id" />
+               <field name="project_external_id" />
                </group>
             </sheet>
          </form>
@@ -100,6 +108,8 @@
             <sheet>
                <group>
                     <field name="odoo_id" />
+                    <field name="external_id" />
+                    <field name="project_external_id" />
                </group>
             </sheet>
          </form>
