@@ -7,6 +7,7 @@
 <field name="arch" type="xml">
 <xpath expr="//field[@name]" position="after">
 <field name="trello_bind_ids" />
+<field name="external_id" />
 <field name="project_external_id" />
 </xpath>
 </field>

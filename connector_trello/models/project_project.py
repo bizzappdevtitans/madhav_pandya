@@ -1,5 +1,3 @@
-import xmlrpc.client
-
 import requests
 
 from odoo import _, fields, models
@@ -112,110 +110,191 @@ class Project(models.Model):
     def view_project_in_trello(self):
         return {
             "type": "ir.actions.act_url",
-            "url": f"https://trello.com/b/{self.external_id}/parth-agrawal",
+            "url": f"https://trello.com/b/{self.external_id}",
         }
 
     def export_project_changes(self):
-        odoo_base_url = "http://localhost:8088"
-        odoo_database = "connector_trello_new"
-        odoo_username = "admin"
-        odoo_password = "admin"
+        # Define your Trello API key and token
+        api_key = "d0e8e49052ffc8d9b19945eaff3fec29"
+        token = "ATTA9630a7b59094d59905fd4a97a6abff30294d5058810e97dc4b76420c"
+        # "a474c8e9D1B31FC7"
 
-        # Trello API credentials
-        trello_base_url = "https://api.trello.com/1"
-        trello_key = self.api_key
-        trello_token = self.token
-        trello_board_id = self.external_id
+        if self.external_id:
+            # Define the URL to update the board on Trello
+            board_update_url = f"https://api.trello.com/1/boards/{self.external_id}"
 
-        # Connect to Odoo API
-        odoo_session = requests.Session()
-        odoo_auth_url = f"{odoo_base_url}/web/session/authenticate"
-        odoo_auth_payload = {
-            "jsonrpc": "2.0",
-            "params": {
-                "db": odoo_database,
-                "login": odoo_username,
-                "password": odoo_password,
-            },
-        }
+            # Define the parameters for updating the board on Trello
+            board_params = {"name": self.name, "key": api_key, "token": token}
 
-        odoo_response = odoo_session.post(odoo_auth_url, json=odoo_auth_payload)
-        odoo_response.raise_for_status()
-        odoo_session_id = odoo_response.json()
-        # Extract result
-        odoo_session_id.get("result")
+            # Send a PUT request to Trello to update the board
+            board_response = requests.put(board_update_url, params=board_params)
+            board_data = board_response.json()
 
-        # Extract session_id
-        session_id = odoo_session_id.get("result").get("uid")
-        # print("\n\n\n\n\n", odoo_session_id["result"]["uid"])
-        # pprint.pprint(odoo_session_id)
+            # Check if the request was successful
+            # if board_response.status_code == 200:
+            #     print("Board updated successfully.")
+        else:
+            board_url = "https://api.trello.com/1/boards"
 
-        # info = xmlrpc.client.ServerProxy("https://demo.odoo.com/start").start()
-        common = xmlrpc.client.ServerProxy("{}/xmlrpc/2/common".format(odoo_base_url))
-        common.version()
-        common.authenticate(odoo_database, odoo_username, odoo_password, {})
-        models = xmlrpc.client.ServerProxy("{}/xmlrpc/2/object".format(odoo_base_url))
-        models.execute_kw(
-            odoo_database,
-            session_id,
-            odoo_password,
-            "project.task",
-            "search",
-            [[("name", "=", True)]],
-        )
-        # print("\n\n\n\nmodels", models)
-
-        # Retrieve Odoo project data (e.g., tasks)
-        odoo_project_url = f"{odoo_base_url}/api/v1/project.task"
-        odoo_project_payload = {
-            "jsonrpc": "2.0",
-            "params": {
-                "session_id": session_id,
-                "model": "project.task",
-                "domain": [],
-                "fields": ["name", "description", "status"],
-                "limit": 10,
-            },
-        }
-        odoo_response = odoo_session.post(odoo_project_url, json=odoo_project_payload)
-        # print("\n\n\n\n", odoo_response)
-        if odoo_response.status_code != 200:
-            # print(f"Request Error: {odoo_response.content}")
-            return
-        # odoo_response.raise_for_status()
-        odoo_tasks = odoo_response.json()
-        # print("\n\n\n\n", odoo_tasks)
-
-        # Connect to Trello API
-        trello_session = requests.Session()
-        trello_auth_params = {"key": trello_key, "token": trello_token}
-        trello_lists_url = f"{trello_base_url}/boards/{trello_board_id}/lists"
-        trello_response = trello_session.get(
-            trello_lists_url, params=trello_auth_params
-        )
-        trello_response.raise_for_status()
-        trello_lists = trello_response.json()
-
-        # Format and export data to Trello
-        for task in odoo_tasks:
-            trello_card_url = f"{trello_base_url}/cards"
-            trello_card_payload = {
-                "key": trello_key,
-                "token": trello_token,
-                "idList": trello_lists[0][
-                    "id"
-                ],  # Specify the Trello list ID where the card should be created
-                "name": task["name"],
-                "desc": task["description"],
-                "due": None,  # Optionally set a due date
+            # Define the parameters for creating a new board on Trello
+            board_params = {
+                "name": self.name,
+                "key": api_key,
+                "token": token,
             }
-            trello_response = trello_session.post(
-                trello_card_url, params=trello_auth_params, json=trello_card_payload
-            )
-            trello_response.raise_for_status()
-            trello_response.json()
-            # print(f"Created Trello card: {trello_card['id']}")
 
-        # # Close the sessions
-        # odoo_session.close()
-        # trello_session.close()
+            # Send a POST request to Trello to create a new board
+            board_response = requests.post(board_url, params=board_params)
+            board_data = board_response.json()
+            board_id = board_data["id"]
+
+            # Check if the request was successful
+            if board_response.status_code == 200:
+                # New board created successfully
+                self.external_id = board_data["id"]
+                # print("New board created successfully.")
+            board_lists = {}
+
+        for stage in self.type_ids:
+            # Check if the stage has an external ID (indicating it exists on Trello)
+            if stage.external_id:
+                # print("\n\n\n", stage.external_id)
+                # Define the URL to update the list on Trello
+                list_url = f"https://api.trello.com/1/lists/{stage.external_id}"
+
+                # Define the parameters for updating the list on Trello
+                list_params = {"name": stage.name, "key": api_key, "token": token}
+
+                # Send a PUT request to Trello to update the list
+                list_response = requests.put(list_url, params=list_params)
+
+                # Check if the request was successful
+                # if list_response.status_code == 200:
+                #     # List updated successfully
+                #     print(f'Stage "{stage.name}" updated successfully.')
+            else:
+                if stage.name.lower() in ["to do", "doing", "done"]:
+                    continue
+                # Define the URL to create a new list on the board
+                list_url = f"https://api.trello.com/1/boards/{board_id}/lists"
+
+                # Define the parameters for creating a new list on the board
+                list_params = {"name": stage.name, "key": api_key, "token": token}
+                # print("\n\n\n\n", stage.name)
+
+                # Send a POST request to Trello to create a new list
+                list_response = requests.post(list_url, params=list_params)
+                list_data = list_response.json()
+
+                # Check if the request was successful
+                if list_response.status_code == 200:
+                    list_id = list_data["id"]
+                    board_lists[stage.id] = list_id
+
+            for task in self.task_ids:
+                if task.stage_id.id in board_lists:
+                    list_id = board_lists[task.stage_id.id]
+
+                    # Define the URL to create a new card on the list
+                    card_url = "https://api.trello.com/1/cards"
+
+                    # Define the parameters for creating a new card on the list
+                    card_params = {
+                        "name": task.name,
+                        "desc": task.description or "",
+                        "idList": list_id,
+                        "key": api_key,
+                        "token": token,
+                    }
+
+                    # Send a POST request to Trello to create a new card
+                    card_response = requests.post(card_url, params=card_params)
+
+                    # Check if the request was successful
+                    if card_response.status_code != 200:
+                        # Raise an exception if the request was unsuccessful
+                        card_response.raise_for_status()
+
+            else:
+                # Raise an exception if the request to create the board was unsuccessful
+                board_response.raise_for_status()
+
+    # def export_project_changes(self):
+    #     # Define your Trello API key and token
+    #     api_key = 'd0e8e49052ffc8d9b19945eaff3fec29'
+    #     token = 'ATTA9630a7b59094d59905fd4a97a6abff30294d5058810e97dc4b76420ca474
+    # c8e9D1B31FC7'
+
+    #     # Define the URL to create a new board on Trello
+    #     board_url = f'https://api.trello.com/1/boards'
+
+    #     # Define the parameters for creating a new board on Trello
+    #     board_params = {
+    #         'name': self.name,
+    #         'key': api_key,
+    #         'token': token
+    #     }
+
+    #     # Send a POST request to Trello to create a new board
+    #     board_response = requests.post(board_url, params=board_params)
+    #     board_data = board_response.json()
+
+    #     # Check if the request was successful
+    #     if board_response.status_code == 200:
+    #         board_id = board_data['id']
+    #         board_lists = {}
+
+    #         # Export stages and tasks to the Trello board
+    #         for stage in self.type_ids:
+    #             # Define the URL to create a new list on the board
+    #             list_url = f'https://api.trello.com/1/boards/{board_id}/lists'
+
+    #             # Define the parameters for creating a new list on the board
+    #             list_params = {
+    #                 'name': stage.name,
+    #                 'key': api_key,
+    #                 'token': token
+    #             }
+    #             print("\n\n\n\n",stage.name)
+
+    #             # Send a POST request to Trello to create a new list
+    #             list_response = requests.post(list_url, params=list_params)
+    #             list_data = list_response.json()
+
+    #             # Check if the request was successful
+    #             if list_response.status_code == 200:
+    #                 list_id = list_data['id']
+    #                 board_lists[stage.id] = list_id
+
+    #                 # Export tasks to the Trello list
+    #                 for task in task_ids:
+    #                     # Define the URL to create a new card on the list
+    #                     card_url = 'https://api.trello.com/1/cards'
+
+    #                     # Define the parameters for creating a new card on the list
+    #                     card_params = {
+    #                         'name': task.name,
+    #                         'desc': task.description or '',
+    #                         'idList': list_id,
+    #                         'key': api_key,
+    #                         'token': token
+    #                     }
+
+    #                     # Send a POST request to Trello to create a new card
+    #                     card_response = requests.post(card_url, params=card_params)
+
+    #                     # Check if the request was successful
+    #                     if card_response.status_code != 200:
+    #                         # Raise an exception if the request was unsuccessful
+    #                         card_response.raise_for_status()
+
+    #         # Update the task stage IDs with the corresponding Trello list IDs
+    #         # for task in self.task_ids:
+    #         #     if task.stage_id.id in board_lists:
+    #         #         task.write({'trello_list_id': board_lists[task.stage_id.id]})
+    #         #     else:
+    #         #         task.write({'trello_list_id': False})
+
+    #     else:
+    #         # Raise an exception if the request to create the board was unsuccessful
+    #         board_response.raise_for_status()
