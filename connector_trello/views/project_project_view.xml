@@ -9,6 +9,7 @@
     <field name="project_created_date" />
 
     <field name="project_updated_date" />
+
 </xpath>
 <xpath expr="//field[@name='partner_id']" position="after">
 <field name="external_id" />
