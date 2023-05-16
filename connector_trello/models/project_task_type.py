@@ -15,3 +15,4 @@ class ProjectTaskType(models.Model):
     project_external_id = fields.Char(
         string="Project External Id", related="trello_bind_ids.project_external_id"
     )
+    project_id = fields.Many2one(comodel_name="project.project")
