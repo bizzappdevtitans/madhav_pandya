@@ -9,6 +9,7 @@
 <field name="trello_bind_ids" />
 <field name="external_id" /><br />
 <field name="project_external_id" />
+<field name="internal_id" />
 </xpath>
 </field>
 </record>

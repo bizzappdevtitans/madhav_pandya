@@ -27,8 +27,14 @@ class TrelloBackend(models.Model):
         project_obj = self.env["project.project"]
         for projects in projects_data:
             vals = project_obj.search(
-                [("external_id", "=", projects.get("id"))], limit=1
+                [
+                    "|",
+                    ("external_id", "=", projects.get("id")),
+                    ("internal_id", "=", projects.get("id")),
+                ],
+                limit=1,
             )
+            # print("\n\n\n\n", vals)
             if vals:
                 vals.write({"name": projects.get("name")})
             else:
@@ -60,7 +66,12 @@ class TrelloBackend(models.Model):
         project_obj = self.env["project.project"]
         for projects in projects_data:
             vals = project_obj.search(
-                [("external_id", "=", projects.get("id"))], limit=1
+                [
+                    "|",
+                    ("external_id", "=", projects.get("id")),
+                    ("internal_id", "=", projects.get("id")),
+                ],
+                limit=1,
             )
             if vals:
                 vals.write({"name": projects.get("name")})
@@ -82,7 +93,12 @@ class TrelloBackend(models.Model):
             stage_mapping = {}
             for trello_list in stage_data:
                 exist_stage = project_stage_obj.search(
-                    [("external_id", "=", trello_list.get("id"))], limit=1
+                    [
+                        "|",
+                        ("external_id", "=", trello_list.get("id")),
+                        ("internal_id", "=", trello_list.get("id")),
+                    ],
+                    limit=1,
                 )
 
                 if exist_stage:
@@ -116,7 +132,12 @@ class TrelloBackend(models.Model):
         # self.env["trello.project.project"]
         for projects in projects_data:
             vals = project_obj.search(
-                [("external_id", "=", projects.get("id"))], limit=1
+                [
+                    "|",
+                    ("external_id", "=", projects.get("id")),
+                    ("internal_id", "=", projects.get("id")),
+                ],
+                limit=1,
             )
             if vals:
                 vals.write({"name": projects.get("name")})
@@ -137,7 +158,12 @@ class TrelloBackend(models.Model):
             stage_mapping = {}
             for trello_list in stage_data:
                 exist_stage = project_stage_obj.search(
-                    [("external_id", "=", trello_list.get("id"))], limit=1
+                    [
+                        "|",
+                        ("external_id", "=", trello_list.get("id")),
+                        ("internal_id", "=", trello_list.get("id")),
+                    ],
+                    limit=1,
                 )
                 if exist_stage:
                     # stage = exist_stage.write({"name": trello_list.get("name")})
@@ -154,7 +180,12 @@ class TrelloBackend(models.Model):
             project_task_obj = self.env["project.task"]
             for tasks_vals in response_data:
                 exist_task = project_task_obj.search(
-                    [("external_id", "=", tasks_vals.get("id"))], limit=1
+                    [
+                        "|",
+                        ("external_id", "=", tasks_vals.get("id")),
+                        ("internal_id", "=", tasks_vals.get("id")),
+                    ],
+                    limit=1,
                 )
                 if exist_task:
                     task_values = {

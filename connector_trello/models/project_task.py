@@ -20,6 +20,7 @@ class ProjectTask(models.Model):
         "Task Created Date", related="trello_bind_ids.task_created_date"
     )
     task_updated_date = fields.Datetime("Task Updated Date")
+    internal_id = fields.Char("Internal Id")
 
     def update_task(self):
         url_list = "https://api.trello.com/1/boards/%s/lists?key=%s&token=%s" % (

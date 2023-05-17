@@ -8,6 +8,7 @@
 
 <xpath expr="//field[@name='project_id']" position="after">
 <field name="external_id" />
+<field name="internal_id" />
 <field name="trello_bind_ids" />
 <field name="api_key" />
 <field name="token" />
