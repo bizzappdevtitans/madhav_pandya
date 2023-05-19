@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Menu item to show on Project model -->
+ <menuitem
+        id="project_mapping"
+        name="Project Model"
+        parent="project.menu_main_pm"
+        action="action_trello_backend"
+    />
+
+
+<menuitem
+        id="project_mapping_1"
+        name="Project trello"
+        parent="project.menu_main_pm"
+        action="action_trello_project"
+    />
+
+
+<menuitem
+        id="project_mapping_2"
+        name="Project stage"
+        parent="project.menu_main_pm"
+        action="action_trello_stage"
+    />
+
+
+<menuitem
+        id="project_mapping_3"
+        name="Project task"
+        parent="project.menu_main_pm"
+        action="action_trello_task"
+    />
+</odoo>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="action_trello_backend" model="ir.actions.act_window">
+        <field name="name">Trello Backend</field>
+        <field name="res_model">trello.backend</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+<record id="trello_backend_form_view" model="ir.ui.view">
+      <field name="name">trello.backend.form.view</field>
+      <field name="model">trello.backend</field>
+      <field name="arch" type="xml">
+         <form>
+            <sheet>
+               <group>
+               <field name="api_key" />
+               <field name="token" />
+               <field name="workspace" />
+               <field name="visible_button" invisible="1" />
+               <field name="visible_button_two" invisible="1" />
+               </group>
+               <group>
+                <button
+                            name="import_project_from_trello"
+                            type="object"
+                            string="Import Projects"
+                            class="oe_highlight"
+                        />
+               </group>
+               <group>
+                <button
+                            name="import_stage_from_trello"
+                            type="object"
+                            string="Import Stages"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('visible_button', '=', False)]}"
+                        />
+               </group>
+               <group>
+                <button
+                            name="import_task_from_trello"
+                            type="object"
+                            string="Import Task"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('visible_button_two', '=', False)]}"
+                        />
+               </group>
+            </sheet>
+         </form>
+      </field>
+   </record>
+
+
+    <record id="action_trello_project" model="ir.actions.act_window">
+        <field name="name">Trello Backend</field>
+        <field name="res_model">trello.project.project</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+   <record id="trello_project_form_view" model="ir.ui.view">
+      <field name="name">trello.backend.form.view</field>
+      <field name="model">trello.project.project</field>
+      <field name="arch" type="xml">
+         <form>
+            <sheet>
+               <group>
+               <field name="odoo_id" />
+               <field name="external_id" />
+               </group>
+            </sheet>
+         </form>
+      </field>
+   </record>
+
+    <record id="action_trello_stage" model="ir.actions.act_window">
+        <field name="name">Trello Backend</field>
+        <field name="res_model">trello.project.task.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+   <record id="trello_stage_form_view" model="ir.ui.view">
+      <field name="name">trello.backend.form.view</field>
+      <field name="model">trello.project.task.type</field>
+      <field name="arch" type="xml">
+         <form>
+            <sheet>
+               <group>
+               <field name="odoo_id" />
+               <field name="external_id" />
+               <field name="project_external_id" />
+               </group>
+            </sheet>
+         </form>
+      </field>
+   </record>
+
+
+<record id="action_trello_task" model="ir.actions.act_window">
+        <field name="name">Trello Backend</field>
+        <field name="res_model">trello.project.task</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+   <record id="trello_task_form_view" model="ir.ui.view">
+      <field name="name">trello.backend.form.view</field>
+      <field name="model">trello.project.task.type</field>
+      <field name="arch" type="xml">
+         <form>
+            <sheet>
+               <group>
+                    <field name="odoo_id" />
+                    <field name="external_id" />
+                    <field name="project_external_id" />
+               </group>
+            </sheet>
+         </form>
+      </field>
+   </record>
+
+
+
+</odoo>

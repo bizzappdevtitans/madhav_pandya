@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<record id="project_task_form_view" model="ir.ui.view">
+<field name="name">project_task_form_view</field>
+<field name="model">project.task</field>
+<field name="inherit_id" ref="project.view_task_form2" />
+<field name="arch" type="xml">
+
+<xpath expr="//field[@name='project_id']" position="after">
+<field name="external_id" />
+<field name="internal_id" />
+<field name="trello_bind_ids" />
+<field name="api_key" />
+<field name="token" />
+<field name="project_external_id" />
+<button name="update_task" type="object" string="Update Task" class="oe_highlight" />
+</xpath>
+<xpath expr="//field[@name='external_id']" position="after">
+    <field name="task_created_date" />
+    <field name="task_updated_date" />
+</xpath>
+</field>
+</record>
+</odoo>

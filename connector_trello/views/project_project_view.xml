@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<record id="project_project_formm_view" model="ir.ui.view">
+<field name="name">project_project_form_view</field>
+<field name="model">project.project</field>
+<field name="inherit_id" ref="project.edit_project" />
+<field name="arch" type="xml">
+<xpath expr="//field[@name='user_id']" position="after">
+    <field name="project_created_date" />
+
+    <field name="project_updated_date" />
+
+</xpath>
+<xpath expr="//field[@name='partner_id']" position="after">
+<field name="external_id" />
+<field name="trello_bind_ids" />
+<field name="api_key" />
+<field name="token" />
+<field name="internal_id" />
+
+<button
+                    name="update_project_from_trello"
+                    type="object"
+                    string="Update Project"
+                    class="oe_highlight"
+                />
+<button
+                    name="export_project_changes"
+                    type="object"
+                    string="Export Project"
+                    class="oe_highlight"
+                />
+<button
+                    name="view_project_in_trello"
+                    type="object"
+                    string="View project in Trello"
+                    class="oe_highlight"
+                />
+</xpath>
+</field>
+</record>
+
+
+</odoo>
